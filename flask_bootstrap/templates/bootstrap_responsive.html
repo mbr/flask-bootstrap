@@ -1,0 +1,7 @@
+{% extends "bootstrap_base.html" %}
+
+{% block style %}
+{{super()}}
+    <link href="{{url_for('bootstrap.static',
+                          filename='css/bootstrap-responsive.min.css' if config['BOOTSTRAP_USE_MINIFIED'] else 'css/bootstrap-responsive.css')}}" rel="stylesheet">
+{%- endblock %}
