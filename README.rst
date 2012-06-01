@@ -34,3 +34,6 @@ There are a few configuration options used by the templates:
   `BOOTSTRAP_USE_MINIFIED`. Set this to `None` to not include jQuery at all.
 * `BOOTSTRAP_HTML5_SHIM`. Include the default IE-fixes that are usually
   included when using bootstrap.
+* `BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT` (default: None). If set, include
+  `Google Analytics <http://www.google.com/analytics`_ boilerplate using
+  this account.
