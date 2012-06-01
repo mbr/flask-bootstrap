@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding=utf8
 
+from wtforms.fields import HiddenField
 from flask import Blueprint
 
 
@@ -24,3 +25,10 @@ class Bootstrap(object):
             static_url_path=self.app.static_url_path + '/bootstrap')
 
         app.register_blueprint(self.blueprint)
+
+        app.jinja_env.filters['bootstrap_is_hidden_field'] =\
+            is_hidden_field_filter
+
+
+def is_hidden_field_filter(field):
+    return isinstance(field, HiddenField)

@@ -26,8 +26,46 @@ more possiblities.
 The url-endpoint ``bootstrap.static`` is available for refering to Bootstrap
 resources, but usually, this isn't needed.
 
+Macros
+------
+
+A few macros are available to make your life easier. These need to be imported
+(I recommend create your own "base.html" template that extends one of the
+bootstrap base templates first and including the the macros there).
+
+An example "base.html"::
+
+  {% extends "bootstrap_response.html" %}
+  {% import "bootstrap_wtf.html" as wtf %}
+
+Forms
+~~~~~
+
+The ``bootstrap_wtf`` template contains macros to help you output forms
+quickly. The most basic way is using them as an aid to create a form by hand::
+
+  <form class="form form-horizontal" method="post">
+    {{ form.hidden_tag() }}
+    {{ wtf.form_errors(form, "only") }}
+
+    {{ wtf.horizontal_field(form.field1) }}
+    {{ wtf.horizontal_field(form.field2) }}
+
+    <div class="form-actions">
+       <button name="action_save" type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+  </form>
+
+However, often you just want to get a form done quickly and have no need for
+intense fine-tuning:
+
+::
+
+  {{ quick_form(form) }}
+
 Configuration options
 ---------------------
+
 There are a few configuration options used by the templates:
 
 :BOOTSTRAP_USE_MINIFIED: (default: ``True``) - whether or not to use the minified versions of the css/js files

@@ -1,0 +1,52 @@
+{%- macro inline_field(field) %}
+{%- with required = "required" if kwargs['required'] or field.flags.required else "" -%}
+{{field(placeholder=field.label.text, required=required, **kwargs)}}
+{%- endwith %}
+{%- endmacro %}
+
+{%- macro horizontal_field(field) %}
+<div class="control-group {% if field.errors %}error{% endif %}">
+  {{field.label(class="control-label")}}
+  <div class="controls">
+    {{field(**kwargs)}}
+
+    {%- if field.errors %}
+      {%- for error in field.errors %}
+        <p class="help-block">{{error}}</p>
+      {%- endfor %}
+    {%- elif field.description -%}
+      <p class="help-block">{{field.description|safe}}</p>
+    {%- endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro form_errors(form, hiddens=True) %}
+{%- if form.errors %}
+{%- for fieldname, errors in form.errors.iteritems() %}
+{%- if (form[fieldname]|bootstrap_is_hidden_field and hiddens) or
+       (form[fieldname]|bootstrap_is_hidden_field and hiddens != 'only') %}
+{%- for error in errors %}
+<p class="error">{{error}}</p>
+{%- endfor %}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+{%- endmacro %}
+
+{% macro quick_form(form, action=".", method="post", class="form form-horizontal", buttons = [('submit', 'primary', 'Save')]) %}
+<form action="{{action}}" method="post" class="{{class}}">
+  {{ form.hidden_tag() }}
+  {{ form_errors(form, 'only') }}
+  {%- for field in form %}
+  {% if not field|bootstrap_is_hidden_field %}
+  {{ horizontal_field(field) }}
+  {%- endif %}
+  {%- endfor %}
+  <div class="form-actions">
+  {% for name, type, text in buttons %}
+    <button name="{{name}}" type="submit" class="btn btn-{{type}}">{{text}}</button>
+  {%- endfor %}
+  </div>
+</form>
+{%- endmacro %}
