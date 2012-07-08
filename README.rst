@@ -73,6 +73,13 @@ There are a few configuration options used by the templates:
 :BOOTSTRAP_HTML5_SHIM: (default: ``True``) Include the default IE-fixes that are usually included when using bootstrap.
 :BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT: (default: ``None``). If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
 
+Installation
+------------
+
+Either install from github using ``pip`` or from `PyPI
+<http://pypi.python.org>`_. Note that the package is known on PyPI as
+``flask-bootstrap2``.
+
 A note on versioning
 --------------------
 
