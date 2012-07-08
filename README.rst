@@ -72,3 +72,14 @@ There are a few configuration options used by the templates:
 :BOOTSTRAP_JQUERY_VERSION: (default: ``'1.7.2'``) - this version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
 :BOOTSTRAP_HTML5_SHIM: (default: ``True``) Include the default IE-fixes that are usually included when using bootstrap.
 :BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT: (default: ``None``). If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
+
+A note on versioning
+--------------------
+
+Flask-Bootstrap tries to keep sometrack track of Twitter's Bootstrap releases.
+Versioning is usually in the form of ``Bootstrap version`` - ``Flask-Bootstrap
+iteration``. For example, a version of ``2.0.3-2`` bundles Bootstrap version
+``2.0.3`` and is the second release of Flask-Bootstrap containing that version.
+
+If you need to rely on your templates not changing, simply pin the version in
+your setup.py.
