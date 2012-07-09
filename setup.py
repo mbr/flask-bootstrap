@@ -8,8 +8,8 @@ def read(fname):
 
 
 setup(
-    name='Flask-Bootstrap2',
-    version='2.0.4-2dev',
+    name='Flask-Bootstrap',
+    version='2.0.4-2',
     url='http://github.com/mbr/flask-bootstrap',
     license='BSD',
     author='Marc Brinkmann.de',
