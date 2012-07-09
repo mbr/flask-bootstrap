@@ -1,0 +1,6 @@
+{% extends "bootstrap_responsive.html" %}
+
+{% block body_content %}
+{# expect this to throw the right exception #}
+{{ bootstrap_is_hidden_field|bootstrap_is_hidden_field }}
+{% endblock %}
