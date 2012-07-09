@@ -77,8 +77,8 @@ Installation
 ------------
 
 Either install from github using ``pip`` or from `PyPI
-<http://pypi.python.org>`_. Note that the package is known on PyPI as
-``flask-bootstrap2``.
+<http://pypi.python.org>`_. The package is known on PyPI as
+``flask-bootstrap``.
 
 A note on versioning
 --------------------
