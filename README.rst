@@ -38,7 +38,7 @@ bootstrap base templates first and including the the macros there).
 
 An example "base.html"::
 
-  {% extends "bootstrap_response.html" %}
+  {% extends "bootstrap_responsive.html" %}
   {% import "bootstrap_wtf.html" as wtf %}
 
 Forms
