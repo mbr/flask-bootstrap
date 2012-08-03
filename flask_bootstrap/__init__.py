@@ -27,7 +27,10 @@ def bootstrap_find_resource(filename, use_minified=None):
     if not config['BOOTSTRAP_USE_CDN']:
         return url_for('bootstrap.static', filename=filename)
     else:
-        return config['BOOTSTRAP_CDN_BASEURL'] + filename
+        baseurl = config['BOOTSTRAP_CDN_BASEURL']
+        if baseurl.startswith('//') and config['BOOTSTRAP_CDN_PREFER_SSL']:
+            baseurl = 'https:%s' % baseurl
+        return baseurl + filename
 
 
 class Bootstrap(object):
@@ -41,9 +44,10 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_HTML5_SHIM', True)
         app.config.setdefault('BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT', None)
         app.config.setdefault('BOOTSTRAP_USE_CDN', False)
+        app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL',
-            'https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'
         )
 
         self.app = app
