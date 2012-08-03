@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf8
 
-from flask import Blueprint
+from flask import Blueprint, current_app, url_for
 
 try:
     from wtforms.fields import HiddenField
@@ -11,6 +11,23 @@ except ImportError:
 else:
     def is_hidden_field_filter(field):
         return isinstance(field, HiddenField)
+
+
+def bootstrap_find_resource(filename, use_minified=None):
+    # FIXME: get rid of this function and instead manipulate the flask routing
+    #        system
+    config = current_app.config
+
+    if None == use_minified:
+        use_minified = config['BOOTSTRAP_USE_MINIFIED']
+
+    if use_minified:
+        filename = '%s.min.%s' % tuple(filename.rsplit('.', 1))
+
+    if not config['BOOTSTRAP_USE_CDN']:
+        return url_for('bootstrap.static', filename=filename)
+    else:
+        return config['BOOTSTRAP_CDN_BASEURL'] + filename
 
 
 class Bootstrap(object):
@@ -41,3 +58,5 @@ class Bootstrap(object):
 
         app.jinja_env.filters['bootstrap_is_hidden_field'] =\
             is_hidden_field_filter
+        app.jinja_env.filters['bootstrap_find_resource'] =\
+            bootstrap_find_resource
