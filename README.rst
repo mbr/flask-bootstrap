@@ -4,7 +4,8 @@ Flask-Bootstrap
 
 Flask-Bootstrap packages `Twitter's Bootstrap
 <http://twitter.github.com/bootstrap/>`_ into an extension that mostly consists
-of a blueprint named 'bootstrap'.
+of a blueprint named 'bootstrap'. It can also create links to serve Bootstrap
+from a CDN.
 
 Usage
 -----
@@ -24,7 +25,9 @@ block to alter is ``body_content``, otherwise see the source of the template for
 more possiblities.
 
 The url-endpoint ``bootstrap.static`` is available for refering to Bootstrap
-resources, but usually, this isn't needed.
+resources, but usually, this isn't needed. A bit better is using the
+``bootstrap_find_resource`` template filter, which will CDN settings into
+account.
 
 Macros
 ------
@@ -72,6 +75,8 @@ There are a few configuration options used by the templates:
 :BOOTSTRAP_JQUERY_VERSION: (default: ``'1.7.2'``) - this version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
 :BOOTSTRAP_HTML5_SHIM: (default: ``True``) Include the default IE-fixes that are usually included when using bootstrap.
 :BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT: (default: ``None``). If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
+:BOOTSTRAP_USE_CDN: (default ``False``) If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
+:BOOTSTRAP_CDN_BASEURL: (default ``'https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'``) The URL to which Bootstrap filenames are appended when using a CDN.
 
 Installation
 ------------
