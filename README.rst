@@ -75,7 +75,7 @@ There are a few configuration options used by the templates:
 Option                                 Default
 ====================================== ======================================================== ===
 ``BOOTSTRAP_USE_MINIFIED``             ``True``                                                 Whether or not to use the minified versions of the css/js files.
-``BOOTSTRAP_JQUERY_VERSION``           ``'1.7.2'``                                              This version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
+``BOOTSTRAP_JQUERY_VERSION``           ``'1'``                                                  This version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
 ``BOOTSTRAP_HTML5_SHIM``               ``True``                                                 Include the default IE-fixes that are usually included when using bootstrap.
 ``BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT`` ``None``                                                 If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
 ``BOOTSTRAP_USE_CDN``                  ``False``                                                If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
@@ -100,3 +100,13 @@ iteration``. For example, a version of ``2.0.3-2`` bundles Bootstrap version
 
 If you need to rely on your templates not changing, simply pin the version in
 your setup.py.
+
+CHANGES
+~~~~~~~
+
+The following changes could have possibly been not backwards compatible:
+
+2.0.4-4
+"""""""
+* Changed the default version of jQuery from 1.7.2 to just 1. This means that
+  the latest 1.x.x version of jQuery will be pulled.

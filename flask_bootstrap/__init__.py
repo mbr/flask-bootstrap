@@ -40,7 +40,7 @@ class Bootstrap(object):
 
     def init_app(self, app):
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
-        app.config.setdefault('BOOTSTRAP_JQUERY_VERSION', '1.7.2')
+        app.config.setdefault('BOOTSTRAP_JQUERY_VERSION', '1')
         app.config.setdefault('BOOTSTRAP_HTML5_SHIM', True)
         app.config.setdefault('BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT', None)
         app.config.setdefault('BOOTSTRAP_USE_CDN', False)
