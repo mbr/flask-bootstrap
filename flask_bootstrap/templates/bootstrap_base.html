@@ -12,7 +12,11 @@
     {%- endblock %}
 
     {%- block style %}
+    {% if not config['BOOTSTRAP_USE_CDN'] -%}
     <link href="{{url_for('bootstrap.static', filename='css/bootstrap.min.css' if config['BOOTSTRAP_USE_MINIFIED'] else 'css/bootstrap.css')}}" rel="stylesheet">
+    {%- else -%}
+    <link href="{{config['BOOTSTRAP_CDN_BASEURL']}}{{'css/bootstrap.min.css' if config['BOOTSTRAP_USE_MINIFIED'] else 'css/bootstrap.css'}}" rel="stylesheet">
+    {%- endif %}
     {%- block style_navbar_padding %}
     <style>
       body {
@@ -46,7 +50,11 @@
     {%- if config['BOOTSTRAP_JQUERY_VERSION'] %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{config['BOOTSTRAP_JQUERY_VERSION']}}/jquery.{% if config['BOOTSTRAP_USE_MINIFIED'] %}min.{% endif %}js"></script>
     {%- endif %}
+    {% if not config['BOOTSTRAP_USE_CDN'] -%}
     <script src="{{url_for('bootstrap.static', filename='js/bootstrap.min.js' if config['BOOTSTRAP_USE_MINIFIED'] else 'js/bootstrap.js')}}"></script>
+    {%- else -%}
+    <script src="{{config['BOOTSTRAP_CDN_BASEURL']}}{{'js/bootstrap.min.js' if config['BOOTSTRAP_USE_MINIFIED'] else 'js/bootstrap.js'}}"></script>
+    {%- endif %}
     {%- endblock %}
 
     {%- if config['BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT'] %}

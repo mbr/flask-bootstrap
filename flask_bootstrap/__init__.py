@@ -23,6 +23,11 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_JQUERY_VERSION', '1.7.2')
         app.config.setdefault('BOOTSTRAP_HTML5_SHIM', True)
         app.config.setdefault('BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT', None)
+        app.config.setdefault('BOOTSTRAP_USE_CDN', False)
+        app.config.setdefault(
+            'BOOTSTRAP_CDN_BASEURL',
+            'https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'
+        )
 
         self.app = app
         self.blueprint = Blueprint(
