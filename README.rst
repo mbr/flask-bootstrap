@@ -71,16 +71,17 @@ Configuration options
 
 There are a few configuration options used by the templates:
 
-====================================== ============================================================== ===
+====================================== ======================================================== ===
 Option                                 Default
-====================================== ============================================================== ===
-``BOOTSTRAP_USE_MINIFIED``             ``True``                                                       Whether or not to use the minified versions of the css/js files.
-``BOOTSTRAP_JQUERY_VERSION``           ``'1.7.2'``                                                    This version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
-``BOOTSTRAP_HTML5_SHIM``               ``True``                                                       Include the default IE-fixes that are usually included when using bootstrap.
-``BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT`` ``None``                                                       If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
-``BOOTSTRAP_USE_CDN``                  ``False``                                                      If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
-``BOOTSTRAP_CDN_BASEURL``              ``'https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'`` The URL to which Bootstrap filenames are appended when using a CDN.
-====================================== ============================================================== ===
+====================================== ======================================================== ===
+``BOOTSTRAP_USE_MINIFIED``             ``True``                                                 Whether or not to use the minified versions of the css/js files.
+``BOOTSTRAP_JQUERY_VERSION``           ``'1.7.2'``                                              This version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
+``BOOTSTRAP_HTML5_SHIM``               ``True``                                                 Include the default IE-fixes that are usually included when using bootstrap.
+``BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT`` ``None``                                                 If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
+``BOOTSTRAP_USE_CDN``                  ``False``                                                If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
+``BOOTSTRAP_CDN_BASEURL``              ``'//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'`` The URL to which Bootstrap filenames are appended when using a CDN.
+``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
+====================================== ======================================================== ===
 
 Installation
 ------------
