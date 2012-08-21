@@ -47,7 +47,7 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL',
-            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/'
         )
 
         self.app = app

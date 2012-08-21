@@ -79,7 +79,7 @@ Option                                 Default
 ``BOOTSTRAP_HTML5_SHIM``               ``True``                                                 Include the default IE-fixes that are usually included when using bootstrap.
 ``BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT`` ``None``                                                 If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
 ``BOOTSTRAP_USE_CDN``                  ``False``                                                If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
-``BOOTSTRAP_CDN_BASEURL``              ``'//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/'`` The URL to which Bootstrap filenames are appended when using a CDN.
+``BOOTSTRAP_CDN_BASEURL``              ``'//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/'`` The URL to which Bootstrap filenames are appended when using a CDN.
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
 ====================================== ======================================================== ===
 
@@ -106,7 +106,8 @@ CHANGES
 
 The following changes could have possibly been not backwards compatible:
 
-2.0.4-4
+2.1.0-1
 """""""
+* New upstream release: 2.1.0.
 * Changed the default version of jQuery from 1.7.2 to just 1. This means that
   the latest 1.x.x version of jQuery will be pulled.
