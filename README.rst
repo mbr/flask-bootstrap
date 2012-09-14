@@ -93,7 +93,7 @@ Either install from github using ``pip`` or from `PyPI
 A note on versioning
 --------------------
 
-Flask-Bootstrap tries to keep sometrack track of Twitter's Bootstrap releases.
+Flask-Bootstrap tries to keep some track of Twitter's Bootstrap releases.
 Versioning is usually in the form of ``Bootstrap version`` - ``Flask-Bootstrap
 iteration``. For example, a version of ``2.0.3-2`` bundles Bootstrap version
 ``2.0.3`` and is the second release of Flask-Bootstrap containing that version.
