@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf8
 
-from flask import Flask, url_for, render_template
+from flask import Flask, render_template
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form, TextField, HiddenField, ValidationError,\
                           Required, RecaptchaField
@@ -13,6 +13,7 @@ app.config['BOOTSTRAP_USE_MINIFIED'] = False
 app.config['BOOTSTRAP_USE_CDN'] = True
 app.config['SECRET_KEY'] = 'devkey'
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6Lfol9cSAAAAADAkodaYl9wvQCwBMr3qGR_PPHcw'
+
 
 class ExampleForm(Form):
     field1 = TextField('First Field', description='This is field one.')
