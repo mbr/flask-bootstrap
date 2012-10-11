@@ -111,3 +111,8 @@ The following changes could have possibly been not backwards compatible:
 * New upstream release: 2.1.0.
 * Changed the default version of jQuery from 1.7.2 to just 1. This means that
   the latest 1.x.x version of jQuery will be pulled.
+
+2.1.1-1
+"""""""
+* WTForms generated HTML code is now considered safe. This allows Flask-WTF's
+  ``RecaptchaField`` to work with ``quick_form``.
