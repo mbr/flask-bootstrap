@@ -53,14 +53,14 @@ class Bootstrap(object):
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/'
         )
 
-        self.blueprint = Blueprint(
+        blueprint = Blueprint(
             'bootstrap',
             __name__,
             template_folder='templates',
             static_folder='static',
             static_url_path=app.static_url_path + '/bootstrap')
 
-        app.register_blueprint(self.blueprint)
+        app.register_blueprint(blueprint)
 
         app.jinja_env.filters['bootstrap_is_hidden_field'] =\
             is_hidden_field_filter
