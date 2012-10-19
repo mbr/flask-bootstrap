@@ -37,9 +37,6 @@ class Bootstrap(object):
     def __init__(self, app=None):
         if app is not None:
             self.init_app(app)
-            self.app = app
-        else:
-            self.app = None
 
     def init_app(self, app):
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
