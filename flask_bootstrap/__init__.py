@@ -37,6 +37,9 @@ class Bootstrap(object):
     def __init__(self, app=None):
         if app is not None:
             self.init_app(app)
+            self.app = app
+        else:
+            self.app = None
 
     def init_app(self, app):
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
@@ -50,15 +53,14 @@ class Bootstrap(object):
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/'
         )
 
-        self.app = app
-        self.blueprint = Blueprint(
+        blueprint = Blueprint(
             'bootstrap',
             __name__,
             template_folder='templates',
             static_folder='static',
-            static_url_path=self.app.static_url_path + '/bootstrap')
+            static_url_path=app.static_url_path + '/bootstrap')
 
-        app.register_blueprint(self.blueprint)
+        app.register_blueprint(blueprint)
 
         app.jinja_env.filters['bootstrap_is_hidden_field'] =\
             is_hidden_field_filter
