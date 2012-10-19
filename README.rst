@@ -116,3 +116,9 @@ The following changes could have possibly been not backwards compatible:
 """""""
 * WTForms generated HTML code is now considered safe. This allows Flask-WTF's
   ``RecaptchaField`` to work with ``quick_form``.
+
+2.1.1-2
+"""""""
+* There is no longer a self.app on Flask-Bootstrap. The extension can be shared
+  by any number of applications using ``init_app()`` (though the old
+  ``__init__()`` signature is kept for backward compatibiliy).
