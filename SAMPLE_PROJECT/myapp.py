@@ -9,8 +9,9 @@ from flask.ext.wtf import Form, TextField, HiddenField, ValidationError,\
 app = Flask(__name__)
 Bootstrap(app)
 
-app.config['BOOTSTRAP_USE_MINIFIED'] = False
+app.config['BOOTSTRAP_USE_MINIFIED'] = True
 app.config['BOOTSTRAP_USE_CDN'] = True
+app.config['BOOTSTRAP_FONTAWESOME'] = True
 app.config['SECRET_KEY'] = 'devkey'
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6Lfol9cSAAAAADAkodaYl9wvQCwBMr3qGR_PPHcw'
 
