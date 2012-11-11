@@ -13,7 +13,9 @@ else:
         return isinstance(field, HiddenField)
 
 
-def bootstrap_find_resource(filename, use_minified=None):
+def bootstrap_find_resource(filename,
+                            use_minified=None,
+                            cdn='bootstrap'):
     # FIXME: get rid of this function and instead manipulate the flask routing
     #        system
     config = current_app.config
@@ -27,7 +29,8 @@ def bootstrap_find_resource(filename, use_minified=None):
     if not config['BOOTSTRAP_USE_CDN']:
         return url_for('bootstrap.static', filename=filename)
     else:
-        baseurl = config['BOOTSTRAP_CDN_BASEURL']
+        baseurl = config['BOOTSTRAP_CDN_BASEURL'][cdn]
+
         if baseurl.startswith('//') and config['BOOTSTRAP_CDN_PREFER_SSL']:
             baseurl = 'https:%s' % baseurl
         return baseurl + filename
@@ -47,8 +50,12 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
         app.config.setdefault('BOOTSTRAP_FONTAWESOME', False)
         app.config.setdefault(
-            'BOOTSTRAP_CDN_BASEURL',
-            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/'
+            'BOOTSTRAP_CDN_BASEURL', {
+                'bootstrap':   '//netdna.bootstrapcdn.com/'\
+                               'twitter-bootstrap/2.2.1/',
+                'fontawesome': '//netdna.bootstrapcdn.com/'\
+                               'font-awesome/2.0/',
+            }
         )
 
         blueprint = Blueprint(

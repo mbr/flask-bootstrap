@@ -75,11 +75,11 @@ There are a few configuration options used by the templates:
 Option                                 Default
 ====================================== ======================================================== ===
 ``BOOTSTRAP_USE_MINIFIED``             ``True``                                                 Whether or not to use the minified versions of the css/js files.
-``BOOTSTRAP_JQUERY_VERSION``           ``'1'``                                                  This version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all.
+``BOOTSTRAP_JQUERY_VERSION``           ``'1'``                                                  This version of jQuery is included in the template via Google CDN. Also honors ``BOOTSTRAP_USE_MINIFIED``. Set this to ``None`` to not include jQuery at all. Note that non-minified Bootstrap resources are sometimes missing on bootstrapcdn, so it is best not to use it without turning on ``BOOTSTRAP_USE_MINIFIED``.
 ``BOOTSTRAP_HTML5_SHIM``               ``True``                                                 Include the default IE-fixes that are usually included when using bootstrap.
 ``BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT`` ``None``                                                 If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
 ``BOOTSTRAP_USE_CDN``                  ``False``                                                If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
-``BOOTSTRAP_CDN_BASEURL``              ``'//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/'`` The URL to which Bootstrap filenames are appended when using a CDN.
+``BOOTSTRAP_CDN_BASEURL``              A dictionary set up with URLs to ``bootstrapcdn.com``    The URLs to which Bootstrap and other filenames are appended when using a CDN.
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
 ``BOOTSTRAP_FONTAWESOME``              ``False``                                                If ``True``, `FontAwesome`_ will be enabled.
 ====================================== ======================================================== ===
@@ -131,3 +131,6 @@ The following changes could have possibly been not backwards compatible:
 * `FontAwesome`_ is now supported
   as well, can also be loaded from bootstrapCDN. Set ``BOOTSTRAP_FONTAWESOME``
   to ``True`` to enable it.
+* ``BOOTSTRAP_CDN_BASEURL`` is now a dictionary for multiple CDNs (i.e.
+  Bootstrap, FontAwesome can use different base URLs). This will break any code
+  that relied on setting ``BOOTSTRAP_CDN_BASEURL``.
