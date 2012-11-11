@@ -12,7 +12,12 @@
     {%- endblock %}
 
     {%- block style %}
+    {%- if config['BOOTSTRAP_FONTAWESOME'] %}
+    <link href="{{'css/bootstrap.no-icons.css'|bootstrap_find_resource(use_minified=True)}}" rel="stylesheet">
+    <link href="{{'css/font-awesome.css'|bootstrap_find_resource}}" rel="stylesheet">
+    {%- else %}
     <link href="{{'css/bootstrap.css'|bootstrap_find_resource}}" rel="stylesheet">
+    {%- endif %}
     {%- block style_navbar_padding %}
     <style>
       body {
@@ -64,5 +69,8 @@
     {%- endif %}
   {%- endblock %}
   </body>
+  {%- if config['BOOTSTRAP_FONTAWESOME'] %}
+  <!-- Font Awesome is licensed CC-BY-3.0: http://fortawesome.github.com/Font-Awesome -->
+  {%- endif %}
 {%- endblock %}
 </html>

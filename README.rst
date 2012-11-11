@@ -81,7 +81,10 @@ Option                                 Default
 ``BOOTSTRAP_USE_CDN``                  ``False``                                                If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
 ``BOOTSTRAP_CDN_BASEURL``              ``'//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/'`` The URL to which Bootstrap filenames are appended when using a CDN.
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
+``BOOTSTRAP_FONTAWESOME``              ``False``                                                If ``True``, `FontAwesome`_ will be enabled.
 ====================================== ======================================================== ===
+
+.. _FontAwesome: http://fortawesome.github.com/Font-Awesome/
 
 Installation
 ------------
@@ -122,3 +125,9 @@ The following changes could have possibly been not backwards compatible:
 * There is no longer a self.app on Flask-Bootstrap. The extension can be shared
   by any number of applications using ``init_app()`` (though the old
   ``__init__()`` signature is kept for backward compatibiliy).
+
+2.2.1-1
+"""""""
+* `FontAwesome`_ is now supported
+  as well, can also be loaded from bootstrapCDN. Set ``BOOTSTRAP_FONTAWESOME``
+  to ``True`` to enable it.

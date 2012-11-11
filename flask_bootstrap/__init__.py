@@ -45,6 +45,7 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT', None)
         app.config.setdefault('BOOTSTRAP_USE_CDN', False)
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
+        app.config.setdefault('BOOTSTRAP_FONTAWESOME', False)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL',
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/'
