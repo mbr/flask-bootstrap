@@ -47,7 +47,7 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL',
-            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/'
         )
 
         blueprint = Blueprint(
