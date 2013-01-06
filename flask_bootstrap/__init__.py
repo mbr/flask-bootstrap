@@ -54,7 +54,7 @@ class Bootstrap(object):
                 'bootstrap':   '//netdna.bootstrapcdn.com/'\
                                'twitter-bootstrap/2.2.2/',
                 'fontawesome': '//netdna.bootstrapcdn.com/'\
-                               'font-awesome/2.0/',
+                               'font-awesome/3.0/',
             }
         )
 

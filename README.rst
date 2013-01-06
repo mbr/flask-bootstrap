@@ -134,3 +134,7 @@ The following changes could have possibly been not backwards compatible:
 * ``BOOTSTRAP_CDN_BASEURL`` is now a dictionary for multiple CDNs (i.e.
   Bootstrap, FontAwesome can use different base URLs). This will break any code
   that relied on setting ``BOOTSTRAP_CDN_BASEURL``.
+
+2.2.2-1
+"""""""
+* FontAwesome now version 3.0 instead of 2.0.
