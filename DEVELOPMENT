@@ -1,0 +1,18 @@
+On new upstream release:
+========================
+1. Unzip new files
+2. Edit setup.py version
+3. Change CDN URL in __init__.py
+4. Download new "no-icons" css file
+5. Check using example app.
+
+Releasing
+=========
+1. Create new release branch
+2. Change version number in setup.py
+3. Tag
+4. sdist upload -s -i code
+5. checkout master
+6. change version number to +1-dev
+7. delete branch
+8. push master and version
