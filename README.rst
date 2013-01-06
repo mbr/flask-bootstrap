@@ -137,4 +137,4 @@ The following changes could have possibly been not backwards compatible:
 
 2.2.2-1
 """""""
-* FontAwesome now version 3.0 instead of 2.0.
+* `FontAwesome`_ now version 3.0 instead of 2.0.
