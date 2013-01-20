@@ -138,3 +138,5 @@ The following changes could have possibly been not backwards compatible:
 2.2.2-1
 """""""
 * `FontAwesome`_ now version 3.0 instead of 2.0.
+* The ``navbar()``-macro is gone. It was accidentally committed and never did
+  anything useful, so this hopefully won't concern anyone.
