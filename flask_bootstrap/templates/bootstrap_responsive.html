@@ -1,6 +1,6 @@
 {% extends "bootstrap_base.html" %}
 
 {% block style %}
-{{super()}}
+{{super()|safe}}
     <link href="{{'css/bootstrap-responsive.css'|bootstrap_find_resource}}" rel="stylesheet">
 {%- endblock %}
