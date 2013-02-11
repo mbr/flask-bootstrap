@@ -52,7 +52,7 @@ class Bootstrap(object):
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL', {
                 'bootstrap':   '//netdna.bootstrapcdn.com/'\
-                               'twitter-bootstrap/2.2.2/',
+                               'twitter-bootstrap/2.3.0/',
                 'fontawesome': '//netdna.bootstrapcdn.com/'\
                                'font-awesome/3.0/',
             }
