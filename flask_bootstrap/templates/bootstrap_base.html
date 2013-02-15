@@ -12,11 +12,9 @@
     {%- endblock %}
 
     {%- block style %}
-    {%- if config['BOOTSTRAP_FONTAWESOME'] %}
-    <link href="{{'css/bootstrap.no-icons.css'|bootstrap_find_resource(use_minified=True)}}" rel="stylesheet">
-    <link href="{{'css/font-awesome.css'|bootstrap_find_resource(use_minified=False, cdn='fontawesome')}}" rel="stylesheet">
-    {%- else %}
     <link href="{{'css/bootstrap.css'|bootstrap_find_resource}}" rel="stylesheet">
+    {%- if config['BOOTSTRAP_FONTAWESOME'] %}
+    <link href="{{'css/font-awesome.css'|bootstrap_find_resource(cdn='fontawesome')}}" rel="stylesheet">
     {%- endif %}
     {%- block style_navbar_padding %}
     <style>
