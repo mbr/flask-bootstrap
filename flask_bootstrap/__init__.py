@@ -51,10 +51,10 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_FONTAWESOME', False)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL', {
-                'bootstrap':   '//netdna.bootstrapcdn.com/'\
-                               'twitter-bootstrap/2.3.0/',
-                'fontawesome': '//netdna.bootstrapcdn.com/'\
-                               'font-awesome/3.0/',
+                'bootstrap':   '//cdnjs.cloudflare.com/ajax/libs'
+                               '/twitter-bootstrap/2.3.0/',
+                'fontawesome': '//cdnjs.cloudflare.com/ajax/libs'
+                               '/font-awesome/3.0.2/',
             }
         )
 
