@@ -82,6 +82,7 @@ Option                                 Default
 ``BOOTSTRAP_CDN_BASEURL``              A dictionary set up with URLs to ``cdnjs.com``.          The URLs to which Bootstrap and other filenames are appended when using a CDN.
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
 ``BOOTSTRAP_FONTAWESOME``              ``False``                                                If ``True``, `FontAwesome`_ will be enabled.
+``BOOTSTRAP_CUSTOM_CSS``               ``False``                                                If ``True``, no Bootstrap CSS files will be loaded. Use this if you compile a custom css file that already includes bootstrap.
 ====================================== ======================================================== ===
 
 .. _FontAwesome: http://fortawesome.github.com/Font-Awesome/
@@ -144,3 +145,4 @@ The following changes could have possibly been not backwards compatible:
 """""""
 * Switched the CDN to `cdnjs <http://cdnjs.com>`_ because `netdna
   <http://bootstrapcdn.com>`_ keeps changing files around too much.
+* Introduced ``BOOTSTRAP_CUSTOM_CSS`` option.
