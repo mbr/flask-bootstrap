@@ -2,9 +2,8 @@ On new upstream release:
 ========================
 1. Unzip new files
 2. Edit setup.py version
-3. Change CDN URL in __init__.py
-4. Download new "no-icons" css file
-5. Check using example app.
+3. Change CDN URLs in __init__.py
+4. Check using example app.
 
 Releasing
 =========
