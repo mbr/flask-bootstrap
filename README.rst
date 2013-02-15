@@ -79,7 +79,7 @@ Option                                 Default
 ``BOOTSTRAP_HTML5_SHIM``               ``True``                                                 Include the default IE-fixes that are usually included when using bootstrap.
 ``BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT`` ``None``                                                 If set, include `Google Analytics <http://www.google.com/analytics>`_ boilerplate using this account.
 ``BOOTSTRAP_USE_CDN``                  ``False``                                                If ``True``, Bootstrap resources will no be served from the local app instance, but will use a Content Delivery Network instead (configured by ``BOOTSTRAP_CDN_BASEURL``).
-``BOOTSTRAP_CDN_BASEURL``              A dictionary set up with URLs to ``bootstrapcdn.com``    The URLs to which Bootstrap and other filenames are appended when using a CDN.
+``BOOTSTRAP_CDN_BASEURL``              A dictionary set up with URLs to ``cdnjs.com``.          The URLs to which Bootstrap and other filenames are appended when using a CDN.
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
 ``BOOTSTRAP_FONTAWESOME``              ``False``                                                If ``True``, `FontAwesome`_ will be enabled.
 ====================================== ======================================================== ===
@@ -140,3 +140,8 @@ The following changes could have possibly been not backwards compatible:
 * `FontAwesome`_ now version 3.0 instead of 2.0.
 * The ``navbar()``-macro is gone. It was accidentally committed and never did
   anything useful, so this hopefully won't concern anyone.
+
+2.3.0-2
+"""""""
+* Switched the CDN to `cdnjs <http://cdnjs.com>`_ because `netdna
+  <http://bootstrapcdn.com>`_ keeps changing files around too much.
