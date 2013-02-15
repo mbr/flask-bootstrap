@@ -12,7 +12,9 @@
     {%- endblock meta %}
 
     {%- block style %}
+    {%- if not config['BOOTSTRAP_CUSTOM_CSS'] %}
     <link href="{{'css/bootstrap.css'|bootstrap_find_resource}}" rel="stylesheet">
+    {%- endif %}
     {%- if config['BOOTSTRAP_FONTAWESOME'] %}
     <link href="{{'css/font-awesome.css'|bootstrap_find_resource(cdn='fontawesome')}}" rel="stylesheet">
     <!--[if IE 7]>

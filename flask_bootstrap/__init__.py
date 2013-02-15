@@ -49,6 +49,7 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_USE_CDN', False)
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
         app.config.setdefault('BOOTSTRAP_FONTAWESOME', False)
+        app.config.setdefault('BOOTSTRAP_CUSTOM_CSS', False)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL', {
                 'bootstrap':   '//cdnjs.cloudflare.com/ajax/libs'
