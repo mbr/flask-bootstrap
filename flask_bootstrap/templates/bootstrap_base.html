@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html{% block html_attribs %} lang="en"{% endblock %}>
+<html{% block html_attribs %} lang="en"{% endblock html_attribs %}>
 {%- block html %}
   <head>
   {%- block head %}
     <meta charset="utf-8">
-    <title>{% block title %}{{title}}{% endblock %}</title>
+    <title>{% block title %}{{title}}{% endblock title %}</title>
     {%- block meta %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    {%- endblock %}
+    {%- endblock meta %}
 
     {%- block style %}
     <link href="{{'css/bootstrap.css'|bootstrap_find_resource}}" rel="stylesheet">
@@ -22,8 +22,8 @@
         padding-top: 60px;
       }
     </style>
-    {%- endblock %}
-    {%- endblock %}
+    {%- endblock style_navbar_padding %}
+    {%- endblock style %}
 
     {%- if config['BOOTSTRAP_HTML5_SHIM'] %}
     {%- block bootstrap_html5_shim %}
@@ -32,25 +32,25 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    {%- endblock %}
+    {%- endblock bootstrap_html5_shim %}
     {%- endif %}
 
     {%- block favicons %}
-    {%- endblock %}
+    {%- endblock favicons %}
 
-  {%- endblock %}
+  {%- endblock head %}
   </head>
 
   <body>
   {%- block body %}
     {%- block body_content %}
-    {%- endblock %}
+    {%- endblock body_content %}
     {%- block bootstrap_js_bottom %}
     {%- if config['BOOTSTRAP_JQUERY_VERSION'] %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{config['BOOTSTRAP_JQUERY_VERSION']}}/jquery.{% if config['BOOTSTRAP_USE_MINIFIED'] %}min.{% endif %}js"></script>
     {%- endif %}
     <script src="{{'js/bootstrap.js'|bootstrap_find_resource}}"></script>
-    {%- endblock %}
+    {%- endblock bootstrap_js_bottom %}
 
     {%- if config['BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT'] %}
     <script type="text/javascript">
@@ -65,10 +65,10 @@
       })();
     </script>
     {%- endif %}
-  {%- endblock %}
+  {%- endblock body %}
   </body>
   {%- if config['BOOTSTRAP_FONTAWESOME'] %}
   <!-- Font Awesome is licensed CC-BY-3.0: http://fortawesome.github.com/Font-Awesome -->
   {%- endif %}
-{%- endblock %}
+{%- endblock html %}
 </html>
