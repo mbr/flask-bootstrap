@@ -64,7 +64,7 @@ intense fine-tuning:
 
 ::
 
-  {{ quick_form(form) }}
+  {{ wtf.quick_form(form) }}
 
 Configuration options
 ---------------------
