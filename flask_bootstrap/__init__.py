@@ -53,7 +53,7 @@ class Bootstrap(object):
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL', {
                 'bootstrap':   '//cdnjs.cloudflare.com/ajax/libs'
-                               '/twitter-bootstrap/2.3.0/',
+                               '/twitter-bootstrap/2.3.1/',
                 'fontawesome': '//cdnjs.cloudflare.com/ajax/libs'
                                '/font-awesome/3.0.2/',
             }
