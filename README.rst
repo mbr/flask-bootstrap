@@ -112,7 +112,7 @@ FAQ
    Make sure your templates end in ``.htm``, ``.html``, ``.xml`` or ``.xhtml``.
    Flask sets the Jinja2-autoescape mode depending on the template file
    extension (see `this StackOverflow question
-   <http://stackoverflow.com/questions/13222925/how-do-i-enable-autoescaping-in-templates-with-a-jhtml-extension-in-flask>`
+   <http://stackoverflow.com/questions/13222925/how-do-i-enable-autoescaping-in-templates-with-a-jhtml-extension-in-flask>`_
    for more information).
 
    General convention in Flask applications is to name your HTML-templates
