@@ -104,6 +104,20 @@ iteration``. For example, a version of ``2.0.3-2`` bundles Bootstrap version
 If you need to rely on your templates not changing, simply pin the version in
 your setup.py.
 
+FAQ
+---
+
+1. Why do I have undesired auto-escapes in my template output?
+
+   Make sure your templates end in ``.htm``, ``.html``, ``.xml`` or ``.xhtml``.
+   Flask sets the Jinja2-autoescape mode depending on the template file
+   extension (see `this StackOverflow question
+   <http://stackoverflow.com/questions/13222925/how-do-i-enable-autoescaping-in-templates-with-a-jhtml-extension-in-flask>`
+   for more information).
+
+   General convention in Flask applications is to name your HTML-templates
+   ``.html`` though.
+
 CHANGES
 ~~~~~~~
 
