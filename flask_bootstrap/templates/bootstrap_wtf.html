@@ -8,7 +8,16 @@
 <div class="control-group {% if field.errors %}error{% endif %}">
   {{field.label(class="control-label")}}
   <div class="controls">
-    {{field(**kwargs)|safe}}
+    {% if field.type == 'RadioField' %}
+        {% for item in field %}
+            <label class="radio inline">
+                {{ item|safe }}
+                {{ item.label }}
+            </label>
+        {% endfor %}
+    {% else %}
+        {{field(**kwargs)|safe}}
+    {% endif %}
 
     {%- if field.errors %}
       {%- for error in field.errors %}
