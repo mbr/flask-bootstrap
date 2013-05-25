@@ -118,6 +118,18 @@ FAQ
    General convention in Flask applications is to name your HTML-templates
    ``.html`` though.
 
+2. How can I add custom javascript to the template?
+
+   Use Jinja2's ``super()`` in conjunction with the ``bootstrap_js_bottom``
+   block. The super-function adds the contents of a block from the parent
+   template, that way you can even decide if you want to include it before or
+   after jQuery/bootstrap. Example::
+
+     {% block bootstrap_js_bottom %}
+       {{super()}}
+       <script src="my_app_code.js">
+     {% endblock %}
+
 CHANGES
 ~~~~~~~
 
