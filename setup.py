@@ -12,7 +12,7 @@ setup(
     version='2.3.1-2dev',
     url='http://github.com/mbr/flask-bootstrap',
     license='BSD',
-    author='Marc Brinkmann.de',
+    author='Marc Brinkmann',
     author_email='git@marcbrinkmann.de',
     description='An extension that includes Twitter\'s Bootstrap in your '
                 'project, without any boilerplate code.',
