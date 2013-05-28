@@ -34,8 +34,8 @@
 {%- endif %}
 {%- endmacro %}
 
-{% macro quick_form(form, action=".", method="post", class="form form-horizontal", buttons = [('submit', 'primary', 'Save')]) %}
-<form action="{{action}}" method="{{method}}" class="{{class}}">
+{% macro quick_form(form, action=".", method="post", class="form form-horizontal", buttons = [('submit', 'primary', 'Save')], enctype="application/x-www-form-urlencoded") %}
+<form action="{{action}}" method="{{method}}" class="{{class}}" enctype="{{enctype}}">
   {{ form.hidden_tag() }}
   {{ form_errors(form, 'only') }}
   {%- for field in form %}
