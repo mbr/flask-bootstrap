@@ -172,3 +172,8 @@ The following changes could have possibly been not backwards compatible:
 * Switched the CDN to `cdnjs <http://cdnjs.com>`_ because `netdna
   <http://bootstrapcdn.com>`_ keeps changing files around too much.
 * Introduced ``BOOTSTRAP_CUSTOM_CSS`` option.
+
+2.3.2.1
+"""""""
+* Slight change in versioning (dot instead of hyphen for the Flask-Bootstrap
+  release).
