@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf8
 
+__version__ = '2.3.2-1dev'
+
 from flask import Blueprint, current_app, url_for
 
 try:
