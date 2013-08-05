@@ -46,7 +46,7 @@
   {%- endblock head %}
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
   {%- block body %}
     {%- block body_content %}
     {%- endblock body_content %}
