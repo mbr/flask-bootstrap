@@ -56,7 +56,8 @@
     {%- endif %}
     <script src="{{'js/bootstrap.js'|bootstrap_find_resource}}"></script>
     {%- endblock bootstrap_js_bottom %}
-
+    {%- block body_js %}
+    {%- endblock %}
     {%- if config['BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT'] %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
