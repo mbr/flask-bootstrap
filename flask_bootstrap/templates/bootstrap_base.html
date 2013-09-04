@@ -51,7 +51,9 @@
     {%- block body_content %}
     {%- endblock body_content %}
     {%- block bootstrap_js_bottom %}
-    {%- if config['BOOTSTRAP_JQUERY_VERSION'] %}
+    {%- if config['BOOTSTRAP_JQUERY_STATIC'] %}
+    <script src="{{'js/jquery.js'|bootstrap_find_resource}}"></script>
+    {%- elif config['BOOTSTRAP_JQUERY_VERSION'] %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{config['BOOTSTRAP_JQUERY_VERSION']}}/jquery.{% if config['BOOTSTRAP_USE_MINIFIED'] %}min.{% endif %}js"></script>
     {%- endif %}
     <script src="{{'js/bootstrap.js'|bootstrap_find_resource}}"></script>
