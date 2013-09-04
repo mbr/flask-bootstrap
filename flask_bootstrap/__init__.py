@@ -56,15 +56,12 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT', None)
         app.config.setdefault('BOOTSTRAP_USE_CDN', False)
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
-        app.config.setdefault('BOOTSTRAP_FONTAWESOME', False)
         app.config.setdefault('BOOTSTRAP_CUSTOM_CSS', False)
         app.config.setdefault('BOOTSTRAP_QUERYSTRING_REVVING', True)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL', {
                 'bootstrap':   '//cdnjs.cloudflare.com/ajax/libs'
                                '/twitter-bootstrap/2.3.2/',
-                'fontawesome': '//cdnjs.cloudflare.com/ajax/libs'
-                               '/font-awesome/3.0.2/',
             }
         )
 
