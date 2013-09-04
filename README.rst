@@ -181,3 +181,4 @@ The following changes could have possibly been not backwards compatible:
 2.3.2.2
 """""""
 * html5-shim is loaded using a protocol-relative URL
+* Rendering of RadioField changed (see sample app).

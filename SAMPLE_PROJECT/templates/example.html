@@ -59,10 +59,13 @@
             {{ wtf.horizontal_field(form.field1) }}
             {{ wtf.horizontal_field(form.field2) }}
             <!-- Recaptcha filed omitted here, can't be placed twice? -->
+            {{ wtf.horizontal_field(form.radio_field) }}
 
             <div class="form-actions">
                <button name="action_save" type="submit" class="btn btn-primary">Save changes</button>
             </div>
+
+            <div>Radio fields are a bit special and also support inline display: {{wtf.inline_field(form.radio_field)}}</div>
           </form>
 
           <h3>The same form rendered using quick_form, including the ReCaptcha field</h3>
