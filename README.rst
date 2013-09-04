@@ -177,3 +177,7 @@ The following changes could have possibly been not backwards compatible:
 """""""
 * Slight change in versioning (dot instead of hyphen for the Flask-Bootstrap
   release).
+
+2.3.2.2
+"""""""
+* html5-shim is loaded using a protocol-relative URL
