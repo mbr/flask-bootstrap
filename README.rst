@@ -152,6 +152,26 @@ FAQ
    offering querystring revving (see ``BOOTSTRAP_QUERYSTRING_REVVING``) to
    ensure newer Bootstrap versions are served when you upgrade Flask-Bootstrap.
 
+4. How do I use Bootstrap 2/3?
+
+   The current major stable version of Bootstrap is 3, which unfortunately is
+   backwards incompatible with Bootstrap 2. Flask-Bootstrap is maintained for
+   the latest version of Bootstrap 2 (although you should not expect new
+   features, only bug fixes) and, of course, Bootstrap 3.
+
+   By installing Flask-Bootstrap, you will always get the latest version, which
+   is Bootstrap 3. To install (or keep) Flask-Bootstrap 2, you will have to
+   specify the version in your ``setup.py`` or ``requirements.txt`` like this:
+
+      # other stuff in setup.py
+      # ...
+      install_requires=['flask-bootstrap<3', 'another_package']
+      # ...
+
+   It's not a bad idea to pin to a specific Flask-Bootstrap (e.g.
+   ``'flask-bootstrap==2.3.2.2'`` to avoid surprises in production).
+
+
 CHANGES
 ~~~~~~~
 
@@ -204,3 +224,7 @@ The following changes could have possibly been not backwards compatible:
 """""""
 * html5-shim is loaded using a protocol-relative URL
 * Rendering of RadioField changed (see sample app).
+
+3.0.0.1
+"""""""
+* New major upstream release (backwards incompatible!).
