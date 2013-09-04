@@ -83,7 +83,7 @@ Option                                 Default
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
 ``BOOTSTRAP_FONTAWESOME``              ``False``                                                If ``True``, `FontAwesome`_ will be enabled.
 ``BOOTSTRAP_CUSTOM_CSS``               ``False``                                                If ``True``, no Bootstrap CSS files will be loaded. Use this if you compile a custom css file that already includes bootstrap.
-``BOOTSTRAP_QUERYSTRING_REVVING``      ``True``                                                If ``True``, will apppend a querystring with the current version to all static resources served locally. This ensures that upon upgrading Flask-Bootstrap, these resources are refreshed.
+``BOOTSTRAP_QUERYSTRING_REVVING``      ``True``                                                 If ``True``, will apppend a querystring with the current version to all static resources served locally. This ensures that upon upgrading Flask-Bootstrap, these resources are refreshed.
 ====================================== ======================================================== ===
 
 .. _FontAwesome: http://fortawesome.github.com/Font-Awesome/
