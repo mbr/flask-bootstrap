@@ -4,7 +4,7 @@
 from flask import Flask, render_template
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form, TextField, HiddenField, ValidationError,\
-                          Required, RecaptchaField
+    Required, RecaptchaField, RadioField
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -22,6 +22,12 @@ class ExampleForm(Form):
                        validators=[Required()])
     hidden_field = HiddenField('You cannot see this', description='Nope')
     recaptcha = RecaptchaField('A sample recaptcha field')
+    radio_field = RadioField('This is a radio field', choices=[
+        ('head_radio', 'Head radio'),
+        ('radio_76fm', "Radio '76 FM"),
+        ('lips_106', 'Lips 106'),
+        ('wctr', 'WCTR'),
+    ])
 
     def validate_hidden_field(form, field):
         raise ValidationError('Always wrong')
