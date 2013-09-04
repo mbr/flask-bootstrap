@@ -83,6 +83,7 @@ Option                                 Default
 ``BOOTSTRAP_CDN_PREFER_SSL``           ``True``                                                 If the ``BOOTSTRAP_CDN_BASEURL`` starts with ``//``, prepend ``'https:'`` to it.
 ``BOOTSTRAP_FONTAWESOME``              ``False``                                                If ``True``, `FontAwesome`_ will be enabled.
 ``BOOTSTRAP_CUSTOM_CSS``               ``False``                                                If ``True``, no Bootstrap CSS files will be loaded. Use this if you compile a custom css file that already includes bootstrap.
+``BOOTSTRAP_QUERYSTRING_REVVING``      ``True``                                                If ``True``, will apppend a querystring with the current version to all static resources served locally. This ensures that upon upgrading Flask-Bootstrap, these resources are refreshed.
 ====================================== ======================================================== ===
 
 .. _FontAwesome: http://fortawesome.github.com/Font-Awesome/
@@ -139,6 +140,17 @@ FAQ
    ``lib/python2.7/site-packages/flask_bootstrap/static``), so a traditional
    setup would be setting up your webserver to serve this address from the
    mentioned directory.
+
+   A more elegant approach is having a cache in front of the WSGI server that
+   respects ``Cache-Control`` headers. Per default, Flask will serve static
+   files with an expiration time of 12 hours (you can change this value using
+   the ``SEND_FILE_MAX_AGE_DEFAULT``), which should be sufficient.
+
+   For this approach `nginx <http://nginx.org>`_ (or, if you prefer,
+   `Varnish <http://varnish-cache.org>`_) or their cloud-service based
+   equivalents should suffice. Flask-Bootstrap 2.3.2.2 supports this by
+   offering querystring revving (see ``BOOTSTRAP_QUERYSTRING_REVVING``) to
+   ensure newer Bootstrap versions are served when you upgrade Flask-Bootstrap.
 
 CHANGES
 ~~~~~~~

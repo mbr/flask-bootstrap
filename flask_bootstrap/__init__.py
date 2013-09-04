@@ -29,7 +29,13 @@ def bootstrap_find_resource(filename,
         filename = '%s.min.%s' % tuple(filename.rsplit('.', 1))
 
     if not config['BOOTSTRAP_USE_CDN']:
-        return url_for('bootstrap.static', filename=filename)
+        url_args = {
+            'filename': filename,
+        }
+
+        if config['BOOTSTRAP_QUERYSTRING_REVVING']:
+            url_args['bootstrap'] = __version__
+        return url_for('bootstrap.static', **url_args)
     else:
         baseurl = config['BOOTSTRAP_CDN_BASEURL'][cdn]
 
@@ -52,6 +58,7 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
         app.config.setdefault('BOOTSTRAP_FONTAWESOME', False)
         app.config.setdefault('BOOTSTRAP_CUSTOM_CSS', False)
+        app.config.setdefault('BOOTSTRAP_QUERYSTRING_REVVING', True)
         app.config.setdefault(
             'BOOTSTRAP_CDN_BASEURL', {
                 'bootstrap':   '//cdnjs.cloudflare.com/ajax/libs'
