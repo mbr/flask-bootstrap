@@ -177,22 +177,31 @@ CHANGES
 
 The following changes could have possibly been not backwards compatible:
 
-2.1.0-1
+3.0.0.1
 """""""
-* New upstream release: 2.1.0.
-* Changed the default version of jQuery from 1.7.2 to just 1. This means that
-  the latest 1.x.x version of jQuery will be pulled.
+* New major upstream release (backwards incompatible!).
 
-2.1.1-1
+2.3.2.2
 """""""
-* WTForms generated HTML code is now considered safe. This allows Flask-WTF's
-  ``RecaptchaField`` to work with ``quick_form``.
+* html5-shim is loaded using a protocol-relative URL
+* Rendering of RadioField changed (see sample app).
 
-2.1.1-2
+2.3.2.1
 """""""
-* There is no longer a self.app on Flask-Bootstrap. The extension can be shared
-  by any number of applications using ``init_app()`` (though the old
-  ``__init__()`` signature is kept for backward compatibiliy).
+* Slight change in versioning (dot instead of hyphen for the Flask-Bootstrap
+  release).
+
+2.3.0-2
+"""""""
+* Switched the CDN to `cdnjs <http://cdnjs.com>`_ because `netdna
+  <http://bootstrapcdn.com>`_ keeps changing files around too much.
+* Introduced ``BOOTSTRAP_CUSTOM_CSS`` option.
+
+2.2.2-1
+"""""""
+* `FontAwesome`_ now version 3.0 instead of 2.0.
+* The ``navbar()``-macro is gone. It was accidentally committed and never did
+  anything useful, so this hopefully won't concern anyone.
 
 2.2.1-1
 """""""
@@ -203,28 +212,19 @@ The following changes could have possibly been not backwards compatible:
   Bootstrap, FontAwesome can use different base URLs). This will break any code
   that relied on setting ``BOOTSTRAP_CDN_BASEURL``.
 
-2.2.2-1
+2.1.1-2
 """""""
-* `FontAwesome`_ now version 3.0 instead of 2.0.
-* The ``navbar()``-macro is gone. It was accidentally committed and never did
-  anything useful, so this hopefully won't concern anyone.
+* There is no longer a self.app on Flask-Bootstrap. The extension can be shared
+  by any number of applications using ``init_app()`` (though the old
+  ``__init__()`` signature is kept for backward compatibiliy).
 
-2.3.0-2
+2.1.1-1
 """""""
-* Switched the CDN to `cdnjs <http://cdnjs.com>`_ because `netdna
-  <http://bootstrapcdn.com>`_ keeps changing files around too much.
-* Introduced ``BOOTSTRAP_CUSTOM_CSS`` option.
+* WTForms generated HTML code is now considered safe. This allows Flask-WTF's
+  ``RecaptchaField`` to work with ``quick_form``.
 
-2.3.2.1
+2.1.0-1
 """""""
-* Slight change in versioning (dot instead of hyphen for the Flask-Bootstrap
-  release).
-
-2.3.2.2
-"""""""
-* html5-shim is loaded using a protocol-relative URL
-* Rendering of RadioField changed (see sample app).
-
-3.0.0.1
-"""""""
-* New major upstream release (backwards incompatible!).
+* New upstream release: 2.1.0.
+* Changed the default version of jQuery from 1.7.2 to just 1. This means that
+  the latest 1.x.x version of jQuery will be pulled.
