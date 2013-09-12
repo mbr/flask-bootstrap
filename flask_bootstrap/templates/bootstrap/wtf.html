@@ -1,0 +1,64 @@
+{%- macro inline_field(field) %}
+{%- with required = "required" if kwargs['required'] or field.flags.required else "" -%}
+    {% if field.type == 'RadioField' -%}
+      {% for item in field -%}
+        <label class="radio inline">{{item|safe}} {{item.label}}</label>
+      {% endfor %}
+    {%- else %}
+      {{field(placeholder=field.label.text, required=required, **kwargs)}}
+    {%- endif %}
+{%- endwith %}
+{%- endmacro %}
+
+{%- macro horizontal_field(field) %}
+<div class="control-group {% if field.errors %}error{% endif %}">
+  {{field.label(class="control-label")}}
+  <div class="controls">
+    {% if field.type == 'RadioField' -%}
+      {% for item in field -%}
+      <label class="radio">
+        {{item|safe}} {{item.label}}
+      </label>
+      {% endfor %}
+    {%- else %}
+      {{field(**kwargs)|safe}}
+    {%- endif %}
+    {%- if field.errors %}
+      {%- for error in field.errors %}
+        <p class="help-block">{{error}}</p>
+      {%- endfor %}
+    {%- elif field.description -%}
+      <p class="help-block">{{field.description|safe}}</p>
+    {%- endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro form_errors(form, hiddens=True) %}
+{%- if form.errors %}
+{%- for fieldname, errors in form.errors.iteritems() %}
+{%- if bootstrap_is_hidden_field(form[fieldname]) and hiddens or
+       bootstrap_is_hidden_field(form[fieldname]) and hiddens != 'only' %}
+{%- for error in errors %}
+<p class="error">{{error}}</p>
+{%- endfor %}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+{%- endmacro %}
+
+{% macro quick_form(form, action=".", method="post", class="form form-horizontal", buttons = [('submit', 'primary', 'Save')], enctype=None) %}
+<form action="{{action}}" method="{{method}}" class="{{class}}"{% if enctype %} enctype="{{enctype}}"{% endif %}
+role="form">
+  {{ form.hidden_tag() }}
+  {{ form_errors(form, 'only') }}
+  {%- for field in form %}
+  {% if not bootstrap_is_hidden_field(field) %}
+  {{ horizontal_field(field) }}
+  {%- endif %}
+  {%- endfor %}
+  {% for name, type, text in buttons %}
+    <button name="{{name}}" type="submit" class="btn btn-{{type}}">{{text}}</button>
+  {%- endfor %}
+</form>
+{%- endmacro %}
