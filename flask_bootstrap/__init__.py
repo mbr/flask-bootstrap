@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding=utf8
 
-__version__ = '2.3.2.post1.dev1'
+__version__ = '3.0.0.dev1'
+
+import re
 
 from flask import Blueprint, current_app, url_for
 
@@ -15,11 +17,33 @@ else:
         return isinstance(field, HiddenField)
 
 
-def bootstrap_find_resource(filename,
-                            use_minified=None,
-                            cdn='bootstrap'):
-    # FIXME: get rid of this function and instead manipulate the flask routing
-    #        system
+class CDN(object):
+    def get_resource_url(self, filename):
+        raise NotImplementedError
+
+
+class StaticCDN(object):
+    def __init__(self, static_endpoint='static', rev=None):
+        self.static_endpoint = static_endpoint
+
+    def get_resource_url(self, filename):
+        extra_args = {}
+
+        if current_app.config['BOOTSTRAP_QUERYSTRING_REVVING']:
+            extra_args['bootstrap'] = __version__
+
+        return url_for(self.static_endpoint, filename=filename, **extra_args)
+
+
+class WebCDN(object):
+    def __init__(self, baseurl):
+        self.baseurl = baseurl
+
+    def get_resource_url(self, filename):
+        return self.baseurl + filename
+
+
+def bootstrap_find_resource(filename, cdn, use_minified=None):
     config = current_app.config
 
     if None == use_minified:
@@ -28,42 +52,46 @@ def bootstrap_find_resource(filename,
     if use_minified:
         filename = '%s.min.%s' % tuple(filename.rsplit('.', 1))
 
-    if not config['BOOTSTRAP_USE_CDN']:
-        url_args = {
-            'filename': filename,
-        }
+    if config['BOOTSTRAP_SERVE_LOCAL']:
+        cdn = 'local'
 
-        if config['BOOTSTRAP_QUERYSTRING_REVVING']:
-            url_args['bootstrap'] = __version__
-        return url_for('bootstrap.static', **url_args)
-    else:
-        baseurl = config['BOOTSTRAP_CDN_BASEURL'][cdn]
+    cdns = current_app.extensions['bootstrap']['cdns']
+    resource_url = cdns[cdn].get_resource_url(filename)
 
-        if baseurl.startswith('//') and config['BOOTSTRAP_CDN_PREFER_SSL']:
-            baseurl = 'https:%s' % baseurl
-        return baseurl + filename
+    if resource_url.startswith('//') and config['BOOTSTRAP_CDN_FORCE_SSL']:
+        resource_url = 'https:%s' % resource_url
+
+    return resource_url
 
 
 class Bootstrap(object):
     def __init__(self, app=None):
+        BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
+        JQUERY_VERSION = '2.0.3'
+
         if app is not None:
             self.init_app(app)
+            if not hasattr(app, 'extensions'):
+                app.extensions = {}
+
+            app.extensions['bootstrap'] = {
+                'cdns': {
+                    'local': StaticCDN('bootstrap.static'),
+                    'static': StaticCDN(),
+                    'bootstrap': WebCDN('//cdnjs.cloudflare.com/ajax/libs'
+                                        '/twitter-bootstrap/%s/'
+                                        % BOOTSTRAP_VERSION),
+                    'jquery': WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery'
+                                     '/%s/' % JQUERY_VERSION)
+                },
+            }
 
     def init_app(self, app):
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
-        app.config.setdefault('BOOTSTRAP_JQUERY_VERSION', '1')
-        app.config.setdefault('BOOTSTRAP_HTML5_SHIM', True)
-        app.config.setdefault('BOOTSTRAP_GOOGLE_ANALYTICS_ACCOUNT', None)
-        app.config.setdefault('BOOTSTRAP_USE_CDN', False)
-        app.config.setdefault('BOOTSTRAP_CDN_PREFER_SSL', True)
-        app.config.setdefault('BOOTSTRAP_CUSTOM_CSS', False)
+        app.config.setdefault('BOOTSTRAP_CDN_FORCE_SSL', False)
+
         app.config.setdefault('BOOTSTRAP_QUERYSTRING_REVVING', True)
-        app.config.setdefault(
-            'BOOTSTRAP_CDN_BASEURL', {
-                'bootstrap':   '//cdnjs.cloudflare.com/ajax/libs'
-                               '/twitter-bootstrap/2.3.2/',
-            }
-        )
+        app.config.setdefault('BOOTSTRAP_SERVE_LOCAL', False)
 
         blueprint = Blueprint(
             'bootstrap',
@@ -74,7 +102,7 @@ class Bootstrap(object):
 
         app.register_blueprint(blueprint)
 
-        app.jinja_env.filters['bootstrap_is_hidden_field'] =\
+        app.jinja_env.globals['bootstrap_is_hidden_field'] =\
             is_hidden_field_filter
-        app.jinja_env.filters['bootstrap_find_resource'] =\
+        app.jinja_env.globals['bootstrap_find_resource'] =\
             bootstrap_find_resource
