@@ -121,7 +121,7 @@ FAQ
 
    By installing Flask-Bootstrap, you will always get the latest version, which
    is Bootstrap 3. To install (or keep) Flask-Bootstrap 2, you will have to
-   specify the version in your ``setup.py`` or ``requirements.txt`` like this:
+   specify the version in your ``setup.py`` or ``requirements.txt`` like this::
 
       # other stuff in setup.py
       # ...
