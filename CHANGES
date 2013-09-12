@@ -7,7 +7,10 @@ The following changes are not fully backwards compatible:
 -------
 * New major upstream release (backwards incompatible!).
 * Sphinx-based Documentation instead of README-file.
-* No more SAMPLE_PROJECT.
+* No more SAMPLE_PROJECT, a new sample app has been provided.
+* A lot of options are gone, their features being made obsolete, removed or
+  integrated into other parts of the extension.
+* A new CDN system replaced the old loading system.
 * `FontAwesome`_ has been removed in favor of `Glyphicons`_ (which now comes as
   a real font as well).
 
