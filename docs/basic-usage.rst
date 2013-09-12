@@ -170,7 +170,12 @@ Forms
 ~~~~~
 
 The ``bootstrap/wtf.html`` template contains macros to help you output forms
-quickly. The most basic way is using them as an aid to create a form by hand::
+quickly. Flask-WTF_ is not a dependency of Flask-Bootstrap, however, and must be
+installed explicitly. The API of Flask-WTF_ has changed quite a bit over the
+last few versions, Flask-Bootstrap is currently developed for Flask-WTF_ version
+0.9.2.
+
+The most basic way is using them as an aid to create a form by hand::
 
   <form class="form form-horizontal" method="post">
     {{ form.hidden_tag() }}
@@ -188,3 +193,5 @@ However, often you just want to get a form done quickly and have no need for
 intense fine-tuning::
 
   {{ wtf.quick_form(form) }}
+
+.. _Flask-WTF: https://flask-wtf.readthedocs.org/en/latest/
