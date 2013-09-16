@@ -18,27 +18,25 @@
       {{field()|safe}} {{field.label.text|safe}}
     </label>
   </div>
-{% else %}
+{%- elif field.type == 'RadioField' -%}
+  {% for item in field -%}
+    <div class="radio">
+      <label>
+        {{item|safe}} {{item.label.text|safe}}
+      </label>
+    </div>
+  {% endfor %}
+{% else -%}
   <div class="form-group {% if field.errors %} has-error{% endif %}">
     {{field.label(class="sr-only" if form_type == "inline" else "control-label")|safe}}
     {# note: A cleaner solution would be rendering depending on the widget,
        this is just a hack for now, until I can think of something better #}
-    {%- if field.type == 'RadioField' -%}
-      {% for item in field -%}
-        <div class="radio">
-          <label>
-            {{item|safe}} {{item.label.text|safe}}
-          </label>
-        </div>
-      {% endfor %}
 
-    {%- else %}
       {%- if form_type == "inline" %}
         {{field(class="form-control", placeholder=field.description, **kwargs)|safe}}
       {%- else -%}
         {{field(class="form-control", **kwargs)|safe}}
       {%- endif %}
-    {%- endif %}
     {%- if form_type != "inline" %}
       {%- if field.errors %}
         {%- for error in field.errors %}
