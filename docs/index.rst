@@ -11,7 +11,7 @@ create links to serve Bootstrap from a CDN.
    Flask-Bootstrap is currently in transition from Bootstrap 2 to Bootstrap 3.
    The current release is a beta release.
 
-   **If you want Bootstrap 2 instead, see the FAQ.**
+   **If you want Flask-Bootstrap 2 instead, see the FAQ.**
 
 .. toctree::
    basic-usage
@@ -72,12 +72,12 @@ FAQ
 
 2. How can I add custom javascript to the template?
 
-   Use Jinja2's ``super()`` in conjunction with the ``bootstrap_js_bottom``
-   block. The super-function adds the contents of a block from the parent
-   template, that way you can even decide if you want to include it before or
-   after jQuery/bootstrap. Example::
+   Use Jinja2's ``super()`` in conjunction with the ``scripts`` block. The
+   super-function adds the contents of a block from the parent template, that
+   way you can even decide if you want to include it before or after
+   jQuery/bootstrap. Example::
 
-     {% block bootstrap_js_bottom %}
+     {% block scripts %}
        {{super()}}
        <script src="my_app_code.js">
      {% endblock %}
@@ -121,3 +121,5 @@ FAQ
 
    It's not a bad idea to pin to a specific Flask-Bootstrap (e.g.
    ``'flask-bootstrap==2.3.2.2'`` to avoid surprises in production).
+
+   See the :doc:`bootstrap2` documentation for details.

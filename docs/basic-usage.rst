@@ -16,6 +16,13 @@ To get started, the first step is to import and load the extension::
 
 After loading, new templates are available to derive from in your templates.
 
+Sample Application
+------------------
+
+If you want to have a look at a small sample application, try `browsing it on
+github
+<https://github.com/mbr/flask-bootstrap/tree/master/sample_application>`_.
+
 
 Templates
 ---------
@@ -94,8 +101,7 @@ resources, but usually, this isn't needed. A bit better is using the
 ``bootstrap_find_resource`` template filter, which will take CDN settings into
 account.
 
-Note that this mechanism is slated for overhaul in future versions of
-Flask-Bootstrap, so take this into account before investing heavily into it.
+The current resource-system is described in detail on :doc:`cdn`.
 
 
 Macros
@@ -177,16 +183,12 @@ last few versions, Flask-Bootstrap is currently developed for Flask-WTF_ version
 
 The most basic way is using them as an aid to create a form by hand::
 
-  <form class="form form-horizontal" method="post">
+  <form class="form form-horizontal" method="post" role="form">
     {{ form.hidden_tag() }}
-    {{ wtf.form_errors(form, "only") }}
+    {{ wtf.form_errors(form, hiddens="only") }}
 
-    {{ wtf.horizontal_field(form.field1) }}
-    {{ wtf.horizontal_field(form.field2) }}
-
-    <div class="form-actions">
-       <button name="action_save" type="submit" class="btn btn-primary">Save changes</button>
-    </div>
+    {{ wtf.form_field(form.field1) }}
+    {{ wtf.form_field(form.field2) }}
   </form>
 
 However, often you just want to get a form done quickly and have no need for
@@ -194,4 +196,54 @@ intense fine-tuning::
 
   {{ wtf.quick_form(form) }}
 
+Form macro reference
+********************
+
+.. py:function:: quick_form(form,\
+                    action=".",\
+                    method="post",\
+                    extra_classes=None,\
+                    role="form",\
+                    form_type="basic",\
+                    horizontal_columns=('lg', 2, 10),\
+                    enctype=None,\
+                    button_map={})
+
+   Outputs Bootstrap-markup for a complete Flask-WTF_ form.
+
+   :param form: The form to output.
+   :param method: ``<form>`` method attribute.
+   :param extra_classes: The classes to add to the ``<form>``.
+   :param role: ``<form>`` role attribute.
+   :param form_type: One of ``basic``, ``inline`` or ``horizontal``. See the
+                     Bootstrap_ docs for details on different form layouts.
+   :param horizontal_columns: When using the horizontal layout, layout forms
+                              like this. Must be a 3-tuple of ``(column-type,
+                              left-column-size, right-colum-size)``.
+   :param enctype: ``<form>`` enctype attribute.
+   :param button_map: A dictionary, mapping button field names to names such as
+   ``primary``, ``danger`` or ``success``. Buttons not found in the
+   ``button_map`` will use the ``default`` type of button.
+
+
+.. py:function:: form_errors(form, hiddens=True)
+
+   Renders paragraphs containing form error messages. This is usually only used
+   to output hidden field form errors, as others are attached to the form
+   fields.
+
+   :param form: Form, who's errors should be rendered.
+   :param hiddens: If ``True``, render errors of hidden fields as well. If
+                   ``'only'``, render *only* these.
+
+
+.. py:function:: form_field(field,\
+                            form_type="basic",\
+                            horizontal_columns=('lg', 2, 10),\
+                            button_map={})
+
+    Renders a single form-field with surrounding elements. Used mainly by
+    ``quick_form``.
+
 .. _Flask-WTF: https://flask-wtf.readthedocs.org/en/latest/
+
