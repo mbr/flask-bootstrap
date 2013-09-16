@@ -11,41 +11,63 @@
   {%- endif %}
 {%- endmacro %}
 
-{% macro form_field(field, form_type="basic") %}
-{% if field.widget.input_type == 'checkbox' %}
-  <div class="checkbox">
-    <label>
-      {{field()|safe}} {{field.label.text|safe}}
-    </label>
+{% macro _hz_form_wrap(horizontal_columns, form_type) %}
+{% if form_type == "horizontal" %}
+<div class="col-{{horizontal_columns[0]}}-offset-{{horizontal_columns[1]}}
+            col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}
+           ">
+{% endif %}
+{{caller()}}
+{% if form_type == "horizontal" %}
   </div>
-{%- elif field.type == 'RadioField' -%}
-  {% for item in field -%}
-    <div class="radio">
+{% endif %}
+{% endmacro %}
+
+{% macro form_field(field, form_type="basic", horizontal_columns=('lg', 2, 10)) %}
+{% if field.widget.input_type == 'checkbox' %}
+  {% call _hz_form_wrap(horizontal_columns, form_type) %}
+    <div class="checkbox">
       <label>
-        {{item|safe}} {{item.label.text|safe}}
+        {{field()|safe}} {{field.label.text|safe}}
       </label>
     </div>
-  {% endfor %}
+  {% endcall %}
+{%- elif field.type == 'RadioField' -%}
+  {# note: A cleaner solution would be rendering depending on the widget,
+     this is just a hack for now, until I can think of something better #}
+  {% call _hz_form_wrap(horizontal_columns, form_type) %}
+    {% for item in field -%}
+      <div class="radio">
+        <label>
+          {{item|safe}} {{item.label.text|safe}}
+        </label>
+      </div>
+    {% endfor %}
+  {% endcall %}
 {% else -%}
   <div class="form-group {% if field.errors %} has-error{% endif %}">
-    {{field.label(class="sr-only" if form_type == "inline" else "control-label")|safe}}
-    {# note: A cleaner solution would be rendering depending on the widget,
-       this is just a hack for now, until I can think of something better #}
-
       {%- if form_type == "inline" %}
+        {{field.label(class="sr-only")|safe}}
         {{field(class="form-control", placeholder=field.description, **kwargs)|safe}}
+      {% elif form_type == "horizontal" %}
+        {{field.label(class="control-label " + (
+          " col-%s-%s" % horizontal_columns[0:2]
+        ))|safe}}
+        <div class=" col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}">
+          {{field(class="form-control", **kwargs)|safe}}
+        </div>
       {%- else -%}
+        {{field.label(class="control-label")|safe}}
         {{field(class="form-control", **kwargs)|safe}}
+
+        {%- if field.errors %}
+          {%- for error in field.errors %}
+            <p class="help-block">{{error}}</p>
+          {%- endfor %}
+        {%- elif field.description -%}
+          <p class="help-block">{{field.description|safe}}</p>
+        {%- endif %}
       {%- endif %}
-    {%- if form_type != "inline" %}
-      {%- if field.errors %}
-        {%- for error in field.errors %}
-          <p class="help-block">{{error}}</p>
-        {%- endfor %}
-      {%- elif field.description -%}
-        <p class="help-block">{{field.description|safe}}</p>
-      {%- endif %}
-    {% endif %}
   </div>
 {% endif %}
 {% endmacro %}
@@ -57,6 +79,7 @@
                     extra_classes=None,
                     role="form",
                     form_type="basic",
+                    horizontal_columns=('lg', 2, 10),
                     enctype=None) %}
 <form
   {%- if action %} action="{{action}}"{% endif -%}
@@ -75,7 +98,9 @@
 
   {%- for field in form %}
     {% if not bootstrap_is_hidden_field(field) -%}
-      {{ form_field(field, form_type=form_type) }}
+      {{ form_field(field,
+                    form_type=form_type,
+                    horizontal_columns=horizontal_columns) }}
     {%- endif %}
   {%- endfor %}
 
