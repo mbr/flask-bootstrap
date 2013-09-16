@@ -11,21 +11,24 @@
   {%- endif %}
 {%- endmacro %}
 
-{% macro _hz_form_wrap(horizontal_columns, form_type) %}
+{% macro _hz_form_wrap(horizontal_columns, form_type, add_group=False) %}
 {% if form_type == "horizontal" %}
-<div class="col-{{horizontal_columns[0]}}-offset-{{horizontal_columns[1]}}
-            col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}
-           ">
+  {% if add_group %}<div class="form-group">{% endif %}
+  <div class="col-{{horizontal_columns[0]}}-offset-{{horizontal_columns[1]}}
+              col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}
+             ">
 {% endif %}
 {{caller()}}
+
 {% if form_type == "horizontal" %}
+  {% if add_group %}</div>{% endif %}
   </div>
 {% endif %}
 {% endmacro %}
 
 {% macro form_field(field, form_type="basic", horizontal_columns=('lg', 2, 10)) %}
 {% if field.widget.input_type == 'checkbox' %}
-  {% call _hz_form_wrap(horizontal_columns, form_type) %}
+  {% call _hz_form_wrap(horizontal_columns, form_type, True) %}
     <div class="checkbox">
       <label>
         {{field()|safe}} {{field.label.text|safe}}
@@ -35,7 +38,7 @@
 {%- elif field.type == 'RadioField' -%}
   {# note: A cleaner solution would be rendering depending on the widget,
      this is just a hack for now, until I can think of something better #}
-  {% call _hz_form_wrap(horizontal_columns, form_type) %}
+  {% call _hz_form_wrap(horizontal_columns, form_type, True) %}
     {% for item in field -%}
       <div class="radio">
         <label>
@@ -56,6 +59,17 @@
         <div class=" col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}">
           {{field(class="form-control", **kwargs)|safe}}
         </div>
+        {%- if field.errors %}
+          {%- for error in field.errors %}
+            {% call _hz_form_wrap(horizontal_columns, form_type) %}
+              <p class="help-block">{{error}}</p>
+            {% endcall %}
+          {%- endfor %}
+        {%- elif field.description -%}
+          {% call _hz_form_wrap(horizontal_columns, form_type) %}
+            <p class="help-block">{{field.description|safe}}</p>
+          {% endcall %}
+        {%- endif %}
       {%- else -%}
         {{field.label(class="control-label")|safe}}
         {{field(class="form-control", **kwargs)|safe}}
@@ -83,7 +97,7 @@
                     enctype=None) %}
 <form
   {%- if action %} action="{{action}}"{% endif -%}
-  {%- if method %} method="{{method}}"{% endif -%}
+  {%- if method %} method="{{method}}"{% endif %}
   class="form
     {%- if extra_classes %} {{extra_classes}}{% endif -%}
     {%- if form_type == "horizontal" %} form-horizontal
