@@ -69,6 +69,8 @@ class Bootstrap(object):
     def __init__(self, app=None):
         BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
         JQUERY_VERSION = '2.0.3'
+        HTML5SHIV_VERSION = '3.6.2'
+        RESPONDJS_VERSION = '1.3.0'
 
         if app is not None:
             self.init_app(app)
@@ -83,7 +85,11 @@ class Bootstrap(object):
                                         '/twitter-bootstrap/%s/'
                                         % BOOTSTRAP_VERSION),
                     'jquery': WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery'
-                                     '/%s/' % JQUERY_VERSION)
+                                     '/%s/' % JQUERY_VERSION),
+                    'html5shiv': WebCDN('//cdnjs.cloudflare.com/ajax/libs/'
+                                        'html5shiv/%s/' % HTML5SHIV_VERSION),
+                    'respond.js': WebCDN('//cdnjs.cloudflare.com/ajax/libs/'
+                                         'respond.js/%s/' % RESPONDJS_VERSION),
                 },
             }
 
