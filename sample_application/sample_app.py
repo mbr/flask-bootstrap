@@ -2,7 +2,8 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
 from flask_wtf import Form, RecaptchaField
-from wtforms import TextField, HiddenField, ValidationError, RadioField
+from wtforms import TextField, HiddenField, ValidationError, RadioField,\
+    BooleanField
 from wtforms.validators import Required
 
 
@@ -18,6 +19,8 @@ class ExampleForm(Form):
         ('lips_106', 'Lips 106'),
         ('wctr', 'WCTR'),
     ])
+    checkbox_field = BooleanField('This is a checkbox',
+                                  description='Checkboxes can be tricky.')
 
     def validate_hidden_field(form, field):
         raise ValidationError('Always wrong')

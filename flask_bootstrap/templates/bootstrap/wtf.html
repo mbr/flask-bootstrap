@@ -12,35 +12,44 @@
 {%- endmacro %}
 
 {% macro form_field(field, form_type="basic") %}
-<div class="form-group {% if field.errors %} has-error{% endif %}">
-  {{field.label(class="sr-only" if form_type == "inline" else "control-label")|safe}}
-  {# note: A cleaner solution would be rendering depending on the widget,
-     this is just a hack for now, until I can think of something better #}
-  {%- if field.type == 'RadioField' -%}
-    {% for item in field -%}
-      <div class="radio">
-        <label>
-          {{item|safe}} {{item.label.text|safe}}
-        </label>
-      </div>
-    {% endfor %}
-  {%- else %}
-    {%- if form_type == "inline" %}
-      {{field(class="form-control", placeholder=field.description, **kwargs)|safe}}
-    {%- else -%}
-      {{field(class="form-control", **kwargs)|safe}}
+{% if field.widget.input_type == 'checkbox' %}
+  <div class="checkbox">
+    <label>
+      {{field()|safe}} {{field.label.text|safe}}
+    </label>
+  </div>
+{% else %}
+  <div class="form-group {% if field.errors %} has-error{% endif %}">
+    {{field.label(class="sr-only" if form_type == "inline" else "control-label")|safe}}
+    {# note: A cleaner solution would be rendering depending on the widget,
+       this is just a hack for now, until I can think of something better #}
+    {%- if field.type == 'RadioField' -%}
+      {% for item in field -%}
+        <div class="radio">
+          <label>
+            {{item|safe}} {{item.label.text|safe}}
+          </label>
+        </div>
+      {% endfor %}
+
+    {%- else %}
+      {%- if form_type == "inline" %}
+        {{field(class="form-control", placeholder=field.description, **kwargs)|safe}}
+      {%- else -%}
+        {{field(class="form-control", **kwargs)|safe}}
+      {%- endif %}
     {%- endif %}
-  {%- endif %}
-  {%- if form_type != "inline" %}
-    {%- if field.errors %}
-      {%- for error in field.errors %}
-        <p class="help-block">{{error}}</p>
-      {%- endfor %}
-    {%- elif field.description -%}
-      <p class="help-block">{{field.description|safe}}</p>
-    {%- endif %}
-  {% endif %}
-</div>
+    {%- if form_type != "inline" %}
+      {%- if field.errors %}
+        {%- for error in field.errors %}
+          <p class="help-block">{{error}}</p>
+        {%- endfor %}
+      {%- elif field.description -%}
+        <p class="help-block">{{field.description|safe}}</p>
+      {%- endif %}
+    {% endif %}
+  </div>
+{% endif %}
 {% endmacro %}
 
 {# valid form types are "basic", "inline" and "horizontal" #}
