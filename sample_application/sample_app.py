@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
 from flask_wtf import Form, RecaptchaField
 from wtforms import TextField, HiddenField, ValidationError, RadioField,\
-    BooleanField
+    BooleanField, SubmitField
 from wtforms.validators import Required
 
 
@@ -21,6 +21,7 @@ class ExampleForm(Form):
     ])
     checkbox_field = BooleanField('This is a checkbox',
                                   description='Checkboxes can be tricky.')
+    submit_button = SubmitField('Submit Form')
 
     def validate_hidden_field(form, field):
         raise ValidationError('Always wrong')
