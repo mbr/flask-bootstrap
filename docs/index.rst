@@ -9,16 +9,7 @@ create links to serve Bootstrap from a CDN.
 .. warning::
 
    Flask-Bootstrap is currently in transition from Bootstrap 2 to Bootstrap 3.
-   The current release is a beta release. Specifically, the following things
-   are sill broken (or, if you prefer, under heavy development):
-
-     * Documentation. A lot better than version 2, but still does not cover all
-       new/removed features.
-     * Automatic form generation. Form support through WTF still uses largely
-       version 2 markup, which will look slightly broken in most cases. Patches
-       are welcome.
-     * The sample app needs a lot of love and everything quite a bit of
-       testing.
+   The current release is a beta release.
 
    **If you want Bootstrap 2 instead, see the FAQ.**
 
