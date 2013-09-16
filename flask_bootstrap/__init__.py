@@ -23,13 +23,14 @@ class CDN(object):
 
 
 class StaticCDN(object):
-    def __init__(self, static_endpoint='static', rev=None):
+    def __init__(self, static_endpoint='static', rev=False):
         self.static_endpoint = static_endpoint
+        self.rev = rev
 
     def get_resource_url(self, filename):
         extra_args = {}
 
-        if current_app.config['BOOTSTRAP_QUERYSTRING_REVVING']:
+        if self.rev and current_app.config['BOOTSTRAP_QUERYSTRING_REVVING']:
             extra_args['bootstrap'] = __version__
 
         return url_for(self.static_endpoint, filename=filename, **extra_args)
