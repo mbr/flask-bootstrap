@@ -18,11 +18,18 @@ else:
 
 
 class CDN(object):
+    """Base class for CDN objects."""
     def get_resource_url(self, filename):
+        """Return resource url for filename."""
         raise NotImplementedError
 
 
 class StaticCDN(object):
+    """A CDN that serves content from the local application.
+
+    :param static_endpoint: Endpoint to use.
+    :param rev: If ``True``, honor ``BOOTSTRAP_QUERYSTRING_REVVING``.
+    """
     def __init__(self, static_endpoint='static', rev=False):
         self.static_endpoint = static_endpoint
         self.rev = rev
@@ -37,6 +44,10 @@ class StaticCDN(object):
 
 
 class WebCDN(object):
+    """Serves files from the Web.
+
+    :param baseurl: The baseurl. Filenames are simply appended to this URL.
+    """
     def __init__(self, baseurl):
         self.baseurl = baseurl
 
@@ -45,6 +56,21 @@ class WebCDN(object):
 
 
 def bootstrap_find_resource(filename, cdn, use_minified=None, local=True):
+    """Resource finding function, also available in templates.
+
+    Tries to find a resource, will force SSL depending on
+    ``BOOTSTRAP_CDN_FORCE_SSL`` settings.
+
+    :param filename: File to find a URL for.
+    :param cdn: Name of the CDN to use.
+    :param use_minified': If set to ``True``/``False``, use/don't use
+                          minified. If ``None``, honors
+                          ``BOOTSTRAP_USE_MINIFIED``.
+    :param local: If ``True``, uses the ``local``-CDN when
+                  ``BOOTSTRAP_SERVE_LOCAL`` is enabled. If ``False``, uses
+                  the ``static``-CDN instead.
+    :return: A URL.
+    """
     config = current_app.config
 
     if None == use_minified:

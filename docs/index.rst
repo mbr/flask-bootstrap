@@ -16,6 +16,7 @@ create links to serve Bootstrap from a CDN.
 .. toctree::
    basic-usage
    configuration
+   cdn
    changelog
    bootstrap2
    :maxdepth: 2
