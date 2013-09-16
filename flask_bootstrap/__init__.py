@@ -44,7 +44,7 @@ class WebCDN(object):
         return self.baseurl + filename
 
 
-def bootstrap_find_resource(filename, cdn, use_minified=None):
+def bootstrap_find_resource(filename, cdn, use_minified=None, local=True):
     config = current_app.config
 
     if None == use_minified:
@@ -54,7 +54,7 @@ def bootstrap_find_resource(filename, cdn, use_minified=None):
         filename = '%s.min.%s' % tuple(filename.rsplit('.', 1))
 
     if config['BOOTSTRAP_SERVE_LOCAL']:
-        cdn = 'local'
+        cdn = 'local' if local else 'static'
 
     cdns = current_app.extensions['bootstrap']['cdns']
     resource_url = cdns[cdn].get_resource_url(filename)
@@ -77,7 +77,7 @@ class Bootstrap(object):
 
             app.extensions['bootstrap'] = {
                 'cdns': {
-                    'local': StaticCDN('bootstrap.static'),
+                    'local': StaticCDN('bootstrap.static', rev=True),
                     'static': StaticCDN(),
                     'bootstrap': WebCDN('//cdnjs.cloudflare.com/ajax/libs'
                                         '/twitter-bootstrap/%s/'
