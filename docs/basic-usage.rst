@@ -133,22 +133,9 @@ example::
     {{fixes.ie8()}}
   {% endblock %}
 
-The macro expects these files to be inside the a folder called 'js' inside your
-static folder. You can explicitly give different folder locations::
-
-  {% block head %}
-    {{super()}}
-    {{fixes.ie8(base=url_for('.static', filename='js/ie8fixes/')}}
-  {% endblock %}
-
-Or even name them explicitly::
-
-  {% block head %}
-    {{super()}}
-    {{fixes.ie8(html5shiv=url_for('.static', filename='ie/html5shiv.js',
-                respond=url_for('.static', filename='respond.js'))}}
-  {% endblock %}
-
+While the scripts are not included, links to them on CDNs are, so if you do not
+use ``BOOTSTRAP_SERVE_LOCAL``, they will work out of the box. See :doc:`cdn`
+for more details on how CDN-delivery works with Flask-Bootstrap.
 
 Google Analytics
 ~~~~~~~~~~~~~~~~
