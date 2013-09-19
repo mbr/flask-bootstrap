@@ -55,6 +55,25 @@ class WebCDN(object):
         return self.baseurl + filename
 
 
+class ConditionalCDN(object):
+    """Serves files from one CDN or another, depending on whether a
+    configuration value is set.
+
+    :param confvar: Configuration variable to use.
+    :param primary: CDN to use if the configuration variable is ``True``.
+    :param fallback: CDN to use otherwise.
+    """
+    def __init__(self, confvar, primary, fallback):
+        self.confvar = confvar
+        self.primary = primary
+        self.fallback = fallback
+
+    def get_resource_url(self, filename):
+        if current_app.config[self.confvar]:
+            return self.primary.get_resource_url(filename)
+        return self.fallback.get_resource_url(filename)
+
+
 def bootstrap_find_resource(filename, cdn, use_minified=None, local=True):
     """Resource finding function, also available in templates.
 
@@ -79,9 +98,6 @@ def bootstrap_find_resource(filename, cdn, use_minified=None, local=True):
     if use_minified:
         filename = '%s.min.%s' % tuple(filename.rsplit('.', 1))
 
-    if config['BOOTSTRAP_SERVE_LOCAL']:
-        cdn = 'local' if local else 'static'
-
     cdns = current_app.extensions['bootstrap']['cdns']
     resource_url = cdns[cdn].get_resource_url(filename)
 
@@ -103,19 +119,37 @@ class Bootstrap(object):
             if not hasattr(app, 'extensions'):
                 app.extensions = {}
 
+            local = StaticCDN('bootstrap.static', rev=True)
+            static = StaticCDN()
+
+            def lwrap(cdn, primary=static):
+                return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
+
+            bootstrap = lwrap(
+                WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/'
+                       % BOOTSTRAP_VERSION),
+                local)
+
+            jquery = lwrap(
+                WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/'
+                       % JQUERY_VERSION))
+
+            html5shiv = lwrap(
+                WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/'
+                       % HTML5SHIV_VERSION))
+
+            respondjs = lwrap(
+                WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/'
+                       % RESPONDJS_VERSION))
+
             app.extensions['bootstrap'] = {
                 'cdns': {
-                    'local': StaticCDN('bootstrap.static', rev=True),
-                    'static': StaticCDN(),
-                    'bootstrap': WebCDN('//cdnjs.cloudflare.com/ajax/libs'
-                                        '/twitter-bootstrap/%s/'
-                                        % BOOTSTRAP_VERSION),
-                    'jquery': WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery'
-                                     '/%s/' % JQUERY_VERSION),
-                    'html5shiv': WebCDN('//cdnjs.cloudflare.com/ajax/libs/'
-                                        'html5shiv/%s/' % HTML5SHIV_VERSION),
-                    'respond.js': WebCDN('//cdnjs.cloudflare.com/ajax/libs/'
-                                         'respond.js/%s/' % RESPONDJS_VERSION),
+                    'local': local,
+                    'static': static,
+                    'bootstrap': bootstrap,
+                    'jquery': jquery,
+                    'html5shiv': html5shiv,
+                    'respond.js': respondjs,
                 },
             }
 
