@@ -109,51 +109,15 @@ def bootstrap_find_resource(filename, cdn, use_minified=None, local=True):
 
 class Bootstrap(object):
     def __init__(self, app=None):
+        if app is not None:
+            self.init_app(app)
+
+    def init_app(self, app):
         BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
         JQUERY_VERSION = '2.0.3'
         HTML5SHIV_VERSION = '3.6.2'
         RESPONDJS_VERSION = '1.3.0'
 
-        if app is not None:
-            self.init_app(app)
-            if not hasattr(app, 'extensions'):
-                app.extensions = {}
-
-            local = StaticCDN('bootstrap.static', rev=True)
-            static = StaticCDN()
-
-            def lwrap(cdn, primary=static):
-                return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
-
-            bootstrap = lwrap(
-                WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/'
-                       % BOOTSTRAP_VERSION),
-                local)
-
-            jquery = lwrap(
-                WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/'
-                       % JQUERY_VERSION))
-
-            html5shiv = lwrap(
-                WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/'
-                       % HTML5SHIV_VERSION))
-
-            respondjs = lwrap(
-                WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/'
-                       % RESPONDJS_VERSION))
-
-            app.extensions['bootstrap'] = {
-                'cdns': {
-                    'local': local,
-                    'static': static,
-                    'bootstrap': bootstrap,
-                    'jquery': jquery,
-                    'html5shiv': html5shiv,
-                    'respond.js': respondjs,
-                },
-            }
-
-    def init_app(self, app):
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
         app.config.setdefault('BOOTSTRAP_CDN_FORCE_SSL', False)
 
@@ -173,3 +137,40 @@ class Bootstrap(object):
             is_hidden_field_filter
         app.jinja_env.globals['bootstrap_find_resource'] =\
             bootstrap_find_resource
+
+        if not hasattr(app, 'extensions'):
+            app.extensions = {}
+
+        local = StaticCDN('bootstrap.static', rev=True)
+        static = StaticCDN()
+
+        def lwrap(cdn, primary=static):
+            return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
+
+        bootstrap = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/'
+                   % BOOTSTRAP_VERSION),
+            local)
+
+        jquery = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/'
+                   % JQUERY_VERSION))
+
+        html5shiv = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/'
+                   % HTML5SHIV_VERSION))
+
+        respondjs = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/'
+                   % RESPONDJS_VERSION))
+
+        app.extensions['bootstrap'] = {
+            'cdns': {
+                'local': local,
+                'static': static,
+                'bootstrap': bootstrap,
+                'jquery': jquery,
+                'html5shiv': html5shiv,
+                'respond.js': respondjs,
+            },
+        }
