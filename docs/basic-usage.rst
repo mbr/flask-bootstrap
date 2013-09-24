@@ -147,15 +147,16 @@ available as an extension macro::
 
   {% block scripts %}
   {{super()}}
-  {{google.analytics(account="YOUR ACCOUNT CODE")}}
+  {{google.analytics(account="YOUR ACCOUNT CODE",domain="YOURDOMA.IN")}}
   {% endblock %}
 
 If you want the analytics account to be configurable from the outside, you can
 use something like this instead::
 
-  {{google.analytics(account=config['GOOGLE_ANALYTICS_ACCOUNT'])}}
+  {{google.analytics(account=config['GOOGLE_ANALYTICS_ACCOUNT'],domain=config['GOOGLE_ANALYTICS_DOMAIN'])}}
 
-This allows specifying the account as a Flask configuration value.
+This allows specifying the ``account`` and ``domain`` as a Flask configuration
+value.
 
 .. _forms:
 
