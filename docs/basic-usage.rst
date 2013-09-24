@@ -187,7 +187,7 @@ Form macro reference
 ********************
 
 .. py:function:: quick_form(form,\
-                    action=".",\
+                    action="",\
                     method="post",\
                     extra_classes=None,\
                     role="form",\
