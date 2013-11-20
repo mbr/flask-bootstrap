@@ -7,11 +7,4 @@ On new upstream release:
 
 Releasing
 =========
-1. Create new release branch
-2. Change version number in setup.py
-3. Tag
-4. sdist upload -s -i code
-5. checkout master
-6. change version number to +1-dev
-7. delete branch
-8. push master and version
+1. Use unleash to publish (https://github.com/mbr/unleash)
