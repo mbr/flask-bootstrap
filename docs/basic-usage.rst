@@ -79,7 +79,7 @@ Examples
     {% block styles %}
     {{super()}}
     <link rel="stylesheet"
-          href="{{url_for('.static', filename='mystyle.css')}}>
+          href="{{url_for('.static', filename='mystyle.css')}}">
     {% endblock %}
 
 * Custom Javascript loaded *before* Bootstrap's javascript code::
@@ -187,7 +187,7 @@ Form macro reference
 ********************
 
 .. py:function:: quick_form(form,\
-                    action=".",\
+                    action="",\
                     method="post",\
                     extra_classes=None,\
                     role="form",\

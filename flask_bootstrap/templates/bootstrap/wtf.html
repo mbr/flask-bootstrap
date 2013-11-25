@@ -1,6 +1,6 @@
 {% macro form_errors(form, hiddens=True) %}
   {%- if form.errors %}
-    {%- for fieldname, errors in form.errors.iteritems() %}
+    {%- for fieldname, errors in form.errors.items() %}
       {%- if bootstrap_is_hidden_field(form[fieldname]) and hiddens or
              bootstrap_is_hidden_field(form[fieldname]) and hiddens != 'only' %}
         {%- for error in errors %}
@@ -96,7 +96,7 @@
 
 {# valid form types are "basic", "inline" and "horizontal" #}
 {% macro quick_form(form,
-                    action=".",
+                    action="",
                     method="post",
                     extra_classes=None,
                     role="form",
