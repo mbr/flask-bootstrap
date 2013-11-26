@@ -19,8 +19,14 @@ create links to serve Bootstrap from a CDN.
 Installation
 ------------
 
-Either install from github using ``pip`` or from `PyPI
-<http://pypi.python.org/pypi/Flask-Bootstrap>`_.
+Flask-Bootstrap can be installed using ``pip`` from `PyPI
+<http://pypi.python.org/pypi/Flask-Bootstrap>`_. Using `virtualenv <http://www.virtualenv.org/en/latest/>`_ is recommended -- for no specific reason other than it being good practice. Installing is simple::
+
+   pip install flask-boostrap
+
+For development, clone the `official github repository <https://github.com/mbr/flask-bootstrap`_ instead and use::
+
+   python setup.py develop
 
 
 Getting started
