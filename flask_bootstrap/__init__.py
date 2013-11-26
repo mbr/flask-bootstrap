@@ -154,7 +154,8 @@ class Bootstrap(object):
 
         jquery = lwrap(
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/'
-                   % JQUERY_VERSION))
+                   % JQUERY_VERSION),
+            local)
 
         html5shiv = lwrap(
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/'
