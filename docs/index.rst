@@ -24,7 +24,7 @@ Flask-Bootstrap can be installed using ``pip`` from `PyPI
 
    pip install flask-boostrap
 
-For development, clone the `official github repository <https://github.com/mbr/flask-bootstrap`_ instead and use::
+For development, clone the `official github repository <https://github.com/mbr/flask-bootstrap>`_ instead and use::
 
    python setup.py develop
 
