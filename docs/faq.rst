@@ -75,3 +75,30 @@ It's not a bad idea to pin to a specific Flask-Bootstrap (e.g.    ``'flask-
 bootstrap==2.3.2.2'`` to avoid surprises in production).
 
 See the :doc:`bootstrap2` documentation for details.
+
+
+Where is FontAwesome?
+---------------------
+.. highlight:: jinja
+
+Versions of Flask-Bootstrap using Bootstrap 2 included FontAwesome_, this is no longer the case for Flask-Bootstrap 3 and higher.
+
+Originally, Bootstrap did come only with image-based icons that did not scale
+well, FontAwesome fixed this by providing vector-based replacements, as well as
+additional icons. However, starting with Bootstrap 3 icons were included as a
+font again, for this reason FontAwesome was dropped from the extension to
+simplify things.
+
+Today, FontAwesome_ is not the only choice, a comparison of available
+alternatives is `available on the web
+<http://tagliala.github.io/vectoriconsroundup/>`_.
+
+If you still want to use FontAwesome, it's easy to include it by adding it to
+the styles block inside your template derived base template::
+
+  {% block styles -%}
+  {{super()}}
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  {% endblock styles %}
+
+..  _FontAwesome: http://fontawesome.io
