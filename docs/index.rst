@@ -6,13 +6,6 @@ Flask-Bootstrap packages `Bootstrap <http://getbootstrap.com>`_ into an
 extension that mostly consists of a blueprint named 'bootstrap'. It can also
 create links to serve Bootstrap from a CDN.
 
-.. warning::
-
-   Flask-Bootstrap is currently in transition from Bootstrap 2 to Bootstrap 3.
-   The current release is a beta release.
-
-   **If you want Flask-Bootstrap 2 instead, see the FAQ.**
-
 .. toctree::
    basic-usage
    configuration
