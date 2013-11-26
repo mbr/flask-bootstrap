@@ -32,9 +32,11 @@ For development, clone the `official github repository <https://github.com/mbr/f
 Getting started
 ---------------
 
-To get started, go ahead by reading :doc:`basic-usage`. A list of Frequently
-Asked Questions for advanced users or those of older versions can be found
-below.
+To get started, go ahead by reading :doc:`basic-usage`. A list of :doc:`faq` is also available.
+
+The latest major version of Bootstrap as of this writing is Bootstrap 3. A
+branch of Flask-Bootstrap supporting version 2 is still supported, see the page
+on :doc:`bootstrap2` for details.
 
 
 A note on versioning
@@ -47,13 +49,3 @@ the second release of Flask-Bootstrap containing that version.
 
 If you need to rely on your templates not changing, simply pin the version in
 your setup.py.
-
-
-Bootstrap 2 vs Bootstrap 3
---------------------------
-
-The latest major version of Bootstrap as of this writing is Bootstrap 3. A
-branch of Flask-Bootstrap supporting version 2 is still supported, see the page
-on :doc:`bootstrap2` for details.
-
-
