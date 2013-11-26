@@ -17,11 +17,13 @@ General convention in Flask applications is to name your HTML-templates
 
 How can I add custom javascript to the template?
 ------------------------------------------------
+.. highlight:: jinja
 
 Use Jinja2's ``super()`` in conjunction with the ``scripts`` block. The super-
 function adds the contents of a block from the parent template, that way you can
 even decide if you want to include it before or after jQuery/bootstrap.
 Example::
+
 
   {% block scripts %}
     {{super()}}
@@ -53,6 +55,7 @@ served when you upgrade Flask-Bootstrap.
 
 How do I use Bootstrap 2/3?
 ---------------------------
+.. highlight:: python
 
 The current major stable version of Bootstrap is 3, which unfortunately is
 backwards incompatible with Bootstrap 2. Flask-Bootstrap is maintained for
@@ -63,10 +66,10 @@ By installing Flask-Bootstrap, you will always get the latest version, which
 is Bootstrap 3. To install (or keep) Flask-Bootstrap 2, you will have to
 specify the version in your ``setup.py`` or ``requirements.txt`` like this::
 
-   # other stuff in setup.py
-   # ...
-   install_requires=['flask-bootstrap<3', 'another_package']
-   # ...
+  # other stuff in setup.py
+  # ...
+  install_requires=['flask-bootstrap<3', 'another_package']
+  # ...
 
 It's not a bad idea to pin to a specific Flask-Bootstrap (e.g.    ``'flask-
 bootstrap==2.3.2.2'`` to avoid surprises in production).
