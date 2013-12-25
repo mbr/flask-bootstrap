@@ -8,7 +8,7 @@ regular Flask Configuration variables (there's a manual on these `here <http://f
           `Twelve-Factor <http://12factor.net/>`_-patterned apps in the form of
           `Flask-Appconfig <https://github.com/mbr/flask-appconfig>`_. It also
           handles other kinds of configuration setups and goes along well with
-          Flask-Boostrap.
+          Flask-Bootstrap.
 
 ====================================== ======================================================== ===
 Option                                 Default
