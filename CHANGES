@@ -3,6 +3,10 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible:
 
+3.1.0.1
+-------
+* JQuery version increased to 2.1.0, html5shiv to 3.7 and respond.js to 1.4.2.
+
 3.0.2.1
 -------
 * Default action for forms changed from "." to nothing.
