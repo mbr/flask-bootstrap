@@ -114,9 +114,9 @@ class Bootstrap(object):
 
     def init_app(self, app):
         BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
-        JQUERY_VERSION = '2.0.3'
+        JQUERY_VERSION = '2.1.0'
         HTML5SHIV_VERSION = '3.7'
-        RESPONDJS_VERSION = '1.3.0'
+        RESPONDJS_VERSION = '1.4.2'
 
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
         app.config.setdefault('BOOTSTRAP_CDN_FORCE_SSL', False)
