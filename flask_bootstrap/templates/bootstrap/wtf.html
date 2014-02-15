@@ -55,6 +55,20 @@
   {% call _hz_form_wrap(horizontal_columns, form_type, True) %}
     {{field(class='btn btn-%s' % button_map.get(field.name, 'default'))}}
   {% endcall %}
+{%- elif field.type == 'FormField' -%}
+  <fieldset>
+    <legend>{{ field.name }}</legend>
+      <div class="control-group">
+        {%- for subfield in field %}
+          {% if not bootstrap_is_hidden_field(subfield) -%}
+            {{ form_field(subfield,
+                          form_type=form_type,
+                          horizontal_columns=horizontal_columns,
+                          button_map=button_map) }}
+          {%- endif %}
+        {%- endfor %}
+    </div>
+  </fieldset>
 {% else -%}
   <div class="form-group {% if field.errors %} has-error{% endif %}">
       {%- if form_type == "inline" %}
