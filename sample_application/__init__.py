@@ -3,8 +3,15 @@ from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
 from flask_wtf import Form, RecaptchaField
 from wtforms import TextField, HiddenField, ValidationError, RadioField,\
-    BooleanField, SubmitField
+    BooleanField, SubmitField, IntegerField, FormField, validators
 from wtforms.validators import Required
+
+
+# straight from the wtforms docs:
+class TelephoneForm(Form):
+    country_code = IntegerField('Country Code', [validators.required()])
+    area_code = IntegerField('Area Code/Exchange', [validators.required()])
+    number = TextField('Number')
 
 
 class ExampleForm(Form):
@@ -21,6 +28,13 @@ class ExampleForm(Form):
     ])
     checkbox_field = BooleanField('This is a checkbox',
                                   description='Checkboxes can be tricky.')
+
+    # subforms
+    mobile_phone = FormField(TelephoneForm)
+
+    # you can change the label as well
+    office_phone = FormField(TelephoneForm, label='Your office phone')
+
     submit_button = SubmitField('Submit Form')
 
     def validate_hidden_field(form, field):
