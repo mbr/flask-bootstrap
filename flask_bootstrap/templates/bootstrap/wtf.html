@@ -56,18 +56,20 @@
     {{field(class='btn btn-%s' % button_map.get(field.name, 'default'))}}
   {% endcall %}
 {%- elif field.type == 'FormField' -%}
+{# note: FormFields are tricky to get right and complex setups requiring
+   these are probably beyond the scope of what this macro tries to do.
+   the code below ensures that things don't break horribly if we run into
+   one, but does not try too hard to get things pretty. #}
   <fieldset>
-    <legend>{{ field.name }}</legend>
-      <div class="control-group">
-        {%- for subfield in field %}
-          {% if not bootstrap_is_hidden_field(subfield) -%}
-            {{ form_field(subfield,
-                          form_type=form_type,
-                          horizontal_columns=horizontal_columns,
-                          button_map=button_map) }}
-          {%- endif %}
-        {%- endfor %}
-    </div>
+    <legend>{{field.label}}</legend>
+    {%- for subfield in field %}
+      {% if not bootstrap_is_hidden_field(subfield) -%}
+        {{ form_field(subfield,
+                      form_type=form_type,
+                      horizontal_columns=horizontal_columns,
+                      button_map=button_map) }}
+      {%- endif %}
+    {%- endfor %}
   </fieldset>
 {% else -%}
   <div class="form-group {% if field.errors %} has-error{% endif %}">
