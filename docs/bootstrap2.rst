@@ -32,8 +32,8 @@ have a look at the code or sample app for major version 2, take a look at
 Flask-Bootstrap
 ^^^^^^^^^^^^^^^
 
-Flask-Bootstrap packages `Twitter's Bootstrap
-<http://twitter.github.com/bootstrap/>`_ into an extension that mostly consists
+Flask-Bootstrap packages `Bootstrap
+<http://getbootstrap.com>`_ into an extension that mostly consists
 of a blueprint named 'bootstrap'. It can also create links to serve Bootstrap
 from a CDN.
 
@@ -126,7 +126,7 @@ Either install from github using ``pip`` or from `PyPI
 A note on versioning
 ********************
 
-Flask-Bootstrap tries to keep some track of Twitter's Bootstrap releases.
+Flask-Bootstrap tries to keep some track of Bootstrap's releases.
 Versioning is usually in the form of ``Bootstrap version`` - ``Flask-Bootstrap
 iteration``. For example, a version of ``2.0.3-2`` bundles Bootstrap version
 ``2.0.3`` and is the second release of Flask-Bootstrap containing that version.

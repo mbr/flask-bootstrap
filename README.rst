@@ -2,8 +2,8 @@
 Flask-Bootstrap
 ===============
 
-Flask-Bootstrap packages `Twitter's Bootstrap
-<http://twitter.github.com/bootstrap/>`_ into an extension that mostly consists
+Flask-Bootstrap packages `Bootstrap
+<http://getbootstrap.com>`_ into an extension that mostly consists
 of a blueprint named 'bootstrap'. It can also create links to serve Bootstrap
 from a CDN and works with no boilerplate code in your application.
 
