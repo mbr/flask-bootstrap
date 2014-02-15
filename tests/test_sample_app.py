@@ -3,14 +3,12 @@ import pytest
 
 @pytest.fixture
 def app():
-    from flask import Flask
-    from flask_bootstrap import Bootstrap
+    import sys
+    sys.path.append('.')
 
-    app = Flask(__name__)
+    from sample_application import create_app
 
-    Bootstrap(app)
-
-    return app
+    return create_app()
 
 
 @pytest.fixture
