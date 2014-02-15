@@ -14,7 +14,7 @@ setup(
     license='BSD',
     author='Marc Brinkmann',
     author_email='git@marcbrinkmann.de',
-    description='An extension that includes Twitter\'s Bootstrap in your '
+    description='An extension that includes Bootstrap in your '
                 'project, without any boilerplate code.',
     long_description=read('README.rst'),
     packages=['flask_bootstrap'],
