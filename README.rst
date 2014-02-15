@@ -2,6 +2,9 @@
 Flask-Bootstrap
 ===============
 
+.. image:: https://travis-ci.org/mbr/flask-bootstrap.png?branch=master
+   :target: https://travis-ci.org/mbr/flask-bootstrap
+
 Flask-Bootstrap packages `Bootstrap
 <http://getbootstrap.com>`_ into an extension that mostly consists
 of a blueprint named 'bootstrap'. It can also create links to serve Bootstrap
