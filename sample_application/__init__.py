@@ -56,6 +56,7 @@ def create_app(configfile=None):
     @app.route('/')
     def index():
         form = ExampleForm()
+        form.validate_on_submit() #to get error messages to the browser
         return render_template('index.html', form=form)
 
     return app
