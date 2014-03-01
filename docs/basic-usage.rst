@@ -157,6 +157,12 @@ use something like this instead::
 
 This allows specifying the account as a Flask configuration value.
 
+Since Flask-Bootstrap version ``3.1.1.2`` there is also support for never
+"Universal Analytics" tracking code, e.g.::
+
+  {{google.uanalytics(id=config['GOOGLE_ANALYTICS_ID'],
+                      domain=config['GOOGLE_ANALYTICS_DOMAIN'])}}
+
 .. _forms:
 
 Forms
