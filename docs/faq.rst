@@ -20,9 +20,10 @@ How can I add custom javascript to the template?
 ------------------------------------------------
 .. highlight:: jinja
 
-Use Jinja2's ``super()`` in conjunction with the ``scripts`` block. The super-
-function adds the contents of a block from the parent template, that way you can
-even decide if you want to include it before or after jQuery/bootstrap.
+Use Jinja2's super_ in conjunction with the ``scripts`` block.
+The super-function adds the contents of a block from the parent template, that
+way you can even decide if you want to include it before or after
+jQuery/bootstrap.
 Example::
 
 
@@ -103,3 +104,4 @@ the styles block inside your template derived base template::
   {% endblock styles %}
 
 ..  _FontAwesome: http://fontawesome.io
+.. _super: http://jinja.pocoo.org/docs/templates/#super-blocks
