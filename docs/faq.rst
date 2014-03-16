@@ -2,6 +2,7 @@
 Common use cases and FAQ
 ========================
 
+
 Why do I have undesired auto-escapes in my template output?
 ------------------------------------------------------------
 
