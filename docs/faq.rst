@@ -33,6 +33,32 @@ Example::
   {% endblock %}
 
 
+How do I add custom stuff to the header?
+----------------------------------------
+
+A question that often pops up is how to add custom things to the ``<head>``
+element, like ``<link>``-tags or favicons. This is also easily achied using
+the super_ function::
+
+  {% block head %}
+  {{super()}}
+  <link rel="icon" type="image/png" href="http://example.com/myicon.png">
+  {% endblock %}
+
+This will add the desired content just above the closing ``</head>`` tag.
+Another way for larger projects is creating a new base template and adding
+the required blocks yourself::
+
+  {% block head %}
+  {{super()}}
+  {% block favicon %}<!-- default favicon could go here -->{% endblock %}
+  {% block feeds %}{% endblock %}
+  {% endblock %}
+
+A child template of this base template can then use these blocks to specify
+a custom feed or favicon.
+
+
 How do I serve the static files in deployment?
 ----------------------------------------------
 
