@@ -4,7 +4,7 @@ Common use cases and FAQ
 
 
 Why do I have undesired auto-escapes in my template output?
-------------------------------------------------------------
+-----------------------------------------------------------
 
 Make sure your templates end in ``.htm``, ``.html``, ``.xml`` or ``.xhtml``.
 Flask sets the Jinja2-autoescape mode depending on the template file extension
