@@ -113,6 +113,7 @@
 {# valid form types are "basic", "inline" and "horizontal" #}
 {% macro quick_form(form,
                     action="",
+		    id="",
                     method="post",
                     extra_classes=None,
                     role="form",
@@ -122,6 +123,7 @@
                     button_map={}) %}
 <form
   {%- if action %} action="{{action}}"{% endif -%}
+  {%- if id %} id="{{id}}"{% endif -%}
   {%- if method %} method="{{method}}"{% endif %}
   class="form
     {%- if extra_classes %} {{extra_classes}}{% endif -%}
