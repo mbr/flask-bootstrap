@@ -214,9 +214,8 @@ Form macro reference
                               like this. Must be a 3-tuple of ``(column-type,
                               left-column-size, right-colum-size)``.
    :param enctype: ``<form>`` enctype attribute.
-   :param button_map: A dictionary, mapping button field names to names such as
-   ``primary``, ``danger`` or ``success``. Buttons not found in the
-   ``button_map`` will use the ``default`` type of button.
+   :param button_map: A dictionary, mapping button field names to names such as ``primary``, ``danger`` or ``success``. 
+                      Buttons not found in the ``button_map`` will use the ``default`` type of button.
 
 
 .. py:function:: form_errors(form, hiddens=True)
