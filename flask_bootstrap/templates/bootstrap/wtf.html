@@ -30,6 +30,9 @@
                     form_type="basic",
                     horizontal_columns=('lg', 2, 10),
                     button_map={}) %}
+
+{% set required = field.flags.required %}
+
 {% if field.widget.input_type == 'checkbox' %}
   {% call _hz_form_wrap(horizontal_columns, form_type, True) %}
     <div class="checkbox">
@@ -75,13 +78,13 @@
   <div class="form-group {% if field.errors %} has-error{% endif %}">
       {%- if form_type == "inline" %}
         {{field.label(class="sr-only")|safe}}
-        {{field(class="form-control", placeholder=field.description, **kwargs)|safe}}
+        {{field(class="form-control", placeholder=field.description, required=required, **kwargs)|safe}}
       {% elif form_type == "horizontal" %}
         {{field.label(class="control-label " + (
           " col-%s-%s" % horizontal_columns[0:2]
         ))|safe}}
         <div class=" col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}">
-          {{field(class="form-control", **kwargs)|safe}}
+          {{field(class="form-control", required=required, **kwargs)|safe}}
         </div>
         {%- if field.errors %}
           {%- for error in field.errors %}
@@ -96,7 +99,7 @@
         {%- endif %}
       {%- else -%}
         {{field.label(class="control-label")|safe}}
-        {{field(class="form-control", **kwargs)|safe}}
+        {{field(class="form-control", required=required, **kwargs)|safe}}
 
         {%- if field.errors %}
           {%- for error in field.errors %}
