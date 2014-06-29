@@ -200,7 +200,8 @@ Form macro reference
                     form_type="basic",\
                     horizontal_columns=('lg', 2, 10),\
                     enctype=None,\
-                    button_map={})
+                    button_map={},
+                    id="")
 
    Outputs Bootstrap-markup for a complete Flask-WTF_ form.
 
@@ -217,7 +218,7 @@ Form macro reference
    :param button_map: A dictionary, mapping button field names to names such as
    ``primary``, ``danger`` or ``success``. Buttons not found in the
    ``button_map`` will use the ``default`` type of button.
-
+   :param id: The ``<form>`` id attribute.
 
 .. py:function:: form_errors(form, hiddens=True)
 
