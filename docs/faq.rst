@@ -151,3 +151,29 @@ do not outweigh the disadvantages of not supporting a fifth of the market. In
 the end, Bootstrap and jQuery both aim at abstracting away difficult to handle
 quirks when building sites and this goal is currently better served with the
 wide support of jQuery1.
+
+
+How can I use jQuery2 instead of jQuery2?
+-----------------------------------------
+
+You can use Flask-Bootstrap's CDN support to enable loading these resources
+from a different source::
+
+  from flask_bootstrap import WebCDN
+  app.extensions['bootstrap']['cdns']['jquery'] = WebCDN(
+      '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/'
+  )
+
+This will load ``jquery.js`` or whatever is required from the WebCDN specified.
+If you prefer to ship your own local version of jQuery, you can similarly use
+the following snippet::
+
+    from flask_bootstrap import StaticCDN
+    app.extensions['bootstrap']['cdns']['jquery'] = StaticCDN()
+
+Note that in this case you need to download a suitable ``jquery.js`` and/or
+``jquery.min.js`` and put it into your apps ``static``-folder.
+
+All of the above setups will cause the ``BOOTSTRAP_SERVE_LOCAL``-option to be
+ignored for jQuery as well. If you need a more complicated setup support the
+option, have a look at the source of ``init_app`` and the docs of :doc:`cdn`.
