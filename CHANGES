@@ -3,6 +3,10 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible:
 
+3.2.0.1
+-------
+* JQuery major version switched from 2 to 1. Detailed information on this change can be found in the :ref:`FAQ <jquery-faq>`.
+
 3.1.0.1
 -------
 * JQuery version increased to 2.1.0, html5shiv to 3.7 and respond.js to 1.4.2.

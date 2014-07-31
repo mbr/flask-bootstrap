@@ -131,3 +131,23 @@ the styles block inside your template derived base template::
 
 ..  _FontAwesome: http://fontawesome.io
 .. _super: http://jinja.pocoo.org/docs/templates/#super-blocks
+
+
+.. _jquery-faq:
+
+Why are you shipping jQuery 1 instead of jQuery 2?
+--------------------------------------------------
+
+As of this writing (July 2014), there are two key differences between jQuery 1
+and 2: Version 1 supports IE6-8 while version 2 drops the support for these old
+versions in exchange for a smaller memory footprint and a few performance
+gains. At least 20% of the browser landscape (source: `NetMarketShare
+<http://www.netmarketshare.com /browser- market-
+share.aspx?qprid=2&qpcustomd=0>`_) still consists of browsers not supported by
+jQuery 2.
+
+Unless you have specialized needs, the advantages of jQuery 2 still
+do not outweigh the disadvantages of not supporting a fifth of the market. In
+the end, Bootstrap and jQuery both aim at abstracting away difficult to handle
+quirks when building sites and this goal is currently better served with the
+wide support of jQuery1.
