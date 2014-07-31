@@ -114,7 +114,7 @@ class Bootstrap(object):
 
     def init_app(self, app):
         BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
-        JQUERY_VERSION = '2.1.0'
+        JQUERY_VERSION = '1.11.1'
         HTML5SHIV_VERSION = '3.7'
         RESPONDJS_VERSION = '1.4.2'
 
