@@ -115,7 +115,7 @@ class Bootstrap(object):
     def init_app(self, app):
         BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
         JQUERY_VERSION = '1.11.1'
-        HTML5SHIV_VERSION = '3.7'
+        HTML5SHIV_VERSION = '3.7.2'
         RESPONDJS_VERSION = '1.4.2'
 
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
