@@ -119,9 +119,11 @@
                     form_type="basic",
                     horizontal_columns=('lg', 2, 10),
                     enctype=None,
-                    button_map={}) %}
+                    button_map={}, 
+                    id="") %}
 <form
   {%- if action %} action="{{action}}"{% endif -%}
+  {%- if id %} id="{{id}}"{% endif -%}
   {%- if method %} method="{{method}}"{% endif %}
   class="form
     {%- if extra_classes %} {{extra_classes}}{% endif -%}
