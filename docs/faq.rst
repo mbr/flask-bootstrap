@@ -153,7 +153,7 @@ quirks when building sites and this goal is currently better served with the
 wide support of jQuery1.
 
 
-How can I use jQuery2 instead of jQuery2?
+How can I use jQuery2 instead of jQuery1?
 -----------------------------------------
 
 You can use Flask-Bootstrap's CDN support to enable loading these resources
