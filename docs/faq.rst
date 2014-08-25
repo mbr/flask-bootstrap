@@ -37,7 +37,7 @@ How do I add custom stuff to the header?
 ----------------------------------------
 
 A question that often pops up is how to add custom things to the ``<head>``
-element, like ``<link>``-tags or favicons. This is also easily achied using
+element, like ``<link>``-tags or favicons. This is also easily achieved using
 the super_ function::
 
   {% block head %}
@@ -153,7 +153,7 @@ quirks when building sites and this goal is currently better served with the
 wide support of jQuery1.
 
 
-How can I use jQuery2 instead of jQuery2?
+How can I use jQuery2 instead of jQuery1?
 -----------------------------------------
 
 You can use Flask-Bootstrap's CDN support to enable loading these resources
