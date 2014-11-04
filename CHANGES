@@ -6,7 +6,8 @@ The following changes are not fully backwards compatible:
 3.3.0.2
 -------
 * New macro for pagination added (see :ref:`Pagination <pagination>`).
-* New ``utils.html`` macro package added, includes message flashing and icons.
+* New ``utils.html`` macro package added, includes message flashing,
+  form-wrapped buttons and icons.
 
 3.2.0.1
 -------

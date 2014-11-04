@@ -321,3 +321,22 @@ Example::
    :param extra_classes: A list of additional classes to add to the class
                          attribute.
    :param kwargs: Additional html attributes.
+
+
+.. py:function:: form_button(url, content, method='post', class='btn-link',\
+                 **kwargs)
+
+   Renders a button/link wrapped in a form.
+
+   :param url: The endpoint to submit to.
+   :param content: The inner contents of the button element.
+   :param method: ``method``-attribute of the surrounding form.
+   :param class: ``class``-attribute of the button element.
+   :param kwargs: Extra html attributes for the button element.
+
+
+A handy little method to create things like delete-buttons without using
+``GET`` requests. An example::
+
+  {{form_button(url_for('remove_entry', id=entry_id),
+                icon('remove') + ' Remove entry')}}
