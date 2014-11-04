@@ -7,7 +7,7 @@
 <nav>
   <ul class="pagination"{{kwargs|xmlattr}}>
   {# prev and next are only show if a symbol has been passed. #}
-  {% if prev is not None -%}
+  {% if prev != None -%}
     <li {% if not pagination.has_prev %}class="disabled"{% endif %}><a href="{% if pagination.has_prev %}{{url_for(endpoint, page=pagination.prev_num)}}{% else %}#{% endif %}">{{prev}}</li></a>
   {%- endif -%}
 
@@ -18,12 +18,12 @@
       {% else %}
         <li class="active"><a href="#">{{page}} <span class="sr-only">(current)</span></a></li>
       {% endif %}
-    {% elif ellipses is not None %}
+    {% elif ellipses != None %}
       <li class="disabled"><a href="#">{{ellipses}}</a></li>
     {% endif %}
   {%- endfor %}
 
-  {% if next is not None -%}
+  {% if next != None -%}
     <li {% if not pagination.has_next %}class="disabled"{% endif %}><a href="{% if pagination.has_next %}{{url_for(endpoint, page=pagination.next_num)}}{% else %}#{% endif %}">{{next}}</li></a>
   {%- endif -%}
   </ul>
