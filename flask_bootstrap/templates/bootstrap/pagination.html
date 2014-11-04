@@ -1,4 +1,8 @@
-{% macro render_pagination(pagination, endpoint, prev=('&laquo;')|safe, next=('&raquo;')|safe) %}
+{% macro render_pagination(pagination,
+                           endpoint,
+                           prev=('&laquo;')|safe,
+                           next=('&raquo;')|safe)
+-%}
 <nav>
   <ul class="pagination"{{kwargs|xmlattr}}>
   {% if prev %}<li {% if not pagination.has_prev %}class="disabled"{% endif %}><a href="{% if pagination.has_prev %}{{url_for(endpoint, page=pagination.prev_num)}}{% else %}#{% endif %}">{{prev}}</li></a>{% endif %}
