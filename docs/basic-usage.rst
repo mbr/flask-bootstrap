@@ -173,7 +173,7 @@ pagination through its :meth:`~flask.ext.sqlalchemy.BaseQuery.paginate`, which
 will return a :class:`~flask.ext.sqlalchemy.Pagination` object. These can
 automatically rendered through the ``render_pagination`` macro::
 
-  {% import "bootstrap/pagination.html" as pagination %}
+  {% from "bootstrap/pagination.html" import render_pagination %}
 
   {# ... #}
 
