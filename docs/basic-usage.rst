@@ -200,7 +200,7 @@ automatically rendered through the ``render_pagination`` macro::
                 ``None``, the button will be hidden.
    :param ellipses: Symbol/text to use to indicate that pages have been
                     skipped. If ``None``, no indicator will be printed.
-   :param **kwargs: Extra attributes for the ``<ul>``-element.
+   :param kwargs: Extra attributes for the ``<ul>``-element.
 .. _forms:
 
 
