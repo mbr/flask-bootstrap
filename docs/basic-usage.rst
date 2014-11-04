@@ -299,3 +299,15 @@ applications.
    :param container: If true, will output a complete
                      ``<div class="container">`` element, otherwise just the
                      messages each wrapped in a ``<div>``.
+
+Note that for this functionality to work properly, flashing messages must be
+categorized with a valid bootstrap alert category (one of ``success``,
+``info``, ``warning``, ``danger``).
+
+.. highlight:: python
+
+Example::
+
+    flash('Operation failed', 'danger')
+
+.. highlight:: jinja
