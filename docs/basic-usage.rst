@@ -281,3 +281,21 @@ Form macro reference
 
 .. _Flask-WTF: https://flask-wtf.readthedocs.org/en/latest/
 
+
+Utilities
+~~~~~~~~~
+
+A few extra template macros are available in the ``bootstrap/utils.html``
+file. Like the form macros, these are intended to aid rapid application
+development, until they are replaced with custom solutions in more mature
+applications.
+
+.. py:function:: flashed_messages(messages=None, container=True)
+
+   Renders Flask's :func:`~flask.flash` messages.
+
+   :param messages: A list of messages. If not given, will use
+                    :func:`~flask.get_flashed_messages` to retrieve them.
+   :param container: If true, will output a complete
+                     ``<div class="container">`` element, otherwise just the
+                     messages each wrapped in a ``<div>``.

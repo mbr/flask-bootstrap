@@ -1,0 +1,23 @@
+{% macro flashed_messages(messages=None, container=True) -%}
+{% with messages = messages or get_flashed_messages(with_categories=True) -%}
+{% if messages -%} {# don't output anything if there are no messages #}
+
+{% if container -%}
+<!-- begin message block -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+{% endif -%}
+
+{% for cat, msg in messages %}      <div class="alert alert-{{cat}}" role="alert">{{msg|safe}}</div>{% endfor -%}
+
+{% if container %}
+    </div>
+  </div>
+</div>
+<!-- end message block -->
+{% endif -%}
+
+{% endif -%}
+{% endwith -%}
+{% endmacro -%}
