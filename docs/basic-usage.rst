@@ -91,7 +91,7 @@ Examples
 
 * Adding a ``lang="en"`` attribute to the ``<html>``-tag::
 
-    {% block html_attribs} lang="en"{% endblock %}
+    {% block html_attribs %} lang="en"{% endblock %}
 
 Static resources
 ----------------
