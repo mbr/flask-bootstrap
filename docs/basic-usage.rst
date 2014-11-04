@@ -137,6 +137,7 @@ While the scripts are not included, links to them on CDNs are, so if you do not
 use ``BOOTSTRAP_SERVE_LOCAL``, they will work out of the box. See :doc:`cdn`
 for more details on how CDN-delivery works with Flask-Bootstrap.
 
+
 Google Analytics
 ~~~~~~~~~~~~~~~~
 
@@ -164,6 +165,7 @@ Since Flask-Bootstrap version ``3.1.1.2`` there is also support for never
                       domain=config['GOOGLE_ANALYTICS_DOMAIN'])}}
 
 .. _pagination:
+
 
 Pagination
 ~~~~~~~~~~
@@ -200,6 +202,7 @@ automatically rendered through the ``render_pagination`` macro::
                     skipped. If ``None``, no indicator will be printed.
    :param **kwargs: Extra attributes for the ``<ul>``-element.
 .. _forms:
+
 
 Forms
 ~~~~~
