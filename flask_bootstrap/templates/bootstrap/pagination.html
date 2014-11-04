@@ -18,7 +18,7 @@
       {% else %}
         <li class="active"><a href="#">{{page}} <span class="sr-only">(current)</span></a></li>
       {% endif %}
-    {% else %}
+    {% elif ellipses %}
       <li class="disabled"><a href="#">{{ellipses}}</a></li>
     {% endif %}
   {%- endfor %}
