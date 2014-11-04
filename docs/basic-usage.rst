@@ -163,6 +163,23 @@ Since Flask-Bootstrap version ``3.1.1.2`` there is also support for never
   {{google.uanalytics(id=config['GOOGLE_ANALYTICS_ID'],
                       domain=config['GOOGLE_ANALYTICS_DOMAIN'])}}
 
+.. _pagination:
+
+Pagination
+~~~~~~~~~~
+
+`Flask-SQLAlchemy <https://pythonhosted.org/Flask-SQLAlchemy/>`_ supports
+pagination through its :meth:`~flask.ext.sqlalchemy.BaseQuery.paginate`, which
+will return a :class:`~flask.ext.sqlalchemy.Pagination` object. These can
+automatically rendered through the ``render_pagination`` macro::
+
+  {% import "bootstrap/pagination.html" as pagination %}
+
+  {# ... #}
+
+  {{render_pagination(query_results)}}
+
+
 .. _forms:
 
 Forms

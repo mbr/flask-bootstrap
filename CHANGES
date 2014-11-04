@@ -3,6 +3,10 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible:
 
+3.3.0.2
+-------
+* New macro for pagination added.
+
 3.2.0.1
 -------
 * JQuery major version switched from 2 to 1. Detailed information on this change can be found in the :ref:`FAQ <jquery-faq>`.
