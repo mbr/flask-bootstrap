@@ -5,7 +5,7 @@ The following changes are not fully backwards compatible:
 
 3.3.0.2
 -------
-* New macro for pagination added.
+* New macro for pagination added (see :ref:`Pagination <pagination>`).
 
 3.2.0.1
 -------
