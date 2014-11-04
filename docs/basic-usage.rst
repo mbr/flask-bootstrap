@@ -311,3 +311,13 @@ Example::
     flash('Operation failed', 'danger')
 
 .. highlight:: jinja
+
+
+.. py:function:: icon(type, extra_classes, **kwargs)
+
+   Renders a Glyphicon in a ``<span>`` element.
+
+   :param messages: The short name for the icon, e.h. ``remove``.
+   :param extra_classes: A list of additional classes to add to the class
+                         attribute.
+   :param kwargs: Additional html attributes.

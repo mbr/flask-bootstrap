@@ -21,3 +21,7 @@
 {% endif -%}
 {% endwith -%}
 {% endmacro -%}
+
+{% macro icon(type=None, extra_classes=[]) -%}
+<span{{ ({'class': (['glyphicon', 'glyphicon-' + type] + extra_classes)|join(' ')})|xmlattr}}{{kwargs|xmlattr}}></span>
+{%- endmacro %}
