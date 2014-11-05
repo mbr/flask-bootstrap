@@ -182,7 +182,7 @@ automatically rendered through the ``render_pagination`` macro::
   {{render_pagination(query_results)}}
 
 .. py:function:: render_pagination(pagination,\
-                     endpoint,\
+                     endpoint=None,\
                      prev='«',\
                      next='»',\
                      ellipses='…',\
@@ -193,7 +193,8 @@ automatically rendered through the ``render_pagination`` macro::
    :param pagination: :class:`~flask.ext.sqlalchemy.Pagination` instance.
    :param endpoint: Which endpoint to call when a page number is clicked.
                     :func:`~flask.url_for` will be called with the given
-                    endpoint and a single parameter, ``page``.
+                    endpoint and a single parameter, ``page``. If ``None``,
+                    uses the requests current endpoint.
    :param prev: Symbol/text to use for the "previous page" button. If
                 ``None``, the button will be hidden.
    :param next: Symbol/text to use for the "previous next" button. If

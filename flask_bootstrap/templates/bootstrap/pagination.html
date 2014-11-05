@@ -1,9 +1,10 @@
 {% macro render_pagination(pagination,
-                           endpoint,
+                           endpoint=None,
                            prev=('&laquo;')|safe,
                            next=('&raquo;')|safe,
                            ellipses='…')
 -%}
+{% with endpoint = endpoint or request.endpoint %}
 <nav>
   <ul class="pagination"{{kwargs|xmlattr}}>
   {# prev and next are only show if a symbol has been passed. #}
@@ -28,4 +29,5 @@
   {%- endif -%}
   </ul>
 </nav>
+{% endwith %}
 {% endmacro %}
