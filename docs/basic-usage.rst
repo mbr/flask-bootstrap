@@ -186,6 +186,7 @@ automatically rendered through the ``render_pagination`` macro::
                      prev='«',\
                      next='»',\
                      ellipses='…',\
+                     size=None,\
                      **kwargs)
 
    Renders a pager for query pagination.
@@ -201,6 +202,7 @@ automatically rendered through the ``render_pagination`` macro::
                 ``None``, the button will be hidden.
    :param ellipses: Symbol/text to use to indicate that pages have been
                     skipped. If ``None``, no indicator will be printed.
+   :param size: Can be 'sm' or 'lg' for smaller/larger pagination.
    :param kwargs: Extra attributes for the ``<ul>``-element.
 .. _forms:
 

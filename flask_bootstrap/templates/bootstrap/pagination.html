@@ -2,11 +2,12 @@
                            endpoint=None,
                            prev=('&laquo;')|safe,
                            next=('&raquo;')|safe,
+                           size=None,
                            ellipses='…')
 -%}
 {% with endpoint = endpoint or request.endpoint %}
 <nav>
-  <ul class="pagination"{{kwargs|xmlattr}}>
+  <ul class="pagination{% if size %} pagination-{{size}}{% endif %}"{{kwargs|xmlattr}}>
   {# prev and next are only show if a symbol has been passed. #}
   {% if prev != None -%}
     <li {% if not pagination.has_prev %}class="disabled"{% endif %}><a href="{% if pagination.has_prev %}{{url_for(endpoint, page=pagination.prev_num)}}{% else %}#{% endif %}">{{prev}}</li></a>
