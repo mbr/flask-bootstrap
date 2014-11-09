@@ -8,6 +8,7 @@ The following changes are not fully backwards compatible:
 * New macro for pagination added (see :ref:`Pagination <pagination>`).
 * New ``utils.html`` macro package added, includes message flashing,
   form-wrapped buttons and icons.
+* A class ``required`` is added to wrappers when using ``quick_form()``.
 
 3.2.0.1
 -------
