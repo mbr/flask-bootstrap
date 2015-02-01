@@ -15,6 +15,7 @@ Option                                 Default
 ====================================== ======================================================== ===
 ``BOOTSTRAP_USE_MINIFIED``             ``True``                                                 Whether or not to use the minified versions of the css/js files.
 ``BOOTSTRAP_SERVE_LOCAL``              ``False``                                                If ``True``, Bootstrap resources will be served from the local app instance every time. See :doc:`cdn` for details.
+``BOOTSTRAP_LOCAL_SUBDOMAIN``          ``None``                                                 If ``BOOTSTRAP_SERVE_LOCAL`` is ``True`` and this is not ``None``,  all assets are served on the specified sub-domain (f.e. static) - flask will automatically append ``SERVER_NAME``
 ``BOOTSTRAP_CDN_FORCE _SSL``           ``True``                                                 If a CDN resource url starts with ``//``, prepend ``'https:'`` to it.
 ``BOOTSTRAP_QUERYSTRING_REVVING``      ``True``                                                 If ``True``, will append a querystring with the current version to all static resources served locally. This ensures that upon upgrading Flask-Bootstrap, these resources are refreshed.
 ====================================== ======================================================== ===
