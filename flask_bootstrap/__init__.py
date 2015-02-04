@@ -124,12 +124,15 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_QUERYSTRING_REVVING', True)
         app.config.setdefault('BOOTSTRAP_SERVE_LOCAL', False)
 
+        app.config.setdefault('BOOTSTRAP_LOCAL_SUBDOMAIN', None)
+
         blueprint = Blueprint(
             'bootstrap',
             __name__,
             template_folder='templates',
             static_folder='static',
-            static_url_path=app.static_url_path + '/bootstrap')
+            static_url_path=app.static_url_path + '/bootstrap',
+            subdomain=app.config['BOOTSTRAP_LOCAL_SUBDOMAIN'])
 
         app.register_blueprint(blueprint)
 
