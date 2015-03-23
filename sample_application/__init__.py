@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
 from flask_wtf import Form, RecaptchaField
@@ -53,10 +53,17 @@ def create_app(configfile=None):
     app.config['RECAPTCHA_PUBLIC_KEY'] = \
         '6Lfol9cSAAAAADAkodaYl9wvQCwBMr3qGR_PPHcw'
 
-    @app.route('/')
+    @app.route('/', methods=('GET', 'POST'))
     def index():
         form = ExampleForm()
-        form.validate_on_submit() #to get error messages to the browser
+        form.validate_on_submit()  # to get error messages to the browser
+        flash('critical message', 'critical')
+        flash('error message', 'error')
+        flash('warning message', 'warning')
+        flash('info message', 'info')
+        flash('debug message', 'debug')
+        flash('different message', 'different')
+        flash('uncategorized message')
         return render_template('index.html', form=form)
 
     return app
