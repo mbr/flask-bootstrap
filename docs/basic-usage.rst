@@ -51,6 +51,8 @@ A very powerful feature is `Jinja2's super()
 <http://jinja.pocoo.org/docs/templates/#super-blocks>`_ function. This gives
 you the option of amending blocks instead of replacing them.
 
+.. _block-names:
+
 Available blocks
 ~~~~~~~~~~~~~~~~
 

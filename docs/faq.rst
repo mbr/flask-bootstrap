@@ -33,6 +33,18 @@ Example::
   {% endblock %}
 
 
+Why is Bootstrap javascript not loading?
+----------------------------------------
+
+An easy-to-miss quirk are the block names: While there is a block named
+``body``, it usually is not the one you want to replace, use ``content``
+instead. Currently, javascript is `loaded at the end
+<https://stackoverflow.com/questions/436411/where-is-the-best-place-to-put-
+script-tags-in-html-markup>`_ of the ``<body>`` tag by default ).
+
+:ref:`block-names` has more details.
+
+
 How do I add custom stuff to the header?
 ----------------------------------------
 
