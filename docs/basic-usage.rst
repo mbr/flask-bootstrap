@@ -293,15 +293,23 @@ file. Like the form macros, these are intended to aid rapid application
 development, until they are replaced with custom solutions in more mature
 applications.
 
-.. py:function:: flashed_messages(messages=None, container=True)
+.. py:function:: flashed_messages(messages=None, container=True, transform=..., default_category=None)
 
-   Renders Flask's :func:`~flask.flash` messages.
+   Renders Flask's :func:`~flask.flash` messages. Maps commonly used categories
+   to the slightly uncommon bootstrap css classes (i.e. ``error -> danger``).
 
    :param messages: A list of messages. If not given, will use
                     :func:`~flask.get_flashed_messages` to retrieve them.
    :param container: If true, will output a complete
                      ``<div class="container">`` element, otherwise just the
                      messages each wrapped in a ``<div>``.
+   :param transform: A dictionary of mappings for categories. Will be looked up
+                     case-insensitively. Default maps all Python loglevel
+                     *names* to bootstrap CSS classes.
+   :param default_category: If a category does not has a mapping in transform,
+                            it is passed through unchanged. If
+                            ``default_category`` is set, it is replaced with
+                            this instead.
 
 Note that for this functionality to work properly, flashing messages must be
 categorized with a valid bootstrap alert category (one of ``success``,
