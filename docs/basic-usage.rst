@@ -143,28 +143,38 @@ for more details on how CDN-delivery works with Flask-Bootstrap.
 Google Analytics
 ~~~~~~~~~~~~~~~~
 
-`Google Analytics <http://www.google.com/analytics/>`_ support is also
-available as an extension macro::
+The `Google Analytics <http://www.google.com/analytics/>`_ API has changed
+fairly quickly recently, currently `analytics.js
+<https://developers.google.com/analytics/devguides/collection/analyticsjs/>`_
+is best supported, using the ``uanalytics(id, options='auto')`` macro::
 
   {% import "bootstrap/google.html" as google %}
 
   {% block scripts %}
-  {{super()}}
-  {{google.analytics(account="YOUR ACCOUNT CODE")}}
+    {{super()}}
+    {{google.uanalytics('U-XXXX-YY')}}
   {% endblock %}
+
+It is possible to pass through options to the ``ga()`` js function call, for
+example to utilize the `User ID <https://developers.google.com/analytics/
+devguides/collection/analyticsjs/user-id>`_ feature::
+
+  {{google.uanalytics('U-XXXX-YY', {'userId': 'myUser'})}}
 
 If you want the analytics account to be configurable from the outside, you can
 use something like this instead::
 
-  {{google.analytics(account=config['GOOGLE_ANALYTICS_ACCOUNT'])}}
+  {{google.uanalytics(config['GOOGLE_ANALYTICS_ID'])}}
 
-This allows specifying the account as a Flask configuration value.
 
-Since Flask-Bootstrap version ``3.1.1.2`` there is also support for never
-"Universal Analytics" tracking code, e.g.::
+.. note:: Please make sure you at least pseudomize user ids properly.
 
-  {{google.uanalytics(id=config['GOOGLE_ANALYTICS_ID'],
-                      domain=config['GOOGLE_ANALYTICS_DOMAIN'])}}
+The officially deprecated `ga.js
+<https://developers.google.com/analytics/devguides/collection/gajs/>`_ API
+support is also available supported through a similarly named macro
+``analytics(account)``::
+
+  {{google.analytics(account=config['GOOGLE_ANALYTICS_ID'])}}
 
 .. _pagination:
 
