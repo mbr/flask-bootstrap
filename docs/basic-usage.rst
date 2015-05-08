@@ -295,6 +295,7 @@ Form macro reference
     ``quick_form``.
 
 .. _Flask-WTF: https://flask-wtf.readthedocs.org/en/latest/
+.. _Bootstrap: http://getbootstrap.com/
 
 
 Utilities
