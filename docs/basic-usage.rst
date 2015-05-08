@@ -199,6 +199,7 @@ automatically rendered through the ``render_pagination`` macro::
                      next='»',\
                      ellipses='…',\
                      size=None,\
+                     args={},\
                      **kwargs)
 
    Renders a pager for query pagination.
@@ -215,6 +216,9 @@ automatically rendered through the ``render_pagination`` macro::
    :param ellipses: Symbol/text to use to indicate that pages have been
                     skipped. If ``None``, no indicator will be printed.
    :param size: Can be 'sm' or 'lg' for smaller/larger pagination.
+   :param args: Additional arguments passed to :func:`~flask.url_for`. If
+                ``endpoint`` is ``None``, uses :attr:`~flask.Request.args` and
+                :attr:`~flask.Request.view_args`
    :param kwargs: Extra attributes for the ``<ul>``-element.
 .. _forms:
 
