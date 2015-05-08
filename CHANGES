@@ -3,6 +3,12 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible:
 
+3.3.4.1
+-------
+
+* Google Analytics API updated; the legacy API is still available.
+* Flashed-message categories are now translated to bootstrap-y categories.
+
 3.3.0.2
 -------
 * New macro for pagination added (see :ref:`Pagination <pagination>`).
