@@ -257,4 +257,5 @@ texinfo_documents = [
 intersphinx_mapping = {'http://docs.python.org/': None,
                        'http://pythonhosted.org/Flask-SQLAlchemy/': None,
                        'http://flask.pocoo.org/docs/': None,
+                       'https://wtforms.readthedocs.org/en/latest/': None,
                        }
