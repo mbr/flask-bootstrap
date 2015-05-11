@@ -7,6 +7,9 @@ The following changes are not fully backwards compatible:
 -------
 
 * The ``action`` default value of :func:`quick_form` changed to ``.``.
+* An ``enctype`` value of :func:`quick_form`, which is the default, will
+  automatically add the correct type if a :class:`~wtforms.fields.FileField`
+  is present.
 
 3.3.4.1
 -------

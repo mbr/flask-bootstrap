@@ -164,7 +164,9 @@ Form macro reference
    :param horizontal_columns: When using the horizontal layout, layout forms
                               like this. Must be a 3-tuple of ``(column-type,
                               left-column-size, right-colum-size)``.
-   :param enctype: ``<form>`` enctype attribute.
+   :param enctype: ``<form>`` enctype attribute. If ``None``, will
+                    automatically be set to ``multipart/form-data`` if a
+                    :class:`~wtforms.fields.FileField` is present in the form.
    :param button_map: A dictionary, mapping button field names to names such as
                       ``primary``, ``danger`` or ``success``. Buttons not found
                       in the ``button_map`` will use the ``default`` type of
