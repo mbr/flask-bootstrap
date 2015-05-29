@@ -10,6 +10,7 @@ The following changes are not fully backwards compatible:
 * An ``enctype`` value of :func:`quick_form`, which is the default, will
   automatically add the correct type if a :class:`~wtforms.fields.FileField`
   is present.
+* The main bootstrap css file is no longer linked for just ``media="screen"``.
 
 3.3.4.1
 -------
