@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf8
 
-__version__ = '3.3.5.1.dev1'
+__version__ = '3.3.5.2.dev1'
 
 import re
 
