@@ -3,7 +3,7 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible:
 
-3.3.4.2
+3.3.5.1
 -------
 
 * The ``action`` default value of :func:`quick_form` changed to ``.``.
