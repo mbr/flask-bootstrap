@@ -5,7 +5,7 @@
   'warning': 'warning',
   'debug': 'default',
   'notset': 'default',
-}, default_category=None) -%}
+}, default_category=None, closable=True) -%}
 {% with messages = messages or get_flashed_messages(with_categories=True) -%}
 {% if messages -%} {# don't output anything if there are no messages #}
 
@@ -16,7 +16,11 @@
     <div class="col-md-12">
 {% endif -%}
 
-{% for cat, msg in messages %}      <div class="alert alert-{{transform.get(cat.lower(), default_category or cat)}}" role="alert">{{msg|safe}}</div>{% endfor -%}
+{% for cat, msg in messages %}      <div class="alert alert-{{transform.get(cat.lower(), default_category or cat)}}" role="alert">
+{% if closable %}        <button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
+        {{msg|safe}}
+      </div>
+{%- endfor -%}
 
 {% if container %}
     </div>
