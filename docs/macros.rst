@@ -204,7 +204,7 @@ file. Like the form macros, these are intended to aid rapid application
 development, until they are replaced with custom solutions in more mature
 applications.
 
-.. py:function:: flashed_messages(messages=None, container=True, transform=..., default_category=None, closable=True)
+.. py:function:: flashed_messages(messages=None, container=True, transform=..., default_category=None, dismissible=False)
 
    Renders Flask's :func:`~flask.flash` messages. Maps commonly used categories
    to the slightly uncommon bootstrap css classes (i.e. ``error -> danger``).
@@ -221,7 +221,9 @@ applications.
                             it is passed through unchanged. If
                             ``default_category`` is set, it is replaced with
                             this instead.
-   :param closable: If true, will output a button to close an alert.
+   :param dismissible: If true, will output a button to close an alert. 
+                       For fully functioning, dismissible alerts, 
+                       you must use the alerts JavaScript plugin.
 
 Note that for this functionality to work properly, flashing messages must be
 categorized with a valid bootstrap alert category (one of ``success``,
