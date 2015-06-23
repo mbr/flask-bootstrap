@@ -3,6 +3,10 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible:
 
+3.3.5.2
+-------
+* ``action`` finally settled on ``""``.
+
 3.3.5.1
 -------
 
