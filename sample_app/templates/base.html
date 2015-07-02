@@ -27,3 +27,13 @@
    The sample application already contains the required static files. #}
 {{fixes.ie8()}}
 {%- endblock %}
+
+{# Adding our own CSS files is also done here. Check the documentation at
+   http://pythonhosted.org/Flask-Bootstrap/basic-usage.html#available-blocks
+   for an overview. #}
+{% block styles -%}
+    {{super()}}  {# do not forget to call super or Bootstrap's own stylesheets
+                    will disappear! #}
+    <link rel="stylesheet" type="text/css"
+          href="{{url_for('static', filename='sample-app.css')}}">
+{% endblock %}
