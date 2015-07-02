@@ -62,6 +62,8 @@ account.
 Macros
 ******
 
+.. highlight:: jinja
+
 A few macros are available to make your life easier. These need to be imported
 (I recommend create your own "base.html" template that extends one of the
 bootstrap base templates first and including the the macros there).

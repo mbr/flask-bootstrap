@@ -168,6 +168,8 @@ wide support of jQuery1.
 How can I use jQuery2 instead of jQuery1?
 -----------------------------------------
 
+.. highlight:: python
+
 You can use Flask-Bootstrap's CDN support to enable loading these resources
 from a different source::
 

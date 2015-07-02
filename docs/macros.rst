@@ -1,6 +1,8 @@
 Macros
 ======
 
+.. highlight:: jinja
+
 Flask-Bootstrap comes with macros to make your life easier. These need to be
 imported like in this example::
 
