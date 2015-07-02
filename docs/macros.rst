@@ -223,8 +223,8 @@ applications.
                             it is passed through unchanged. If
                             ``default_category`` is set, it is replaced with
                             this instead.
-   :param dismissible: If true, will output a button to close an alert. 
-                       For fully functioning, dismissible alerts, 
+   :param dismissible: If true, will output a button to close an alert.
+                       For fully functioning, dismissible alerts,
                        you must use the alerts JavaScript plugin.
 
 Note that for this functionality to work properly, flashing messages must be
