@@ -16,7 +16,6 @@
 from flask import Flask
 from flask_appconfig import AppConfig
 from flask_bootstrap import Bootstrap
-from flask_debug import Debug
 
 from .frontend import frontend
 
@@ -42,8 +41,5 @@ def create_app(configfile=None):
     # Because we're security-conscious developers, we also hard-code disabling
     # the CDN support (this might become a default in later versions):
     app.config['BOOTSTRAP_SERVE_LOCAL'] = True
-
-    # For demonstration purposes, we also include Flask-Debug
-    Debug(app)
 
     return app
