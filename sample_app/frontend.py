@@ -5,12 +5,14 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 
 frontend = Blueprint('frontend', __name__)
 
 
+# Our index-page just shows a quick explanation. Check out the template
+# "templates/index.html" documentation for more details.
 @frontend.route('/')
 def index():
-    return 'hello, visitor'
+    return render_template('index.html')
