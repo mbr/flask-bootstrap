@@ -4,7 +4,7 @@
 {% import "bootstrap/utils.html" as util %}
 
 {% block content %}
-{{util.flashed_messages()}}
+{{util.flashed_messages(dismissible=True)}}
 <div class="container">
   <h1>Hello, world!</h1>
 
