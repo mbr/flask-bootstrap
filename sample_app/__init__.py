@@ -38,4 +38,8 @@ def create_app(configfile=None):
     # to register it:
     app.register_blueprint(frontend)
 
+    # Because we're security-conscious developers, we also hard-code disabling
+    # the CDN support (this might become a default in later versions):
+    app.config['BOOTSTRAP_SERVE_LOCAL'] = True
+
     return app
