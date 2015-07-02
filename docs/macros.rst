@@ -19,9 +19,9 @@ Fixes
 Cross-browser fixes (specifically for Internet Explorer < 9) are usually
 included, but not shipped with Flask-Bootstrap. You can download `html5shiv
 <https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js>`_ and
-`Respond.js <https://raw.github.com/scottjehl/Respond/master/respond.min.js>`_,
-put them in your applications static folder and include them like in this
-example::
+`Respond.js <https://raw.githubusercontent.com/scottjehl/Respond/master/dest/
+respond.min.js>`_, put them in your applications static folder and include them
+like in this example::
 
   {% import "bootstrap/fixes.html" as fixes %}
   {% block head %}
