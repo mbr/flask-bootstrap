@@ -1,2 +1,3 @@
 flask-appconfig
 flask-bootstrap
+flask-debug
