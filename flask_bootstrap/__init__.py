@@ -6,6 +6,7 @@ __version__ = '3.3.5.2.dev1'
 import re
 
 from flask import Blueprint, current_app, url_for
+from .nav import BootstrapRenderer
 
 try:
     from wtforms.fields import HiddenField
@@ -178,3 +179,7 @@ class Bootstrap(object):
                 'respond.js': respondjs,
             },
         }
+
+        # setup support for flask-nav
+        renderers = app.extensions.setdefault('nav_renderers', {})
+        renderers['bootstrap'] = BootstrapRenderer
