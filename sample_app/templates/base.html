@@ -37,3 +37,8 @@
     <link rel="stylesheet" type="text/css"
           href="{{url_for('static', filename='sample-app.css')}}">
 {% endblock %}
+
+{# Finally, round things out with navigation #}
+{% block navbar %}
+{{nav.top.render('bootstrap')}}
+{% endblock %}
