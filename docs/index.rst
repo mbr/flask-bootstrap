@@ -14,6 +14,7 @@ create links to serve Bootstrap from a CDN.
    macros
    forms
    sqlalchemy
+   nav
    cdn
    faq
    bootstrap2
