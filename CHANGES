@@ -1,7 +1,8 @@
 Flask-Bootstrap Changelog
 =========================
 
-The following changes are not fully backwards compatible:
+The following changes are not fully backwards compatible or major new features:
+
 
 3.3.5.2
 -------
