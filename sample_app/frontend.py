@@ -17,6 +17,7 @@ frontend = Blueprint('frontend', __name__)
 # more View instances.
 nav.register_element('frontend_top', Navbar(
     View('Flask-Bootstrap', '.index'),
+    View('Debug-Info', 'debug.debug_root'),
     Subgroup(
         'Docs',
         Link('Flask-Bootstrap', 'http://pythonhosted.org/Flask-Bootstrap'),
