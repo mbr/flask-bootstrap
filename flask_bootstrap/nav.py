@@ -73,6 +73,8 @@ class BootstrapRenderer(Visitor):
     def visit_Subgroup(self, node):
         if not self._in_dropdown:
             li = tags.li(_class='dropdown')
+            if node.active:
+                li['class'] = 'active'
             a = li.add(tags.a(node.title, href='#', _class='dropdown-toggle'))
             a['data-toggle'] = 'dropdown'
             a['role'] = 'button'
