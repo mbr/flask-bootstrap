@@ -1,13 +1,19 @@
+from hashlib import sha1
 from dominate import tags
 from visitor import Visitor
 
 
 class BootstrapRenderer(Visitor):
-    def __init__(self, html5=True):
+    def __init__(self, html5=True, id=None):
         self.html5 = html5
         self._in_dropdown = False
+        self.id = id
 
     def visit_Navbar(self, node):
+        # create a navbar id that is somewhat fixed, but do not leak any
+        # information about memory contents to the outside
+        node_id = self.id or sha1(str(id(node))).hexdigest()
+
         root = tags.nav() if self.html5 else tags.div(role='navigation')
         root['class'] = 'navbar navbar-default'
 
@@ -19,7 +25,7 @@ class BootstrapRenderer(Visitor):
         btn['type'] = 'button'
         btn['class'] = 'navbar-toggle collapsed'
         btn['data-toggle'] = 'collapse'
-        btn['data-target'] = '#' + node.id
+        btn['data-target'] = '#' + node_id
         btn['aria-expanded'] = 'false'
         btn['aria-controls'] = 'navbar'
 
@@ -28,17 +34,18 @@ class BootstrapRenderer(Visitor):
         btn.add(tags.span(_class='icon-bar'))
         btn.add(tags.span(_class='icon-bar'))
 
-        if node.title:
+        # title may also have a 'get_url()' method, in which case we render
+        # a brand-link
+        if node.title is not None:
             if hasattr(node.title, 'get_url'):
-                header.add(tags.a(node.title.title,
-                                  _class='navbar-brand',
+                header.add(tags.a(node.title.text, _class='navbar-brand',
                                   href=node.title.get_url()))
             else:
-                header.add(tags.a(node.title, _class='navbar-brand'))
+                header.add(tags.span(node.title, _class='navbar-brand'))
 
         bar = cont.add(tags.div(
             _class='navbar-collapse collapse',
-            id=node.id,
+            id=node_id,
         ))
         bar_list = bar.add(tags.ul(_class='nav navbar-nav'))
 
@@ -47,14 +54,14 @@ class BootstrapRenderer(Visitor):
 
         return root
 
-    def visit_Label(self, node):
+    def visit_Text(self, node):
         if not self._in_dropdown:
             raise RuntimeError('Cannot render label outside Subgroup')
-        return tags.li(node.title, _class='dropdown-header')
+        return tags.li(node.text, _class='dropdown-header')
 
     def visit_Link(self, node):
         item = tags.li()
-        item.add(tags.a(node.title, **node.attribs))
+        item.add(tags.a(node.text, href=node.get_url()))
 
         return item
 
@@ -86,7 +93,7 @@ class BootstrapRenderer(Visitor):
 
     def visit_View(self, node):
         item = tags.li()
-        item.add(tags.a(node.title, href=node.get_url(), title=node.title))
+        item.add(tags.a(node.text, href=node.get_url(), title=node.text))
         if node.active:
             item['class'] = 'active'
 
