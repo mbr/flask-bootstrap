@@ -4,6 +4,13 @@ Flask-Bootstrap Changelog
 The following changes are not fully backwards compatible or major new features:
 
 
+3.3.5.3
+-------
+* Support for `Flask-Nav <http://pythonhosted.org/flask-nav>`_ added:
+  :doc:`nav`.
+* The sample application has been rewritten to finally resemble a somewhat
+  educative piece of code.
+
 3.3.5.2
 -------
 * ``action`` finally settled on ``""``.
