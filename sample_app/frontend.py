@@ -6,36 +6,29 @@
 # http://flask.pocoo.org/docs/blueprints/
 
 from flask import Blueprint, render_template
-from flask_nav import Nav
-from flask_nav.elements import Navbar, View, Subgroup, Link, Label, Separator
+from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
+
+from .nav import nav
 
 frontend = Blueprint('frontend', __name__)
 
-# we're adding a navbar as well through flask-navbar
-nav = Nav()
-
-nav.register_element('top', Navbar(
+# We're adding a navbar as well through flask-navbar. In our example, the
+# navbar has an usual amount of Link-Elements, more commonly you will a lot
+# more View instances.
+nav.register_element('frontend_top', Navbar(
     View('Flask-Bootstrap', '.index'),
     Subgroup(
         'Docs',
-        Link('Flask-Bootstrap',
-             href='http://pythonhosted.org/Flask-Bootstrap'),
-        Link('Flask-AppConfig',
-             href='https://github.com/mbr/flask-appconfig'),
-        Link('Flask-Debug',
-             href='https://github.com/mbr/flask-debug'),
+        Link('Flask-Bootstrap', 'http://pythonhosted.org/Flask-Bootstrap'),
+        Link('Flask-AppConfig', 'https://github.com/mbr/flask-appconfig'),
+        Link('Flask-Debug', 'https://github.com/mbr/flask-debug'),
         Separator(),
-        Label('Bootstrap'),
-        Link('Getting started',
-             href='http://getbootstrap.com/getting-started/'),
-        Link('CSS',
-             href='http://getbootstrap.com/css/'),
-        Link('Components',
-             href='http://getbootstrap.com/components/'),
-        Link('Javascript',
-             href='http://getbootstrap.com/javascript/'),
-        Link('Customize',
-             href='http://getbootstrap.com/customize/'),
+        Text('Bootstrap'),
+        Link('Getting started', 'http://getbootstrap.com/getting-started/'),
+        Link('CSS', 'http://getbootstrap.com/css/'),
+        Link('Components', 'http://getbootstrap.com/components/'),
+        Link('Javascript', 'http://getbootstrap.com/javascript/'),
+        Link('Customize', 'http://getbootstrap.com/customize/'),
     )
 ))
 
