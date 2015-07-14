@@ -6,7 +6,7 @@ def app():
     import sys
     sys.path.append('.')
 
-    from sample_application import create_app
+    from sample_app import create_app
 
     return create_app()
 
