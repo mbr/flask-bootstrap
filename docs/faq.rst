@@ -1,6 +1,5 @@
-========================
-Common use cases and FAQ
-========================
+FAQ
+===
 
 
 Why do I have undesired auto-escapes in my template output?

@@ -1,5 +1,5 @@
-CDN-delivery in Flask-Bootstrap
-===============================
+CDN support
+===========
 
 Flask-Bootstrap supports delivery via CDN or local resources, configurable at
 runtime. Upon initialization, Flask-Bootstrap will store a dictionary on your
