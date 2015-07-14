@@ -7,14 +7,17 @@ extension that mostly consists of a blueprint named 'bootstrap'. It can also
 create links to serve Bootstrap from a CDN.
 
 .. toctree::
+   :maxdepth: 3
+
    basic-usage
    configuration
    macros
+   forms
+   sqlalchemy
    cdn
    faq
    bootstrap2
    changelog
-   :maxdepth: 3
 
 
 Installation
