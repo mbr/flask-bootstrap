@@ -21,7 +21,7 @@ Sample Application
 
 If you want to have a look at a small sample application, try `browsing it on
 github
-<https://github.com/mbr/flask-bootstrap/tree/master/sample_application>`_.
+<https://github.com/mbr/flask-bootstrap/tree/master/sample_app>`_.
 
 
 Templates
