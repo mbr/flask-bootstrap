@@ -103,6 +103,8 @@ def bootstrap_find_resource(filename, cdn, use_minified=None, local=True):
 
     if resource_url.startswith('//') and config['BOOTSTRAP_CDN_FORCE_SSL']:
         resource_url = 'https:%s' % resource_url
+    elif resource_url.startswith('//') and not config['BOOTSTRAP_CDN_FORCE_SSL']:
+        resource_url = 'http:%s' % resource_url
 
     return resource_url
 
