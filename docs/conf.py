@@ -2,8 +2,8 @@
 
 project = u'Flask-Bootstrap'
 copyright = u'2013, Marc Brinkmann'
-version = '3.3.5.5'
-release = '3.3.5.5.dev1'
+version = '3.3.5.6'
+release = '3.3.5.6.dev1'
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'alabaster']
 source_suffix = '.rst'
