@@ -17,4 +17,5 @@ def client(app):
 
 
 def test_index(client):
-    client.get('/')
+    resp = client.get('/')
+    assert resp.status == 200
