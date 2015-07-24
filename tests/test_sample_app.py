@@ -8,7 +8,15 @@ def app():
 
     from sample_app import create_app
 
-    return create_app()
+    app = create_app()
+    app.debug = True
+    app.testing = True
+
+    # manually add flask-debug
+    from flask_debug import Debug
+    Debug(app)
+
+    return app
 
 
 @pytest.fixture
@@ -18,4 +26,4 @@ def client(app):
 
 def test_index(client):
     resp = client.get('/')
-    assert resp.status == 200
+    assert resp.status_code == 200
