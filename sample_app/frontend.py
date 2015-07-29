@@ -5,7 +5,7 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
 from markupsafe import escape
 
@@ -20,6 +20,7 @@ frontend = Blueprint('frontend', __name__)
 nav.register_element('frontend_top', Navbar(
     View('Flask-Bootstrap', '.index'),
     View('Home', '.index'),
+    View('Forms Example', '.example_form'),
     View('Debug-Info', 'debug.debug_root'),
     Subgroup(
         'Docs',
@@ -58,6 +59,7 @@ def example_form():
         flash('Hello, {}. You have successfully signed up'
               .format(escape(form.name.data)))
 
-        return render_template('index.html')
+        # In a real application, you may wish to avoid this tedious redirect.
+        return redirect(url_for('.index'))
 
     return render_template('signup.html', form=form)
