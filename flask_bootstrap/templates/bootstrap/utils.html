@@ -3,8 +3,9 @@
   'error': 'danger',
   'info': 'info',
   'warning': 'warning',
-  'debug': 'default',
-  'notset': 'default',
+  'debug': 'info',
+  'notset': 'info',
+  'message': 'info',
 }, default_category=None, dismissible=False) -%}
 {% with messages = messages or get_flashed_messages(with_categories=True) -%}
 {% if messages -%} {# don't output anything if there are no messages #}
