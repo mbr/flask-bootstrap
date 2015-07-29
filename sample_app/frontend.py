@@ -5,9 +5,11 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
+from markupsafe import escape
 
+from .forms import SignupForm
 from .nav import nav
 
 frontend = Blueprint('frontend', __name__)
@@ -40,3 +42,22 @@ nav.register_element('frontend_top', Navbar(
 @frontend.route('/')
 def index():
     return render_template('index.html')
+
+
+# Shows a long signup form, demonstrating form rendering.
+@frontend.route('/example-form/', methods=('GET', 'POST'))
+def example_form():
+    form = SignupForm()
+
+    if form.validate_on_submit():
+        # We don't have anything fancy in our application, so we are just
+        # flashing a message when a user completes the form successfully.
+        #
+        # Note that the default flashed messages rendering allows HTML, so
+        # we need to escape things if we input user values:
+        flash('Hello, {}. You have successfully signed up'
+              .format(escape(form.name.data)))
+
+        return render_template('index.html')
+
+    return render_template('signup.html', form=form)
