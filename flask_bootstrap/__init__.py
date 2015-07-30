@@ -168,6 +168,10 @@ class Bootstrap(object):
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/'
                    % RESPONDJS_VERSION))
 
+        bootswatch = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/bootswatch/%s/'
+                   % BOOTSTRAP_VERSION))
+
         app.extensions['bootstrap'] = {
             'cdns': {
                 'local': local,
@@ -176,6 +180,7 @@ class Bootstrap(object):
                 'jquery': jquery,
                 'html5shiv': html5shiv,
                 'respond.js': respondjs,
+                'bootswatch': bootswatch,
             },
         }
 
