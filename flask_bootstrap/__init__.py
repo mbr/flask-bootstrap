@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding=utf8
 
-__version__ = '3.3.5.7.dev1'
-
 import re
 
 from flask import Blueprint, current_app, url_for
@@ -15,6 +13,15 @@ except ImportError:
 else:
     def is_hidden_field_filter(field):
         return isinstance(field, HiddenField)
+
+from .forms import render_form
+
+
+__version__ = '3.3.5.7.dev1'
+BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
+JQUERY_VERSION = '1.11.3'
+HTML5SHIV_VERSION = '3.7.2'
+RESPONDJS_VERSION = '1.4.2'
 
 
 class CDN(object):
@@ -113,11 +120,6 @@ class Bootstrap(object):
             self.init_app(app)
 
     def init_app(self, app):
-        BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
-        JQUERY_VERSION = '1.11.3'
-        HTML5SHIV_VERSION = '3.7.2'
-        RESPONDJS_VERSION = '1.4.2'
-
         app.config.setdefault('BOOTSTRAP_USE_MINIFIED', True)
         app.config.setdefault('BOOTSTRAP_CDN_FORCE_SSL', False)
 
