@@ -56,7 +56,7 @@ class BootstrapRenderer(Visitor):
 
     def visit_Text(self, node):
         if not self._in_dropdown:
-            raise RuntimeError('Cannot render label outside Subgroup')
+            return tags.p(node.text, _class='navbar-text')
         return tags.li(node.text, _class='dropdown-header')
 
     def visit_Link(self, node):
