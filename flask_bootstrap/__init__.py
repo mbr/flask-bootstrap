@@ -14,6 +14,8 @@ else:
     def is_hidden_field_filter(field):
         return isinstance(field, HiddenField)
 
+from .forms import render_form
+
 
 __version__ = '3.3.5.7.dev1'
 BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
@@ -133,6 +135,9 @@ class Bootstrap(object):
             static_folder='static',
             static_url_path=app.static_url_path + '/bootstrap',
             subdomain=app.config['BOOTSTRAP_LOCAL_SUBDOMAIN'])
+
+        # add the form rendering template filter
+        blueprint.add_app_template_filter(render_form)
 
         app.register_blueprint(blueprint)
 
