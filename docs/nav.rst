@@ -24,7 +24,7 @@ generate a working navbar would be:
 
     nav = Nav()
 
-    @nav.navigation
+    @nav.navigation()
     def mynavbar():
         return Navbar(
             'mysite',
