@@ -103,7 +103,7 @@ class WTFormsRenderer(Visitor):
         return raw(node())
 
     def visit_SubmitField(self, node):
-        button = tags.button(node.name, _class='btn btn-default',
+        button = tags.button(node.label.text, _class='btn btn-default',
                              type='submit')
         return button
 
