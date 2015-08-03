@@ -42,11 +42,6 @@ class WTFormsRenderer(Visitor):
 
         return div
 
-    def visit_SubmitField(self, node):
-        button = tags.button(node.name, _class='btn btn-default',
-                             type='submit')
-        return button
-
     def visit_Field(self, node):
         # FIXME: add error class
         # FIXME: add required
@@ -92,6 +87,11 @@ class WTFormsRenderer(Visitor):
 
     def visit_HiddenField(self, node):
         return raw(node())
+
+    def visit_SubmitField(self, node):
+        button = tags.button(node.name, _class='btn btn-default',
+                             type='submit')
+        return button
 
     def visit_TextField(self, node):
         wrap = self._get_wrap(node)
