@@ -48,7 +48,9 @@ class WTFormsRenderer(Visitor):
         # add the label
         wrap.add(tags.label(node.label.text, _for=node.id))
         wrap.add(raw(node()))
-        wrap.add(tags.p('HELP', _class='help-block'))
+
+        if node.description:
+            wrap.add(tags.p(node.description, _class='help-block'))
 
         return wrap
 
