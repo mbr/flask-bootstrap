@@ -55,18 +55,10 @@ class WTFormsRenderer(Visitor):
         return wrap
 
     def visit_DateField(self, node):
-        wrap = self._get_wrap(node)
-        wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(tags.input(type='date', _class='form-control'))
-
-        return wrap
+        return self._wrapped_input(node, 'date')
 
     def visit_DateTimeField(self, node):
-        wrap = self._get_wrap(node)
-        wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(tags.input(type='datetime-local', _class='form-control'))
-
-        return wrap
+        return self._wrapped_input(node, 'datetime-local')
 
     def visit_EmailField(self, node):
         # note: WTForms does not actually have an EmailField, this function
@@ -130,8 +122,4 @@ class WTFormsRenderer(Visitor):
                 # render email fields differently
                 return self.visit_EmailField(node)
 
-        wrap = self._get_wrap(node)
-        wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(raw(node(**{'class': 'form-control'})))
-
-        return wrap
+        return self._wrapped_input(node, 'text')
