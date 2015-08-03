@@ -42,6 +42,20 @@ class WTFormsRenderer(Visitor):
 
         return div
 
+    def visit_DateField(self, node):
+        wrap = self._get_wrap(node)
+        wrap.add(tags.label(node.label.text, _for=node.id))
+        wrap.add(tags.input(type='date', class_='form-control'))
+
+        return wrap
+
+    def visit_DateTimeField(self, node):
+        wrap = self._get_wrap(node)
+        wrap.add(tags.label(node.label.text, _for=node.id))
+        wrap.add(tags.input(type='datetime-local', class_='form-control'))
+
+        return wrap
+
     def visit_Field(self, node):
         # FIXME: add error class
         # FIXME: add required
