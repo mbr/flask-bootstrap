@@ -45,14 +45,14 @@ class WTFormsRenderer(Visitor):
     def visit_DateField(self, node):
         wrap = self._get_wrap(node)
         wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(tags.input(type='date', class_='form-control'))
+        wrap.add(tags.input(type='date', _class='form-control'))
 
         return wrap
 
     def visit_DateTimeField(self, node):
         wrap = self._get_wrap(node)
         wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(tags.input(type='datetime-local', class_='form-control'))
+        wrap.add(tags.input(type='datetime-local', _class='form-control'))
 
         return wrap
 
