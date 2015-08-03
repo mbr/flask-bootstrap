@@ -42,6 +42,18 @@ class WTFormsRenderer(Visitor):
 
         return div
 
+    def _wrapped_input(self, node, type='text', classes=['form-control'],
+                       **kwargs):
+        wrap = self._get_wrap(node)
+        wrap.add(tags.label(node.label.text, _for=node.id))
+        wrap.add(tags.input(
+            type=type,
+            _class=' '.join(classes),
+            **kwargs
+        ))
+
+        return wrap
+
     def visit_DateField(self, node):
         wrap = self._get_wrap(node)
         wrap.add(tags.label(node.label.text, _for=node.id))
@@ -55,6 +67,11 @@ class WTFormsRenderer(Visitor):
         wrap.add(tags.input(type='datetime-local', _class='form-control'))
 
         return wrap
+
+    def visit_EmailField(self, node):
+        # note: WTForms does not actually have an EmailField, this function
+        # is called by visit_TextField based on which validators are enabled
+        return self._wrapped_input(node, 'email')
 
     def visit_Field(self, node):
         # FIXME: add error class
@@ -108,6 +125,11 @@ class WTFormsRenderer(Visitor):
         return button
 
     def visit_TextField(self, node):
+        for v in node.validators:
+            if v.__class__.__name__ == 'Email':
+                # render email fields differently
+                return self.visit_EmailField(node)
+
         wrap = self._get_wrap(node)
         wrap.add(tags.label(node.label.text, _for=node.id))
         wrap.add(raw(node(**{'class': 'form-control'})))
