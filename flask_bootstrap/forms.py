@@ -60,6 +60,10 @@ class WTFormsRenderer(Visitor):
     def visit_DateTimeField(self, node):
         return self._wrapped_input(node, 'datetime-local')
 
+    def visit_DecimalField(self, node):
+        # FIXME: if range-validator is present, add limits?
+        return self._wrapped_input(node, 'number')
+
     def visit_EmailField(self, node):
         # note: WTForms does not actually have an EmailField, this function
         # is called by visit_TextField based on which validators are enabled
@@ -79,6 +83,10 @@ class WTFormsRenderer(Visitor):
             wrap.add(tags.p(node.description, _class='help-block'))
 
         return wrap
+
+    def visit_FloatField(self, node):
+        # FIXME: if range-validator is present, add limits?
+        return self._wrapped_input(node, 'number')
 
     def visit_Form(self, node):
         form = tags.form(
@@ -110,6 +118,10 @@ class WTFormsRenderer(Visitor):
 
     def visit_HiddenField(self, node):
         return raw(node())
+
+    def visit_IntegerField(self, node):
+        # FIXME: if range-validator is present, add limits?
+        return self._wrapped_input(node, 'number', step=1)
 
     def visit_SubmitField(self, node):
         button = tags.button(node.label.text, _class='btn btn-default',
