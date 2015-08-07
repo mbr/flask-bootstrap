@@ -51,6 +51,15 @@ class WTFormsRenderer(Visitor):
 
         return wrap
 
+    def visit_BooleanField(self, node):
+        wrap = self._get_wrap(node, classes='checkbox')
+
+        label = wrap.add(tags.label(_for=node.id))
+        label.add(tags.input(type='checkbox'))
+        label.add(node.label.text)
+
+        return wrap
+
     def visit_DateField(self, node):
         return self._wrapped_input(node, 'date')
 
