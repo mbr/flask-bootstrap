@@ -35,7 +35,7 @@ class WTFormsRenderer(Visitor):
 
         div = tags.div(_class=classes)
         if current_app.debug:
-            div.add(tags.comment('Tag {} ({})'.format(
+            div.add(tags.comment(' Field: {} ({}) '.format(
                 node.name, node.__class__.__name__)
             ))
 
