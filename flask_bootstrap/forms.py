@@ -89,6 +89,9 @@ class WTFormsRenderer(Visitor):
 
         return wrap
 
+    def visit_FileField(self, node):
+        return self._wrapped_input(node, 'file', classes=[])
+
     def visit_FloatField(self, node):
         # FIXME: if range-validator is present, add limits?
         return self._wrapped_input(node, 'number')
