@@ -77,7 +77,6 @@ class WTFormsRenderer(Visitor):
 
     def visit_Field(self, node):
         # FIXME: add error class
-        # FIXME: add required
 
         wrap = self._get_wrap(node)
 
