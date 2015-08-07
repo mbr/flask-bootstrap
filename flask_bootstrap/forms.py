@@ -25,9 +25,7 @@ class WTFormsRenderer(Visitor):
         if self._real_enctype is None:
             self._real_enctype = u'multipart/form-data'
 
-    def _get_wrap(self, node):
-        classes = 'form-group'
-
+    def _get_wrap(self, node, classes='form-group'):
         # add required class, which strictly speaking isn't bootstrap, but
         # a common enough customization
         if node.flags.required:
