@@ -90,6 +90,10 @@ class WTFormsRenderer(Visitor):
         return wrap
 
     def visit_FileField(self, node):
+        if self.enctype is None and self._real_enctype is None:
+            # set the enctype, if a file field is encountered
+            self._real_enctype = 'multipart/form-data'
+
         return self._wrapped_input(node, 'file', classes=[])
 
     def visit_FloatField(self, node):
