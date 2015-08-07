@@ -30,7 +30,6 @@ class WTFormsRenderer(Visitor):
 
         # add required class, which strictly speaking isn't bootstrap, but
         # a common enough customization
-
         if node.flags.required:
             classes += ' required'
 
