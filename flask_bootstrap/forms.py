@@ -26,7 +26,7 @@ class WTFormsRenderer(Visitor):
         self.role = role
         self.enctype = enctype
 
-    def _visit_file_field(self, node):
+    def _visited_file_field(self):
         if self._real_enctype is None:
             self._real_enctype = u'multipart/form-data'
 
