@@ -12,8 +12,13 @@ def render_form(form, **kwargs):
 
 
 class WTFormsRenderer(Visitor):
-    def __init__(self, action='', id=None, method='post',
-                 extra_classes=[], role='form', enctype=None):
+    def __init__(self,
+                 action='',
+                 id=None,
+                 method='post',
+                 extra_classes=[],
+                 role='form',
+                 enctype=None):
         self.action = action
         self.form_id = id
         self.method = method
@@ -34,20 +39,16 @@ class WTFormsRenderer(Visitor):
         div = tags.div(_class=classes)
         if current_app.debug:
             div.add(tags.comment(' Field: {} ({}) '.format(
-                node.name, node.__class__.__name__)
-            ))
+                node.name, node.__class__.__name__)))
 
         return div
 
-    def _wrapped_input(self, node, type='text', classes=['form-control'],
-                       **kwargs):
+    def _wrapped_input(self, node,
+                       type='text',
+                       classes=['form-control'], **kwargs):
         wrap = self._get_wrap(node)
         wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(tags.input(
-            type=type,
-            _class=' '.join(classes),
-            **kwargs
-        ))
+        wrap.add(tags.input(type=type, _class=' '.join(classes), **kwargs))
 
         return wrap
 
@@ -98,9 +99,7 @@ class WTFormsRenderer(Visitor):
         return self._wrapped_input(node, 'number')
 
     def visit_Form(self, node):
-        form = tags.form(
-            _class=' '.join(['form'] + self.extra_classes)
-        )
+        form = tags.form(_class=' '.join(['form'] + self.extra_classes))
 
         if self.action:
             form['action'] = self.action
@@ -133,7 +132,8 @@ class WTFormsRenderer(Visitor):
         return self._wrapped_input(node, 'number', step=1)
 
     def visit_SubmitField(self, node):
-        button = tags.button(node.label.text, _class='btn btn-default',
+        button = tags.button(node.label.text,
+                             _class='btn btn-default',
                              type='submit')
         return button
 
