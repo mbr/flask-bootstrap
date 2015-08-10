@@ -131,6 +131,9 @@ class WTFormsRenderer(Visitor):
         # FIXME: if range-validator is present, add limits?
         return self._wrapped_input(node, 'number', step=1)
 
+    def visit_PasswordField(self, node):
+        return self._wrapped_input(node, 'password')
+
     def visit_SubmitField(self, node):
         button = tags.button(node.label.text,
                              _class='btn btn-default',
