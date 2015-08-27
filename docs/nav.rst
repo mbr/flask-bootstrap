@@ -52,4 +52,12 @@ The ``title``, if not ``None``, will be rendered using the ``brand`` classes
 it has a ``get_url`` method, the return value of it will be the link for the
 brand text.
 
+
+Customizing the navbar
+~~~~~~~~~~~~~~~~~~~~~~
+
+To modify the output of the ``BootstrapRenderer``, it is possible to subclass
+it and register the resulting child class as another renderer. See the
+Flask-Nav_ documentation for `more information about that topic <http://pythonhosted.org/flask-nav/advanced-topics.html#implementing-custom-renderers>`_.
+
 .. _Flask-Nav: http://pythonhosted.org/flask-nav
