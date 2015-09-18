@@ -5,8 +5,7 @@
 #
 #   $ pip install -r sample_app/requirements.txt
 #
-# This will, among other things, install Flask-Appconfig, which contains a
-# program to run the application.
+# Then, you can actually run the application.
 #
 #   $ flask --app=sample_app dev
 #
