@@ -6,13 +6,13 @@
   'debug': 'info',
   'notset': 'info',
   'message': 'info',
-}, default_category=None, dismissible=False) -%}
+}, default_category=None, dismissible=False, container_id=None) -%}
 {% with messages = messages or get_flashed_messages(with_categories=True) -%}
 {% if messages -%} {# don't output anything if there are no messages #}
 
 {% if container -%}
 <!-- begin message block -->
-<div class="container">
+<div class="container" {% if container_id %}id="{{ container_id }}"{% endif %}>
   <div class="row">
     <div class="col-md-12">
 {% endif -%}
