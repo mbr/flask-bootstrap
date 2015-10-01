@@ -3,6 +3,9 @@ Flask-Bootstrap Changelog
 
 The following changes are not fully backwards compatible or major new features:
 
+3.3.5.7
+-------
+* IE-specific meta information and viewport meta tags have been added to the base template.
 
 3.3.5.3
 -------
