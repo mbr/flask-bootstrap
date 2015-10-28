@@ -107,14 +107,32 @@ Note that for this functionality to work properly, flashing messages must be
 categorized with a valid bootstrap alert category (one of ``success``,
 ``info``, ``warning``, ``danger``).
 
-.. highlight:: python
+Example:
 
-Example::
+.. code-block:: python
 
     flash('Operation failed', 'danger')
 
-.. highlight:: jinja
+Versions of Flask-Bootstrap pre-3.3.5.7 did not escape the content of
+``flashed_messages`` to allow HTML to be used. This behaviour has changed, the
+preferred way to utilize HTML inside messages now is by using the
+``Markup``-wrapper:
 
+
+.. code-block:: python
+
+    from flask import flash
+    from markupsafe import Markup
+
+    # ...
+
+    flash(Markup('Flashed message with <b>bold</b> statements'), 'success')
+
+    user_name = '<b>ad username'
+    flash(Markup('<u>You</u> are our favorite user, <i>'
+                 + user_name
+                 + Markup('</i>!'),
+         'danger')
 
 .. py:function:: icon(type, extra_classes, **kwargs)
 

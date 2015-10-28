@@ -6,6 +6,7 @@ The following changes are not fully backwards compatible or major new features:
 3.3.5.7
 -------
 * IE-specific meta information and viewport meta tags have been added to the base template.
+* The flashed messages are no longer considered "safe", which means HTML-markup will be escaped. See :func:`flashed_messages` for more information.
 
 3.3.5.3
 -------
