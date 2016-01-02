@@ -73,7 +73,7 @@ class WTFormsRenderer(Visitor):
 
     def visit_EmailField(self, node):
         # note: WTForms does not actually have an EmailField, this function
-        # is called by visit_TextField based on which validators are enabled
+        # is called by visit_StringField based on which validators are enabled
         return self._wrapped_input(node, 'email')
 
     def visit_Field(self, node):
@@ -141,6 +141,10 @@ class WTFormsRenderer(Visitor):
         return button
 
     def visit_TextField(self, node):
+        # legacy support for TextField, deprecated in WTForms 2.0
+        return self.visit_StringField(node)
+
+    def visit_StringField(self, node):
         for v in node.validators:
             if v.__class__.__name__ == 'Email':
                 # render email fields differently
