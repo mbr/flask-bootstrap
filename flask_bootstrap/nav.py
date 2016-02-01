@@ -15,7 +15,7 @@ class BootstrapRenderer(Visitor):
         node_id = self.id or sha1(str(id(node)).encode()).hexdigest()
 
         root = tags.nav() if self.html5 else tags.div(role='navigation')
-        root['class'] = 'navbar navbar-default'
+        root['class'] = 'navbar navbar-inverse navbar-fixed-top'
 
         cont = root.add(tags.div(_class='container-fluid'))
 
@@ -37,11 +37,18 @@ class BootstrapRenderer(Visitor):
         # title may also have a 'get_url()' method, in which case we render
         # a brand-link
         if node.title is not None:
-            if hasattr(node.title, 'get_url'):
-                header.add(tags.a(node.title.text, _class='navbar-brand',
-                                  href=node.title.get_url()))
+            if hasattr(node.title, 'img_src'):
+                title = tags.img(src=node.title.img_src, 
+                            alt=getattr(node.title, 'img_alt', ''))
             else:
-                header.add(tags.span(node.title, _class='navbar-brand'))
+                title = node.title.text
+            if hasattr(node.title, 'get_url'):
+                a = tags.a(_class='navbar-brand',
+                            href=node.title.get_url())
+            else:
+                a = tags.span(node.title, _class='navbar-brand')
+            a.add(title)
+            header.add(a)
 
         bar = cont.add(tags.div(
             _class='navbar-collapse collapse',
