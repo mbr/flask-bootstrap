@@ -37,7 +37,8 @@ Form macro reference
                     horizontal_columns=('lg', 2, 10),\
                     enctype=None,\
                     button_map={},\
-                    id="")
+                    id="",\
+                    render_kw={})
 
    Outputs Bootstrap-markup for a complete Flask-WTF_ form.
 
@@ -58,6 +59,8 @@ Form macro reference
                       in the ``button_map`` will use the ``default`` type of
                       button.
    :param id: The ``<form>`` id attribute.
+   :param render_kw: A dictionary, specifying custom attributes for the
+                     ``<form>`` tag.
 
 .. py:function:: form_errors(form, hiddens=True)
 
