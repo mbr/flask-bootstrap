@@ -146,7 +146,8 @@ the necessary fix for required=False attributes, but will also not set the requi
                     enctype=None,
                     button_map={},
                     id="",
-                    novalidate=False) %}
+                    novalidate=False,
+                    render_kw={}) %}
 {#-
 action="" is what we want, from http://www.ietf.org/rfc/rfc2396.txt:
 
@@ -196,6 +197,7 @@ action="" is what we want, from http://www.ietf.org/rfc/rfc2396.txt:
   {%- if _enctype[0] %} enctype="{{_enctype[0]}}"{% endif -%}
   {%- if role %} role="{{role}}"{% endif -%}
   {%- if novalidate %} novalidate{% endif -%}
+  {%- if render_kw %} {{render_kw|xmlattr}}{% endif -%}
   >
   {{ form.hidden_tag() }}
   {{ form_errors(form, hiddens='only') }}
