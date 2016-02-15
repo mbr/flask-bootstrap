@@ -4,10 +4,11 @@ from visitor import Visitor
 
 
 class BootstrapRenderer(Visitor):
-    def __init__(self, html5=True, id=None):
+    def __init__(self, html5=True, id=None, fluid=True):
         self.html5 = html5
         self._in_dropdown = False
         self.id = id
+        self.fluid = fluid
 
     def visit_Navbar(self, node):
         # create a navbar id that is somewhat fixed, but do not leak any
@@ -17,7 +18,8 @@ class BootstrapRenderer(Visitor):
         root = tags.nav() if self.html5 else tags.div(role='navigation')
         root['class'] = 'navbar navbar-default'
 
-        cont = root.add(tags.div(_class='container-fluid'))
+        css_class = 'container-fluid' if self.fluid else 'container'
+        cont = root.add(tags.div(_class=css_class))
 
         # collapse button
         header = cont.add(tags.div(_class='navbar-header'))
