@@ -42,7 +42,7 @@ Usage
 
 Here is an example::
 
-  from flask.ext.bootstrap import Bootstrap
+  from flask_bootstrap import Bootstrap
 
   [...]
 
