@@ -61,7 +61,7 @@ class BootstrapRenderer(Visitor):
 
     def visit_Link(self, node):
         item = tags.li()
-        item.add(tags.a(node.text, href=node.get_url()))
+        item.add(tags.a(node.text, href=node.get_url(), **node.attribs))
 
         return item
 
