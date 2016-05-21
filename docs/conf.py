@@ -11,7 +11,6 @@ master_doc = 'index'
 exclude_patterns = ['_build']
 pygments_style = 'monokai'
 
-
 html_theme = 'alabaster'
 html_theme_options = {
     'github_user': 'mbr',
@@ -36,8 +35,7 @@ html_sidebars = {
 }
 
 intersphinx_mapping = {'http://docs.python.org/': None,
-                       'http://pythonhosted.org/Flask-SQLAlchemy/': None,
+                       'http://flask-sqlalchemy.pocoo.org/': None,
                        'http://pythonhosted.org/flask-nav/': None,
                        'http://flask.pocoo.org/docs/': None,
-                       'https://wtforms.readthedocs.org/en/latest/': None,
-                       }
+                       'https://wtforms.readthedocs.org/en/latest/': None, }
