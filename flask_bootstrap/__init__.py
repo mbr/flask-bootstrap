@@ -8,16 +8,18 @@ from flask import Blueprint, current_app, url_for
 try:
     from wtforms.fields import HiddenField
 except ImportError:
+
     def is_hidden_field_filter(field):
         raise RuntimeError('WTForms is not installed.')
 else:
+
     def is_hidden_field_filter(field):
         return isinstance(field, HiddenField)
 
+
 from .forms import render_form
 
-
-__version__ = '3.3.5.8.dev1'
+__version__ = '3.3.6.0.dev1'
 BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
 JQUERY_VERSION = '1.11.3'
 HTML5SHIV_VERSION = '3.7.2'
@@ -26,6 +28,7 @@ RESPONDJS_VERSION = '1.4.2'
 
 class CDN(object):
     """Base class for CDN objects."""
+
     def get_resource_url(self, filename):
         """Return resource url for filename."""
         raise NotImplementedError
@@ -37,6 +40,7 @@ class StaticCDN(object):
     :param static_endpoint: Endpoint to use.
     :param rev: If ``True``, honor ``BOOTSTRAP_QUERYSTRING_REVVING``.
     """
+
     def __init__(self, static_endpoint='static', rev=False):
         self.static_endpoint = static_endpoint
         self.rev = rev
@@ -55,6 +59,7 @@ class WebCDN(object):
 
     :param baseurl: The baseurl. Filenames are simply appended to this URL.
     """
+
     def __init__(self, baseurl):
         self.baseurl = baseurl
 
@@ -70,6 +75,7 @@ class ConditionalCDN(object):
     :param primary: CDN to use if the configuration variable is ``True``.
     :param fallback: CDN to use otherwise.
     """
+
     def __init__(self, confvar, primary, fallback):
         self.confvar = confvar
         self.primary = primary
@@ -156,22 +162,20 @@ class Bootstrap(object):
             return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
 
         bootstrap = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/'
-                   % BOOTSTRAP_VERSION),
-            local)
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/' %
+                   BOOTSTRAP_VERSION), local)
 
         jquery = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/'
-                   % JQUERY_VERSION),
-            local)
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/' %
+                   JQUERY_VERSION), local)
 
         html5shiv = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/'
-                   % HTML5SHIV_VERSION))
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/' %
+                   HTML5SHIV_VERSION))
 
         respondjs = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/'
-                   % RESPONDJS_VERSION))
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/' %
+                   RESPONDJS_VERSION))
 
         app.extensions['bootstrap'] = {
             'cdns': {
