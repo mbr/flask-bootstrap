@@ -2,8 +2,8 @@ Flask-SQLAlchemy support
 ========================
 
 `Flask-SQLAlchemy <https://pythonhosted.org/Flask-SQLAlchemy/>`_ supports
-pagination through its :meth:`~flask.ext.sqlalchemy.BaseQuery.paginate`, which
-will return a :class:`~flask.ext.sqlalchemy.Pagination` object. These can
+pagination through its :meth:`~flask_sqlalchemy.BaseQuery.paginate`, which
+will return a :class:`~flask_sqlalchemy.Pagination` object. These can
 automatically rendered through the ``render_pagination`` macro:
 
 .. code-block:: jinja
@@ -25,7 +25,7 @@ automatically rendered through the ``render_pagination`` macro:
 
    Renders a pager for query pagination.
 
-   :param pagination: :class:`~flask.ext.sqlalchemy.Pagination` instance.
+   :param pagination: :class:`~flask_sqlalchemy.Pagination` instance.
    :param endpoint: Which endpoint to call when a page number is clicked.
                     :func:`~flask.url_for` will be called with the given
                     endpoint and a single parameter, ``page``. If ``None``,
