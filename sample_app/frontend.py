@@ -34,10 +34,8 @@ nav.register_element('frontend_top', Navbar(
         Link('CSS', 'http://getbootstrap.com/css/'),
         Link('Components', 'http://getbootstrap.com/components/'),
         Link('Javascript', 'http://getbootstrap.com/javascript/'),
-        Link('Customize', 'http://getbootstrap.com/customize/'),
-    ),
-    Text('Using Flask-Bootstrap {}'.format(FLASK_BOOTSTRAP_VERSION)),
-))
+        Link('Customize', 'http://getbootstrap.com/customize/'), ),
+    Text('Using Flask-Bootstrap {}'.format(FLASK_BOOTSTRAP_VERSION)), ))
 
 
 # Our index-page just shows a quick explanation. Check out the template
