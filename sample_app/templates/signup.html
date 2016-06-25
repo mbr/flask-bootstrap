@@ -10,6 +10,10 @@
         <p>Note: Your data isn't going anywhere.</p>
       </div>
    <div class="col-md-12">
-     {{form|render_form()}}
+     {% if request.args.get('legacy') -%}
+       {{wtf.quick_form(form)}}
+     {%- else -%}
+       {{form|render_form()}}
+     {%- endif %}
    </div>
 {%- endblock %}
