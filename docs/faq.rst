@@ -70,6 +70,27 @@ A child template of this base template can then use these blocks to specify
 a custom feed or favicon.
 
 
+How do I add a footer?
+----------------------
+
+The ``super()`` function can also be used to extend any block that is already
+defined. It is usually a good idea to create another derived base template for
+certain layouts. An example ``with-footer.html``::
+
+
+    {% extends "bootstrap/base.html" %}
+
+    {%- block content %}
+    {{super()}}
+    {%- block footer %}
+    <footer>&copy; 2016 Awesome, Inc.</footer>
+    {%- endblock footer %}
+    {%- endblock content %}
+
+The ``footer``-block can be overriden in all templates that extend from
+``with-footer.html``.
+
+
 How do I serve the static files in deployment?
 ----------------------------------------------
 
