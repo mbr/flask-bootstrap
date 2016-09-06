@@ -4,6 +4,12 @@ Flask-Bootstrap Changelog
 The following changes are not backwards compatible or major new features
 (bugfixes or new upstream releases are not explicitly listed):
 
+3.3.7.0
+-------
+* Most likely to be the last major Bootstrap 3 release (see
+  https://github.com/twbs/bootstrap/issues/20631). Make sure you pin
+  Flask-Bootstrap's version to `<4` to avoid inadvertent updates.
+
 3.3.5.7
 -------
 * IE-specific meta information and viewport meta tags have been added to the
