@@ -1,4 +1,4 @@
-WTFForms support
+WTForms support
 ================
 
 The ``bootstrap/wtf.html`` template contains macros to help you output forms
