@@ -166,7 +166,7 @@ FAQ
 
    Flask-Bootstrap is not special in the sense that it simply adds a blueprint
    named ``bootstrap``. The static files map to a specific URL-prefix (per
-   default ``static/bootstrap`` and are served from a specific directory
+   default ``static/bootstrap``) and are served from a specific directory
    found in your virtualenv installation (e.g.
    ``lib/python2.7/site-packages/flask_bootstrap/static``), so a traditional
    setup would be setting up your webserver to serve this address from the
