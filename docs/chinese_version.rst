@@ -1,4 +1,4 @@
-中文版本
+中文文档
 =========
 
 文档地址： `http://flask-bootstrap-zh.readthedocs.io/zh/latest/ <http://flask-bootstrap-zh.readthedocs.io/zh/latest/>`_
