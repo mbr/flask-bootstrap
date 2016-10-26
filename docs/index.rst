@@ -19,6 +19,7 @@ create links to serve Bootstrap from a CDN.
    faq
    bootstrap2
    changelog
+   chinese_version
 
 
 Installation
