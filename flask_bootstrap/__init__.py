@@ -151,6 +151,7 @@ class Bootstrap(object):
             is_hidden_field_filter
         app.jinja_env.globals['bootstrap_find_resource'] =\
             bootstrap_find_resource
+        app.jinja_env.add_extension('jinja2.ext.do')
 
         if not hasattr(app, 'extensions'):
             app.extensions = {}

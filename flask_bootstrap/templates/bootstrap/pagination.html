@@ -2,8 +2,8 @@
 {# calls url_for() with a given endpoint and **base as the parameters,
    additionally passing on all keyword_arguments (may overwrite existing ones)
  #}
-{%- with kargs = base.copy(),
-         _ = kargs.update(kwargs) -%}
+{%- with kargs = base.copy() -%}
+{%- do kargs.update(kwargs) -%}
 {{url_for(endpoint, **kargs)}}
 {%- endwith %}
 {%- endmacro %}
@@ -17,11 +17,10 @@
                            args={}
                            )
 -%}
-{# poor man's "do": #}
-{% with url_args = {},
-        _ = url_args.update(request.view_args if not endpoint else {}),
-        __ = url_args.update(request.args if not endpoint else {}),
-        ___ = url_args.update(args) %}
+{% with url_args = {} %}
+{%- do url_args.update(request.view_args if not endpoint else {}),
+       url_args.update(request.args if not endpoint else {}),
+       url_args.update(args) -%}
 {% with endpoint = endpoint or request.endpoint %}
 <nav>
   <ul class="pagination{% if size %} pagination-{{size}}{% endif %}"{{kwargs|xmlattr}}>
