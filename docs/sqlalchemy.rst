@@ -21,7 +21,7 @@ automatically rendered through the ``render_pagination`` macro:
                      ellipses='…',\
                      size=None,\
                      args={},\
-                     section=None,\
+                     fragment='',\
                      **kwargs)
 
    Renders a pager for query pagination.
@@ -41,5 +41,5 @@ automatically rendered through the ``render_pagination`` macro:
    :param args: Additional arguments passed to :func:`~flask.url_for`. If
                 ``endpoint`` is ``None``, uses :attr:`~flask.Request.args` and
                 :attr:`~flask.Request.view_args`.
-   :param section: Add url section to link, such as ``#comment``. 
+   :param fragment: Add url fragment into link, such as ``#comment``. 
    :param kwargs: Extra attributes for the ``<ul>``-element.
