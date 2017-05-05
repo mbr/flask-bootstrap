@@ -50,7 +50,7 @@ Form macro reference
                      Bootstrap_ docs for details on different form layouts.
    :param horizontal_columns: When using the horizontal layout, layout forms
                               like this. Must be a 3-tuple of ``(column-type,
-                              left-column-size, right-colum-size)``.
+                              left-column-size, right-column-size)``.
    :param enctype: ``<form>`` enctype attribute. If ``None``, will
                     automatically be set to ``multipart/form-data`` if a
                     :class:`~wtforms.fields.FileField` is present in the form.
@@ -68,7 +68,7 @@ Form macro reference
    to output hidden field form errors, as others are attached to the form
    fields.
 
-   :param form: Form, who's errors should be rendered.
+   :param form: Form whose errors should be rendered.
    :param hiddens: If ``True``, render errors of hidden fields as well. If
                    ``'only'``, render *only* these.
 
