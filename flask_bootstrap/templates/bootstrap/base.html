@@ -22,12 +22,11 @@
     {%- endblock navbar %}
     {% block content -%}
     {%- endblock content %}
-
+    {%- endblock body %}
     {% block scripts %}
     <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
     <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
     {%- endblock scripts %}
-    {%- endblock body %}
   </body>
 {%- endblock html %}
 </html>
