@@ -130,7 +130,7 @@ class Bootstrap(object):
         app.config.setdefault('BOOTSTRAP_CDN_FORCE_SSL', False)
 
         app.config.setdefault('BOOTSTRAP_QUERYSTRING_REVVING', True)
-        app.config.setdefault('BOOTSTRAP_SERVE_LOCAL', False)
+        app.config.setdefault('BOOTSTRAP_SERVE_LOCAL', True)
 
         app.config.setdefault('BOOTSTRAP_LOCAL_SUBDOMAIN', None)
 
