@@ -2,7 +2,7 @@
    Flask-Bootstrap ships with its own base, it is good form to create a custom
    one for our app, as it allows customizing some aspects.
 
-   Deriving from bootstap/base.html gives us a basic page scaffoling.
+   Deriving from bootstap/base.html gives us a basic page scaffolding.
 
    You can find additional information about template inheritance at
 
@@ -35,7 +35,15 @@
     {{super()}}  {# do not forget to call super or Bootstrap's own stylesheets
                     will disappear! #}
     <link rel="stylesheet" type="text/css"
-          href="{{url_for('static', filename='sample-app.css')}}">
+        href="{{url_for('static', filename='sample-app.css')}}">
+    {# You can also use Bootswatch templates directly from a CDN, 
+       just uncomment next lines to change theme to Journal. #}
+    {#
+    <link rel="stylesheet" type="text/css"
+        href="{{bootstrap_find_resource('journal/bootstrap.css',
+        cdn='bootswatch, local=False)}}">
+    #}
+
 {% endblock %}
 
 {# Finally, round things out with navigation #}
