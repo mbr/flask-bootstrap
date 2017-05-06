@@ -6,28 +6,51 @@
     {%- block head %}
     <title>{% block title %}{{title|default}}{% endblock title %}</title>
 
-    {%- block metas %}
+    {%- block outer_metas %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- block metas %}
     {%- endblock metas %}
+    {%- endblock outer_metas %}
 
-    {%- block styles %}
+    {%- block outer_styles %}
     <!-- Bootstrap -->
     <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    {%- block styles %}
     {%- endblock styles %}
+    {%- endblock outer_styles %}
     {%- endblock head %}
   </head>
   <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block outer_body -%}
+    {%- block before_body -%}
+    {%- endblock before_body -%}
     {% block body -%}
+    {% block outer_navbar -%}
+    {%- block before_navbar -%}
+    {%- endblock before_navbar -%}
     {% block navbar %}
     {%- endblock navbar %}
+    {%- block after_navbar -%}
+    {%- endblock after_navbar -%}
+    {%- endblock outer_navbar -%}
+    {% block outer_content -%}
+    {%- block before_content -%}
+    {%- endblock before_content -%}
     {% block content -%}
     {%- endblock content %}
-
-    {% block scripts %}
+    {%- block after_content -%}
+    {%- endblock after_content -%}
+    {%- endblock outer_content -%}
+    {% block outer_scripts -%}
     <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
     <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    {% block scripts %}
     {%- endblock scripts %}
+    {%- endblock outer_scripts -%}
     {%- endblock body %}
+    {%- block after_body -%}
+    {%- endblock after_body -%}
+    {%- endblock outer_body -%}
   </body>
 {%- endblock html %}
 </html>
