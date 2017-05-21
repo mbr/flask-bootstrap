@@ -1,6 +1,11 @@
 {% block doc -%}
 <!DOCTYPE html>
-<html{% block html_attribs %}{% endblock html_attribs %}>
+{% if self.html_attribs() %}
+  <html {% block html_attribs %}{% endblock html_attribs %}>
+{% else %}
+  <html>
+{% endif %}
+
 {%- block html %}
   <head>
     {%- block head %}
