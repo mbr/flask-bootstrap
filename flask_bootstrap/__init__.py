@@ -19,8 +19,9 @@ else:
 
 from .forms import render_form
 
-__version__ = '3.3.7.1.dev1'
-BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
+__version__ = '4.0.0-alpha.6.0.dev1'
+BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+\-\w+\.\d).*', r'\1', __version__)
+TETHER_VERSION = '1.4.0'
 JQUERY_VERSION = '1.12.4'
 HTML5SHIV_VERSION = '3.7.3'
 RESPONDJS_VERSION = '1.4.2'
@@ -162,6 +163,10 @@ class Bootstrap(object):
         def lwrap(cdn, primary=static):
             return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
 
+        tether = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/tether/%s/' %
+                   TETHER_VERSION), local)
+
         bootstrap = lwrap(
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/' %
                    BOOTSTRAP_VERSION), local)
@@ -182,6 +187,7 @@ class Bootstrap(object):
             'cdns': {
                 'local': local,
                 'static': static,
+                'tether': tether,
                 'bootstrap': bootstrap,
                 'jquery': jquery,
                 'html5shiv': html5shiv,
