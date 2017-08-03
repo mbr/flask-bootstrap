@@ -120,15 +120,6 @@ preferred way to utilize HTML inside messages now is by using the
                  + Markup('</i>!'),
          'danger')
 
-.. py:function:: icon(type, extra_classes, **kwargs)
-
-   Renders a Glyphicon in a ``<span>`` element.
-
-   :param messages: The short name for the icon, e.g. ``remove``.
-   :param extra_classes: A list of additional classes to add to the class
-                         attribute.
-   :param kwargs: Additional html attributes.
-
 
 .. py:function:: form_button(url, content, method='post', class='btn-link',\
                  **kwargs)
