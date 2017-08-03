@@ -166,7 +166,7 @@ class Bootstrap(object):
                    TETHER_VERSION), local)
 
         bootstrap = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/' %
+            WebCDN('//maxcdn.bootstrapcdn.com/bootstrap/%s/' %
                    BOOTSTRAP_VERSION), local)
 
         jquery = lwrap(
