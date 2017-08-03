@@ -22,7 +22,7 @@ from .forms import render_form
 __version__ = '4.0.0-alpha.6.0.dev1'
 BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+\-\w+\.\d).*', r'\1', __version__)
 TETHER_VERSION = '1.4.0'
-JQUERY_VERSION = '1.12.4'
+JQUERY_VERSION = '3.2.1'
 
 
 class CDN(object):
