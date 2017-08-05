@@ -20,9 +20,16 @@ else:
 from .forms import render_form
 
 __version__ = '4.0.0-alpha.6.0.dev1'
-BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+\-\w+\.\d).*', r'\1', __version__)
+BOOTSTRAP_VERSION_RE = re.compile(r'(\d+\.\d+\.\d+(\-[a-z]+\.\d+)?)')
 TETHER_VERSION = '1.4.0'
 JQUERY_VERSION = '3.2.1'
+
+
+def get_bootstrap_version(version):
+    return BOOTSTRAP_VERSION_RE.match(version).group(1)
+
+
+BOOTSTRAP_VERSION = get_bootstrap_version(__version__)
 
 
 class CDN(object):
