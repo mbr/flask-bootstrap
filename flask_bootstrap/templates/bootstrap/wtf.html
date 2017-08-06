@@ -4,7 +4,7 @@
       {%- if bootstrap_is_hidden_field(form[fieldname]) and hiddens or
              not bootstrap_is_hidden_field(form[fieldname]) and hiddens != 'only' %}
         {%- for error in errors %}
-          <p class="error">{{error}}</p>
+          <div class="form-control-feedback">{{error}}</div>
         {%- endfor %}
       {%- endif %}
     {%- endfor %}
@@ -13,8 +13,8 @@
 
 {% macro _hz_form_wrap(horizontal_columns, form_type, add_group=False, required=False) %}
 {% if form_type == "horizontal" %}
-  {% if add_group %}<div class="form-group{% if required %} required{% endif %}">{% endif %}
-  <div class="col-{{horizontal_columns[0]}}-offset-{{horizontal_columns[1]}}
+  {% if add_group %}<div class="form-group row{% if required %} required{% endif %}">{% endif %}
+  <div class="offset-{{horizontal_columns[0]}}-{{horizontal_columns[1]}}
               col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}
              ">
 {% endif %}
@@ -39,9 +39,9 @@ the necessary fix for required=False attributes, but will also not set the requi
 
 {% if field.widget.input_type == 'checkbox' %}
   {% call _hz_form_wrap(horizontal_columns, form_type, True, required=required) %}
-    <div class="checkbox">
-      <label>
-        {{field()|safe}} {{field.label.text|safe}}
+    <div class="form-check{% if form_type == "inline" %} form-check-inline{% endif %}">
+      <label class="form-check-label">
+        {{field(class_="form-check-input")|safe}} {{field.label.text|safe}}
       </label>
     </div>
   {% endcall %}
@@ -50,9 +50,9 @@ the necessary fix for required=False attributes, but will also not set the requi
      this is just a hack for now, until I can think of something better #}
   {% call _hz_form_wrap(horizontal_columns, form_type, True, required=required) %}
     {% for item in field -%}
-      <div class="radio">
-        <label>
-          {{item|safe}} {{item.label.text|safe}}
+      <div class="form-check{% if form_type == "inline" %} form-check-inline{% endif %}">
+        <label class="form-check-label">
+          {{item(class_="form-check-input")|safe}} {{item.label.text|safe}}
         </label>
       </div>
     {% endfor %}
@@ -83,23 +83,24 @@ the necessary fix for required=False attributes, but will also not set the requi
     {%- endfor %}
   </fieldset>
 {% else -%}
-  <div class="form-group {% if field.errors %} has-error{% endif -%}
+  <div class="form-group {% if field.errors %} has-danger{% endif -%}
+                         {%- if form_type == "horizontal" %} row{% endif -%}
                          {%- if field.flags.required %} required{% endif -%}
   ">
       {%- if form_type == "inline" %}
         {{field.label(class="sr-only")|safe}}
         {% if field.type == 'FileField' %}
-          {{field(**kwargs)|safe}}
+          {{field(class="form-control-file", **kwargs)|safe}}
         {% else %}
-          {{field(class="form-control", **kwargs)|safe}}
+          {{field(class="form-control mb-2 mr-sm-2 mb-sm-0", **kwargs)|safe}}
         {% endif %}
       {% elif form_type == "horizontal" %}
-        {{field.label(class="control-label " + (
+        {{field.label(class="form-control-label " + (
           " col-%s-%s" % horizontal_columns[0:2]
         ))|safe}}
         <div class=" col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}">
           {% if field.type == 'FileField' %}
-            {{field(**kwargs)|safe}}
+            {{field(class="form-control-file", **kwargs)|safe}}
           {% else %}
             {{field(class="form-control", **kwargs)|safe}}
           {% endif %}
@@ -107,28 +108,28 @@ the necessary fix for required=False attributes, but will also not set the requi
         {%- if field.errors %}
           {%- for error in field.errors %}
             {% call _hz_form_wrap(horizontal_columns, form_type, required=required) %}
-              <p class="help-block">{{error}}</p>
+              <div class="form-control-feedback">{{error}}</div>
             {% endcall %}
           {%- endfor %}
         {%- elif field.description -%}
           {% call _hz_form_wrap(horizontal_columns, form_type, required=required) %}
-            <p class="help-block">{{field.description|safe}}</p>
+            <small class="form-text text-muted">{{field.description|safe}}</small>
           {% endcall %}
         {%- endif %}
       {%- else -%}
-        {{field.label(class="control-label")|safe}}
+        {{field.label(class="form-control-label")|safe}}
         {% if field.type == 'FileField' %}
-          {{field(**kwargs)|safe}}
+          {{field(class="form-control-file", **kwargs)|safe}}
         {% else %}
           {{field(class="form-control", **kwargs)|safe}}
         {% endif %}
 
         {%- if field.errors %}
           {%- for error in field.errors %}
-            <p class="help-block">{{error}}</p>
+            <div class="form-control-feedback">{{error}}</div>
           {%- endfor %}
         {%- elif field.description -%}
-          <p class="help-block">{{field.description|safe}}</p>
+          <small class="form-text text-muted">{{field.description|safe}}</small>
         {%- endif %}
       {%- endif %}
   </div>
@@ -190,9 +191,7 @@ action="" is what we want, from http://www.ietf.org/rfc/rfc2396.txt:
   {%- if method %} method="{{method}}"{% endif %}
   class="form
     {%- if extra_classes %} {{extra_classes}}{% endif -%}
-    {%- if form_type == "horizontal" %} form-horizontal
-    {%- elif form_type == "inline" %} form-inline
-    {%- endif -%}
+    {%- if form_type == "inline" %} form-inline{% endif -%}
   "
   {%- if _enctype[0] %} enctype="{{_enctype[0]}}"{% endif -%}
   {%- if role %} role="{{role}}"{% endif -%}
