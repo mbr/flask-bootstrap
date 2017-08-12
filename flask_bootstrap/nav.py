@@ -15,7 +15,16 @@ class BootstrapRenderer(Visitor):
         node_id = self.id or sha1(str(id(node)).encode()).hexdigest()
 
         root = tags.nav() if self.html5 else tags.div(role='navigation')
-        root['class'] = 'navbar navbar-toggleable-md navbar-light bg-faded'
+        root['class'] = 'navbar navbar-expand-lg navbar-light bg-light'
+
+        # title may also have a 'get_url()' method, in which case we render
+        # a brand-link
+        if node.title is not None:
+            if hasattr(node.title, 'get_url'):
+                root.add(tags.a(node.title.text, _class='navbar-brand',
+                                href=node.title.get_url()))
+            else:
+                root.add(tags.span(node.title, _class='navbar-brand'))
 
         # collapse button
         btn = root.add(tags.button())
@@ -28,15 +37,6 @@ class BootstrapRenderer(Visitor):
         btn['aria-label'] = 'Toggle navigation'
 
         btn.add(tags.span(_class='navbar-toggler-icon'))
-
-        # title may also have a 'get_url()' method, in which case we render
-        # a brand-link
-        if node.title is not None:
-            if hasattr(node.title, 'get_url'):
-                root.add(tags.a(node.title.text, _class='navbar-brand',
-                                href=node.title.get_url()))
-            else:
-                root.add(tags.span(node.title, _class='navbar-brand'))
 
         bar = root.add(tags.div(
             _class='navbar-collapse collapse',
