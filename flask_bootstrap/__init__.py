@@ -21,7 +21,7 @@ from .forms import render_form
 
 __version__ = '4.0.0-beta.0.dev1'
 BOOTSTRAP_VERSION_RE = re.compile(r'(\d+\.\d+\.\d+(\-[a-z]+)?)')
-TETHER_VERSION = '1.4.0'
+POPPER_VERSION = '1.11.1'
 JQUERY_VERSION = '3.2.1'
 
 
@@ -168,9 +168,9 @@ class Bootstrap(object):
         def lwrap(cdn, primary=static):
             return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
 
-        tether = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/tether/%s/' %
-                   TETHER_VERSION), local)
+        popper = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/popper.js/%s/' %
+                   POPPER_VERSION), local)
 
         bootstrap = lwrap(
             WebCDN('//maxcdn.bootstrapcdn.com/bootstrap/%s/' %
@@ -184,7 +184,7 @@ class Bootstrap(object):
             'cdns': {
                 'local': local,
                 'static': static,
-                'tether': tether,
+                'popper': popper,
                 'bootstrap': bootstrap,
                 'jquery': jquery,
             },
