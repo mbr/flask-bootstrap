@@ -24,8 +24,8 @@ def test_bootstrap_version_regular_expression():
     assert get_bootstrap_version('3.3.7.1') == '3.3.7'
     assert get_bootstrap_version('3.3.7.2.dev1') == '3.3.7'
     assert get_bootstrap_version('3.7.11.12') == '3.7.11'
-    assert get_bootstrap_version('4.0.0-alpha.6.0.dev1') == '4.0.0-alpha.6'
-    assert get_bootstrap_version('4.0.0-alpha.6.1') == '4.0.0-alpha.6'
+    assert get_bootstrap_version('4.0.0-beta.0.dev1') == '4.0.0-beta'
+    assert get_bootstrap_version('4.0.0-beta.1') == '4.0.0-beta'
 
 
 def test_bootstrap_version_matches(app, client):

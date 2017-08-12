@@ -20,7 +20,7 @@ else:
 from .forms import render_form
 
 __version__ = '4.0.0-beta.0.dev1'
-BOOTSTRAP_VERSION_RE = re.compile(r'(\d+\.\d+\.\d+(\-[a-z]+\.\d+)?)')
+BOOTSTRAP_VERSION_RE = re.compile(r'(\d+\.\d+\.\d+(\-[a-z]+)?)')
 TETHER_VERSION = '1.4.0'
 JQUERY_VERSION = '3.2.1'
 
