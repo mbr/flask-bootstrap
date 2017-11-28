@@ -4,7 +4,7 @@
       {%- if bootstrap_is_hidden_field(form[fieldname]) and hiddens or
              not bootstrap_is_hidden_field(form[fieldname]) and hiddens != 'only' %}
         {%- for error in errors %}
-          <div class="form-control-feedback">{{error}}</div>
+          <div class="invalid-feedback">{{error}}</div>
         {%- endfor %}
       {%- endif %}
     {%- endfor %}
@@ -108,7 +108,7 @@ the necessary fix for required=False attributes, but will also not set the requi
         {%- if field.errors %}
           {%- for error in field.errors %}
             {% call _hz_form_wrap(horizontal_columns, form_type, required=required) %}
-              <div class="form-control-feedback">{{error}}</div>
+              <div class="invalid-feedback">{{error}}</div>
             {% endcall %}
           {%- endfor %}
         {%- elif field.description -%}
@@ -126,7 +126,7 @@ the necessary fix for required=False attributes, but will also not set the requi
 
         {%- if field.errors %}
           {%- for error in field.errors %}
-            <div class="form-control-feedback">{{error}}</div>
+            <div class="invalid-feedback">{{error}}</div>
           {%- endfor %}
         {%- elif field.description -%}
           <small class="form-text text-muted">{{field.description|safe}}</small>
