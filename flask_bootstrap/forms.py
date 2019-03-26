@@ -48,7 +48,7 @@ class WTFormsRenderer(Visitor):
                        classes=['form-control'], **kwargs):
         wrap = self._get_wrap(node)
         wrap.add(tags.label(node.label.text, _for=node.id))
-        wrap.add(tags.input(type=type, _class=' '.join(classes), **kwargs))
+        wrap.add(tags.input(id=node.id, name=node.id, type=type, _class=' '.join(classes), **kwargs))
 
         return wrap
 
