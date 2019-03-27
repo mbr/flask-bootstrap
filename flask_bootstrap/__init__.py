@@ -19,9 +19,10 @@ else:
 
 from .forms import render_form
 
-__version__ = '3.3.7.1.dev1'
+__version__ = '4.3.1.1.dev1'
 BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
-JQUERY_VERSION = '1.12.4'
+JQUERY_VERSION = '3.3.1'
+POPPER_VERSION = '1.14.7'
 HTML5SHIV_VERSION = '3.7.3'
 RESPONDJS_VERSION = '1.4.2'
 
@@ -170,6 +171,10 @@ class Bootstrap(object):
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/' %
                    JQUERY_VERSION), local)
 
+        popperjs = lwrap(
+           WebCDN('//cdnjs.cloudflare.com/ajax/libs/popper.js/%s/' %
+                  POPPER_VERSION), local)
+
         html5shiv = lwrap(
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/' %
                    HTML5SHIV_VERSION))
@@ -186,6 +191,7 @@ class Bootstrap(object):
                 'jquery': jquery,
                 'html5shiv': html5shiv,
                 'respond.js': respondjs,
+                'popper.js': popperjs,
             },
         }
 
