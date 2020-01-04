@@ -19,11 +19,17 @@ else:
 
 from .forms import render_form
 
-__version__ = '3.3.7.1.dev1'
-BOOTSTRAP_VERSION = re.sub(r'^(\d+\.\d+\.\d+).*', r'\1', __version__)
-JQUERY_VERSION = '1.12.4'
-HTML5SHIV_VERSION = '3.7.3'
-RESPONDJS_VERSION = '1.4.2'
+__version__ = '4.0.0.0.dev1'
+BOOTSTRAP_VERSION_RE = re.compile(r'(\d+\.\d+\.\d+(\-[a-z]+)?)')
+POPPER_VERSION = '1.12.9'
+JQUERY_VERSION = '3.2.1'
+
+
+def get_bootstrap_version(version):
+    return BOOTSTRAP_VERSION_RE.match(version).group(1)
+
+
+BOOTSTRAP_VERSION = get_bootstrap_version(__version__)
 
 
 class CDN(object):
@@ -162,30 +168,25 @@ class Bootstrap(object):
         def lwrap(cdn, primary=static):
             return ConditionalCDN('BOOTSTRAP_SERVE_LOCAL', primary, cdn)
 
+        popper = lwrap(
+            WebCDN('//cdnjs.cloudflare.com/ajax/libs/popper.js/%s/' %
+                   POPPER_VERSION), local)
+
         bootstrap = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/%s/' %
+            WebCDN('//maxcdn.bootstrapcdn.com/bootstrap/%s/' %
                    BOOTSTRAP_VERSION), local)
 
         jquery = lwrap(
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/jquery/%s/' %
                    JQUERY_VERSION), local)
 
-        html5shiv = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/html5shiv/%s/' %
-                   HTML5SHIV_VERSION))
-
-        respondjs = lwrap(
-            WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/' %
-                   RESPONDJS_VERSION))
-
         app.extensions['bootstrap'] = {
             'cdns': {
                 'local': local,
                 'static': static,
+                'popper': popper,
                 'bootstrap': bootstrap,
                 'jquery': jquery,
-                'html5shiv': html5shiv,
-                'respond.js': respondjs,
             },
         }
 

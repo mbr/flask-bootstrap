@@ -14,20 +14,6 @@
    In our sample app, we will most likely just opt not to change it #}
 {% block title %}Sample App for Flask-Bootstrap{% endblock %}
 
-{# While we are at it, we also enable fixes for legacy browsers. First we
-   import the necessary macros: #}
-{% import "bootstrap/fixes.html" as fixes %}
-
-{# Then, inside the head block, we apply these. To not replace the header,
-   ``super()`` is used: #}
-{% block head %}
-{{super()}}
-
-{#- Docs: http://pythonhosted.org/Flask-Bootstrap/macros.html#fixes
-   The sample application already contains the required static files. #}
-{{fixes.ie8()}}
-{%- endblock %}
-
 {# Adding our own CSS files is also done here. Check the documentation at
    http://pythonhosted.org/Flask-Bootstrap/basic-usage.html#available-blocks
    for an overview. #}

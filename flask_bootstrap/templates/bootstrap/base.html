@@ -3,12 +3,14 @@
 <html{% block html_attribs %}{% endblock html_attribs %}>
 {%- block html %}
   <head>
+    {%- block metas %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {%- endblock metas %}
+
     {%- block head %}
     <title>{% block title %}{{title|default}}{% endblock title %}</title>
-
-    {%- block metas %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%- endblock metas %}
 
     {%- block styles %}
     <!-- Bootstrap -->
@@ -25,6 +27,7 @@
 
     {% block scripts %}
     <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('umd/popper.js', cdn='popper')}}"></script>
     <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
     {%- endblock scripts %}
     {%- endblock body %}

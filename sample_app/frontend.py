@@ -30,11 +30,12 @@ nav.register_element('frontend_top', Navbar(
         Link('Flask-Debug', 'https://github.com/mbr/flask-debug'),
         Separator(),
         Text('Bootstrap'),
-        Link('Getting started', 'http://getbootstrap.com/getting-started/'),
-        Link('CSS', 'http://getbootstrap.com/css/'),
-        Link('Components', 'http://getbootstrap.com/components/'),
-        Link('Javascript', 'http://getbootstrap.com/javascript/'),
-        Link('Customize', 'http://getbootstrap.com/customize/'), ),
+        Link('Getting started', 'https://v4-alpha.getbootstrap.com/getting-started/introduction/'),
+        Link('Layout', 'https://v4-alpha.getbootstrap.com/layout/overview/'),
+        Link('Content', 'https://v4-alpha.getbootstrap.com/content/reboot/'),
+        Link('Components', 'https://v4-alpha.getbootstrap.com/components/alerts/'),
+        Link('Utilities', 'https://v4-alpha.getbootstrap.com/utilities/borders/'),
+        Link('About', 'https://v4-alpha.getbootstrap.com/about/history/'), ),
     Text('Using Flask-Bootstrap {}'.format(FLASK_BOOTSTRAP_VERSION)), ))
 
 

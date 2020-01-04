@@ -65,6 +65,7 @@ def create_app(configfile=None):
         flash('error message', 'error')
         flash('warning message', 'warning')
         flash('info message', 'info')
+        flash('success message', 'success')
         flash('debug message', 'debug')
         flash('different message', 'different')
         flash('uncategorized message')

@@ -167,25 +167,17 @@ the styles block inside your template derived base template::
 
 .. _jquery-faq:
 
-Why are you shipping jQuery 1 instead of jQuery 2?
+Why are you shipping jQuery 3 instead of jQuery 1?
 --------------------------------------------------
 
-As of this writing (July 2014), there are two key differences between jQuery 1
-and 2: Version 1 supports IE6-8 while version 2 drops the support for these old
-versions in exchange for a smaller memory footprint and a few performance
-gains. At least 20% of the browser landscape (source: `NetMarketShare
-<http://www.netmarketshare.com /browser- market-
-share.aspx?qprid=2&qpcustomd=0>`_) still consists of browsers not supported by
-jQuery 2.
+Bootstrap v4 dropped IE8 and IE9 support.
+The only advantage of jQuery 1 was the older browser support (IE6-8).
+`jQuery 3.0 <https://blog.jquery.com/2016/06/09/jquery-3-0-final-released/>`_ is the future of jQuery.
 
-Unless you have specialized needs, the advantages of jQuery 2 still
-do not outweigh the disadvantages of not supporting a fifth of the market. In
-the end, Bootstrap and jQuery both aim at abstracting away difficult to handle
-quirks when building sites and this goal is currently better served with the
-wide support of jQuery1.
+If you need IE8-9 support, you should use Bootstrap v3 and jQuery 1.12.
 
 
-How can I use jQuery2 instead of jQuery1?
+How can I use jQuery1 instead of jQuery3?
 -----------------------------------------
 
 .. highlight:: python
@@ -195,7 +187,7 @@ from a different source::
 
   from flask_bootstrap import WebCDN
   app.extensions['bootstrap']['cdns']['jquery'] = WebCDN(
-      '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/'
+      '//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/'
   )
 
 This will load ``jquery.js`` or whatever is required from the WebCDN specified.

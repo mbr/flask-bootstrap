@@ -3,6 +3,7 @@
   'error': 'danger',
   'info': 'info',
   'warning': 'warning',
+  'success': 'success',
   'debug': 'info',
   'notset': 'info',
   'message': 'info',
@@ -33,11 +34,6 @@
 {% endif -%}
 {% endwith -%}
 {% endmacro -%}
-
-
-{% macro icon(type=None, extra_classes=[]) -%}
-<span{{ ({'class': (['glyphicon', 'glyphicon-' + type] + extra_classes)|join(' ')})|xmlattr}}{{kwargs|xmlattr}}></span>
-{%- endmacro %}
 
 
 {% macro form_button(url, content, method='post', class='btn-link') -%}

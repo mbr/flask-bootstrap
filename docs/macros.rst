@@ -16,25 +16,11 @@ In addition to the small macros on this page, broad support for other libraries
 is also available; see :doc:`forms` and :doc:`sqlalchemy` for details.
 
 
-Fixes
------
+Browser support
+---------------
 
-Cross-browser fixes (specifically for Internet Explorer < 9) are usually
-included, but not shipped with Flask-Bootstrap. You can download `html5shiv
-<https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.min.js>`_ and
-`Respond.js <https://raw.githubusercontent.com/scottjehl/Respond/master/dest/
-respond.min.js>`_, put them in your applications static folder and include them
-like in this example::
-
-  {% import "bootstrap/fixes.html" as fixes %}
-  {% block head %}
-    {{super()}}
-    {{fixes.ie8()}}
-  {% endblock %}
-
-While the scripts are not included, links to them on CDNs are, so if you do not
-use ``BOOTSTRAP_SERVE_LOCAL``, they will work out of the box. See :doc:`cdn`
-for more details on how CDN-delivery works with Flask-Bootstrap.
+Bootstrap v4 dropped IE8, IE9, and iOS 6 support.
+v4 is now only IE10+ and iOS 7+. For sites needing either of those, use v3.
 
 
 Google Analytics
@@ -133,15 +119,6 @@ preferred way to utilize HTML inside messages now is by using the
                  + user_name
                  + Markup('</i>!'),
          'danger')
-
-.. py:function:: icon(type, extra_classes, **kwargs)
-
-   Renders a Glyphicon in a ``<span>`` element.
-
-   :param messages: The short name for the icon, e.g. ``remove``.
-   :param extra_classes: A list of additional classes to add to the class
-                         attribute.
-   :param kwargs: Additional html attributes.
 
 
 .. py:function:: form_button(url, content, method='post', class='btn-link',\

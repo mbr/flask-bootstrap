@@ -53,10 +53,10 @@ class WTFormsRenderer(Visitor):
         return wrap
 
     def visit_BooleanField(self, node):
-        wrap = self._get_wrap(node, classes='checkbox')
+        wrap = self._get_wrap(node, classes='form-check')
 
-        label = wrap.add(tags.label(_for=node.id))
-        label.add(tags.input(type='checkbox'))
+        label = wrap.add(tags.label(_for=node.id, _class='form-check-label'))
+        label.add(tags.input(type='checkbox', _class='form-check-input'))
         label.add(node.label.text)
 
         return wrap
@@ -86,7 +86,7 @@ class WTFormsRenderer(Visitor):
         wrap.add(raw(node()))
 
         if node.description:
-            wrap.add(tags.p(node.description, _class='help-block'))
+            wrap.add(tags.p(node.description, _class='form-text text-muted'))
 
         return wrap
 
@@ -136,7 +136,7 @@ class WTFormsRenderer(Visitor):
 
     def visit_SubmitField(self, node):
         button = tags.button(node.label.text,
-                             _class='btn btn-default',
+                             _class='btn btn-secondary',
                              type='submit')
         return button
 

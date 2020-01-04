@@ -1,8 +1,8 @@
 import re
 
 from flask import Flask
-from flask_bootstrap import Bootstrap
-import flask_bootstrap
+from flask_bootstrap import (Bootstrap, get_bootstrap_version,
+                             BOOTSTRAP_VERSION_RE, BOOTSTRAP_VERSION)
 import requests
 
 import pytest
@@ -20,15 +20,16 @@ def client(app):
     return app.test_client()
 
 
-@pytest.fixture
-def bsv():
-    bootstrap_version = re.search(r'(\d+\.\d+\.\d+)',
-                                  str(flask_bootstrap.__version__)).group(1)
-    return bootstrap_version
+def test_bootstrap_version_regular_expression():
+    assert get_bootstrap_version('3.3.7.1') == '3.3.7'
+    assert get_bootstrap_version('3.3.7.2.dev1') == '3.3.7'
+    assert get_bootstrap_version('3.7.11.12') == '3.7.11'
+    assert get_bootstrap_version('4.0.0-beta.0.dev1') == '4.0.0-beta'
+    assert get_bootstrap_version('4.0.0-beta.1') == '4.0.0-beta'
 
 
-def test_bootstrap_version_matches(app, client, bsv):
-    bootstrap_vre = re.compile(r'Bootstrap v(\d+\.\d+\.\d+).*')
+def test_bootstrap_version_matches(app, client):
+    bootstrap_vre = re.compile(r'Bootstrap v' + BOOTSTRAP_VERSION_RE.pattern)
 
     # find local version
     local_version = bootstrap_vre.search(
@@ -43,5 +44,5 @@ def test_bootstrap_version_matches(app, client, bsv):
 
     # get package version
 
-    assert local_version == bsv
-    assert cdn_version == bsv
+    assert local_version == BOOTSTRAP_VERSION
+    assert cdn_version == BOOTSTRAP_VERSION
