@@ -175,7 +175,7 @@ action="" is what we want, from http://www.ietf.org/rfc/rfc2396.txt:
 {%- set _enctype = [] %}
 {%- if enctype is none -%}
   {%- for field in form %}
-    {%- if field.type == 'FileField' %}
+    {%- if field.type in ['FileField','MultipleFileField'] %}
       {#- for loops come with a fairly watertight scope, so this list-hack is
           used to be able to set values outside of it #}
       {%- set _ = _enctype.append('multipart/form-data') -%}
