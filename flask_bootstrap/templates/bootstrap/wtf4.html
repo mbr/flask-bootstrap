@@ -1,0 +1,311 @@
+{% set global={} %}
+{%- macro get_form_class(type, extra=None) -%}
+    {%- if True %} class="form
+        {%- if extra %} {{ extra }}{% endif -%}
+        {%- if type == "horizontal" %} form-horizontal
+        {%- elif type == "inline" %} form-inline
+        {%- endif %}{%- if form.was_validated %} was-validated{% endif -%}"
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro get_field_div_class(default, type, extra=None) -%}
+    {%- if True %} class="{{- default -}}
+        {%- if type == "horizontal" %} row{% endif -%}
+        {%- if extra and extra[0] %} {{ extra[0] }}{% endif -%}"
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro get_field_input_class(default, type, extra=None) -%}
+    {%- if True %} class="{{- default -}}
+        {%- if extra and extra[1] %} {{ extra[1] }}{% endif -%}
+        {%- if form.form_type == "horizontal" and form.horizontal_columns %}
+            {{- " col-{0}-{1}".format(form.horizontal_columns[0], form.horizontal_columns[2]) -}}
+        {% elif  form.form_type == "inline" %} mr-sm-2
+        {%- endif -%}"
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro get_label(field) -%}
+    {%- if field.label.text %}
+    <label
+        {%- if field.id %} for="{{ field.id }}"{% endif -%}
+        {%- if form.form_type == "horizontal" and form.horizontal_columns %} class="
+            {{- "col-{0}-{1} col-form-label".format(form.horizontal_columns[0], form.horizontal_columns[1]) -}}"
+        {%- endif -%}>{{- field.label.text -}}</label>
+    {% elif form.form_type == "horizontal" and form.horizontal_columns %}
+    <div class="{{- "col-{0}-{1}".format(form.horizontal_columns[0], form.horizontal_columns[1]) -}}"></div>
+    {% endif -%}
+{%- endmacro -%}
+
+{%- macro get_enctype(form) -%}
+{# The enctype attribute specifies how the form-data should be encoded when submitting it to the server. #}
+    {%- if form.enctype %} enctype="{{ form.enctype }}"{% else -%}
+        {%- for field in form -%}
+            {% if field.type == 'FileField' %} enctype="multipart/form-data"
+                {%- set _ = global.update({'upload_file': True}) -%}
+                {%- break -%}
+            {% endif %}
+        {%- endfor -%}
+    {% endif -%}
+{%- endmacro -%}
+
+{%- macro get_basic_info(item) -%}
+{# Form field basic information #}
+    {%- if item.id %} id="{{ item.id }}"{% endif -%}
+    {%- if item.name %} name="{{ item.name }}"{% endif -%}
+    {%- if item.description %} aria-describedby="{{ item.name|safe + '_helper' }}"{% endif -%}
+    {%- if item.render_kw %}{{ item.render_kw|xmlattr }}{% endif -%}
+    {%- if item.data and item.type != 'PasswordField' %} value="{{- item.data -}}"{% endif -%}
+{%- endmacro -%}
+
+{%- macro init_form_group(field) -%}
+{# Initial form group layout -#}
+    {%- if form.form_type != "inline" -%}
+    <div{{- get_field_div_class('form-group', form.form_type, field.extra_classes) -}}>
+    {{- get_label(field) -}}
+    {%- endif -%}
+    {{caller()}}
+    {%- if field.description and form.form_type != "inline" %}
+    {%- if form.form_type == "horizontal" and form.horizontal_columns %}
+    <div class="{{- "col-{0}-{1}".format(form.horizontal_columns[0], form.horizontal_columns[1]) -}}"></div>
+    {% endif %}
+    <small id="{{- field.id|safe + '_helper' -}}" class="form-text text-muted
+        {%- if form.form_type == "horizontal" and form.horizontal_columns %}
+            {{- " col-{0}-{1}".format(form.horizontal_columns[0], form.horizontal_columns[2]) -}}
+        {% endif -%}">{{- field.description -}}</small>
+    {%- endif %}
+    {%- if field.invalid_feedback %}
+    <div class="invalid-feedback">{{- field.invalid_feedback -}}</div>
+    {%- endif %}
+    {%- if form.form_type != "inline" %}
+    </div>
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro generate_input_field(field, type) -%}
+{# Generate the common input fields -#}
+    {%- call init_form_group(field) -%}
+        <input type="{{- type|safe -}}"
+            {{- get_field_input_class('form-control', form.form_type, field.extra_classes) -}}
+            {{- get_basic_info(field) }} />
+    {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro generate_textarea_field(field) -%}
+{# Generate the common textarea fields -#}
+    {%- call init_form_group(field) -%}
+        <textarea
+            {{- get_field_input_class('form-control', form.form_type, field.extra_classes) -}}
+            {{- get_basic_info(field) -}}></textarea>
+    {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro generate_number_field(field, type, step) -%}
+{# Generate the common number fields -#}
+    {%- call init_form_group(field) -%}
+        <input type="{{- type|safe -}}"
+            {{- get_field_input_class('form-control', form.form_type, field.extra_classes) -}}
+            {%- if step %} step="{{ step }}"{% endif -%}
+            {{- get_basic_info(field) }} />
+    {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro generate_select_field(field, mutiple=False) -%}
+{# Generate the common select fields -#}
+    {%- call init_form_group(field) -%}
+    <select
+        {{- get_field_input_class('form-control', form.form_type, field.extra_classes) -}}
+        {{- get_basic_info(field) -}}
+        {%- if mutiple %} multiple {% endif -%}>
+        {%- for option in field.choices %}
+            <option{%- if option[0] %} value="{{- option[0] -}}"
+                {%- else %}  selected
+                {%- endif -%}>{{- option[1] -}}</option>
+        {%- endfor %}
+    </select>
+    {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro generate_file_field(field) -%}
+{# Generate the common file fields -#}
+    {%- call init_form_group(field) -%}
+    <label{{- get_field_input_class('form-check', form.form_type, field.extra_classes) -}}>
+        <input type="file"
+            {{- get_basic_info(field) -}}
+            {{- get_field_input_class('custom-file-input', form.form_type, field.extra_classes) -}}>
+        <span class="custom-file-control"></span>
+    </label>
+    {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro generate_checkbox_field(field) -%}
+{# Generate the common checkbox fields -#}
+    {%- if form.form_type != "inline" and field.extra_classes and field.extra_classes[0] -%}
+    <div
+        {%- if form.form_type == "horizontal" %} class="row
+            {%- if field.extra_classes and field.extra_classes[0] %} {{ field.extra_classes[0] }}
+            {% endif -%}"
+        {%- elif field.extra_classes and field.extra_classes[0] %} class="{{ field.extra_classes[0] }}"
+        {% endif -%}>
+    {%- endif -%}
+    {% if form.form_type == "horizontal" and form.horizontal_columns %}
+    <div class="{{- "col-{0}-{1}".format(form.horizontal_columns[0], form.horizontal_columns[1]) -}}"></div>
+    {% endif -%}
+    {%- if form.form_type != "inline" -%}
+    <div class="form-check">
+    {% endif -%}
+    <label class="form-check-label{% if  form.form_type == "inline" %} mr-sm-2{%- endif -%}"
+        {%- if field.id %} for="{{ field.id }}"{% endif -%}>
+        <input type="checkbox" class="form-check-input"
+            {{- get_basic_info(field) }}　/> {{ field.label.text|safe }}
+    </label>
+    {%- if field.description and form.form_type != "inline" %}
+    <small id="{{- field.id|safe + '_helper' -}}" class="form-text text-muted">{{- field.description -}}</small>
+    {%- endif %}
+    {%- if form.form_type != "inline" %}
+    </div>
+    {%- endif -%}
+    {%- if field.invalid_feedback %}
+    <div class="invalid-feedback">{{- field.invalid_feedback -}}</div>
+    {%- endif %}
+    {%- if form.form_type != "inline" and field.extra_classes and field.extra_classes[0] -%}
+    </div>
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro generate_radio_field(field) -%}
+{# Generate the common radio fields -#}
+    {%- call init_form_group(field) -%}
+    <fieldset{%- if field.id %} id="{{ field.id }}"{% endif -%}
+        {{- get_field_input_class('form-check', form.form_type, field.extra_classes) -}}>
+    {%- for option in field.choices -%}
+    {%- if form.form_type != "inline" -%}
+    <div class="form-check{%- if field.extra_classes
+            and field.extra_classes[2] %} {{ field.extra_classes[2] }}{% endif -%}">
+    {% endif %}
+    <label class="form-check-label
+        {%- if field.extra_classes
+            and field.extra_classes[2]
+            and 'inline' in field.extra_classes[2] %} col-form-label{% endif -%}"
+        {%- if field.id %} for="{{ field.id }}"{% endif -%}>
+        <input type="radio" class="form-check-input" value="{{- option[0] -}}"
+            {{- get_basic_info(field) }} /> {{ option[1]|safe }}
+    </label>
+    {%- if form.form_type != "inline" %}
+    </div>
+    {%- endif -%}
+    {%- endfor %}
+    </fieldset>
+    {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro generate_submit_field(field) -%}
+{# Generate the common submit fields -#}
+    <input class="{{'btn btn-%s' % form.button_map.get(field.name, 'primary')}}" type="submit"
+        {{- get_basic_info(field) -}}
+        {%- if field.label.text %} value="{{ field.label.text }}"{% endif %} />
+{%- endmacro -%}
+
+{%- macro form_errors(form, hiddens=True) -%}
+{# Form error message #}
+    {%- if form.errors %}
+        {%- for fieldname, errors in form.errors.items() %}
+            {%- if bootstrap_is_hidden_field(form[fieldname])
+                and hiddens
+                or not bootstrap_is_hidden_field(form[fieldname])
+                and hiddens != 'only' %}
+                {%- for error in errors %}
+                    <p class="error">{{ error }}</p>
+                {%- endfor %}
+            {%- endif %}
+        {%- endfor %}
+    {%- endif %}
+{%- endmacro -%}
+
+{%- macro form_field(field) -%}
+{# Get form field #}
+    {%- if field.type in ['TextField', 'SearchField', 'PasswordField',
+        'TelField', 'URLField', 'EmailField', 'TimeField', 'DateField',
+        'DateTimeField', 'DateTimeLocalField', 'ColorField'] -%}
+        {{- generate_input_field(field, field.widget.input_type) -}}
+    {%- elif field.type == 'TextAreaField' -%}
+        {{- generate_textarea_field(field) -}}
+    {%- elif field.type in ['IntegerField', 'IntegerRangeField'] -%}
+        {{- generate_number_field(field, field.widget.input_type, '1') -}}
+    {%- elif field.type in ['DecimalField', 'DecimalRangeField'] -%}
+        {{- generate_number_field(field, field.widget.input_type, 'any') -}}
+    {%- elif field.type == 'SelectField' -%}
+        {{- generate_select_field(field) -}}
+    {%- elif field.type == 'SelectMultipleField' -%}
+        {{- generate_select_field(field, True) -}}
+    {%- elif field.type == 'RadioField' -%}
+        {{- generate_radio_field(field) -}}
+    {%- elif field.type == 'BooleanField' -%}
+        {{- generate_checkbox_field(field) -}}
+    {%- elif field.type == 'FileField' -%}
+        {{- generate_file_field(field) -}}
+    {%- elif field.type == 'SubmitField' -%}
+        {{- generate_submit_field(field) -}}
+    {% endif -%}
+{%- endmacro -%}
+
+{%- block form %}
+<form{%- if form.action %} action="{{ url_for(form.action) }}"{% endif -%}
+    {%- if form.id %} id="{{ form.id }}"{% endif -%}
+    {%- if form.name %} name="{{ form.name }}"{% endif -%}
+    {{- get_form_class(form.form_type, form.extra_classes) -}}
+    {{- get_enctype(form) -}}
+    {%- if role %} role="{{ role }}"{% endif -%}
+    {%- if form.method %} method="{{ form.method }}"{% else %} method="POST"{% endif -%}
+    {%- if form.novalidate %} novalidate{% endif -%}
+    {%- if form.render_kw %} {{ form.render_kw|xmlattr }}{% endif -%}>
+<input type=hidden value="{{ next or '' }}" name=next>
+{{ form.hidden_tag() -}}
+{{- form_errors(form, hiddens='only') -}}
+    {%- block form_content -%}
+    {%- for field in form -%}
+    {%- if not bootstrap_is_hidden_field(field) %}
+    {{ form_field(field) -}}
+    {%- endif -%}
+    {%- endfor -%}
+    {%- endblock form_content %}
+{%- if form.novalidate %}
+<script>
+(function() {
+    window.addEventListener("load", function() {
+        var form = document.getElementById("{{ form.name }}");
+        form.addEventListener("submit", function(event) {
+        if (form.checkValidity() == false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add("was-validated");
+        }, false);
+    }, false);
+}());
+</script>
+{%- endif %}
+{%- if global['upload_file'] %}
+<script>
+$('.custom-file-input').on('change',function(){
+    var files = $(this)[0].files;
+    var name = '';
+    for (var i = 0; i < files.length; i++) {
+        var fullPath = files[i].name
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            if (i > 0) {
+                name = name + ', '
+            }
+            name = name + filename
+        }
+    }
+    $(this).next('.custom-file-control').addClass("selected").html(name);
+})
+</script>
+{%- endif %}
+</form>{% endblock form %}
