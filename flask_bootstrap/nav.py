@@ -2,6 +2,22 @@ from hashlib import sha1
 from dominate import tags
 from visitor import Visitor
 
+try:
+    # Try to import Separator from flask elements as we need it in visit_Navbar
+    # to use a isinstance.
+    from flask_nav.elements import Separator
+except ImportError:
+
+    # flask-nav is not installed, Separator won't be handled
+    # TODO: Will this code be even called is navbar is not installed ?
+    def is_separator_instance(instance):
+        return False
+else:
+
+    # flask-nav is installed, go for a valid check!
+    def is_separator_instance(instance):
+        return isinstance(instance, Separator)
+
 
 class BootstrapRenderer(Visitor):
     def __init__(self, html5=True, id=None):
@@ -50,7 +66,11 @@ class BootstrapRenderer(Visitor):
         bar_list = bar.add(tags.ul(_class='nav navbar-nav'))
 
         for item in node.items:
-            bar_list.add(self.visit(item))
+            if is_separator_instance(item):
+                ul_tag = tags.ul(_class='nav navbar-nav navbar-right')
+                bar_list = bar.add(ul_tag)
+            else:
+                bar_list.add(self.visit(item))
 
         return root
 
