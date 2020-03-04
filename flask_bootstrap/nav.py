@@ -48,10 +48,14 @@ class BootstrapRenderer(Visitor):
             id=node_id,
         ))
         bar_list = bar.add(tags.ul(_class='nav navbar-nav'))
+        bar_list_right = bar.add(tags.ul(_class='nav navbar-nav navbar-right'))
 
         for item in node.items:
-            bar_list.add(self.visit(item))
-
+            if hasattr(item, 'right'):
+                bar_list_right.add(self.visit(item))
+            else:
+                bar_list.add(self.visit(item))
+        
         return root
 
     def visit_Text(self, node):
