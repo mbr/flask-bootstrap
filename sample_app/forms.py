@@ -5,7 +5,7 @@ from wtforms.validators import Required, Email
 
 class SignupForm(Form):
     name = TextField(u'Your name', validators=[Required()])
-    password = TextField(u'Your favorite password', validators=[Required()])
+    password = PasswordField(u'Your favorite password', validators=[Required()])
     email = TextField(u'Your email address', validators=[Email()])
     birthday = DateField(u'Your birthday')
 
