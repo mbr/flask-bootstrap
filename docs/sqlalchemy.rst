@@ -32,7 +32,7 @@ automatically rendered through the ``render_pagination`` macro:
                     uses the requests current endpoint.
    :param prev: Symbol/text to use for the "previous page" button. If
                 ``None``, the button will be hidden.
-   :param next: Symbol/text to use for the "previous next" button. If
+   :param next: Symbol/text to use for the "next page" button. If
                 ``None``, the button will be hidden.
    :param ellipses: Symbol/text to use to indicate that pages have been
                     skipped. If ``None``, no indicator will be printed.
