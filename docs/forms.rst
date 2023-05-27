@@ -10,6 +10,7 @@ last few versions, Flask-Bootstrap is currently developed for Flask-WTF_ version
 The most basic way is using them as an aid to create a form by hand:
 
 .. code-block:: jinja
+  {% import "bootstrap/wtf.html" as wtf %}
 
   <form class="form form-horizontal" method="post" role="form">
     {{ form.hidden_tag() }}
