@@ -14,15 +14,15 @@ this was a old project i dont know what is instore for it but i need to make my 
 and i trust python to have all the cool new toys.
 so all off the work in currently injected using a 3rd partk plugin
  todo:
-tables spawn info in a sizeable table
-
-row add i would like each row to be clonable
-jquary card search. the header with the data type should have a list of data entiys and
-store colums that are not in use. this idea is that form data processing can be reviewed and linked
-datatype index rework cards should have the data type stored on them
-page needs more contrast shadows?
-page storeage needs work
-image storeage needs work
+  * tables spawn info in a sizeable table
+   
+  * row add i would like each row to be clonable
+  * jquary card search. the header with the data type should have a list of data entiys and
+     store colums that are not in use. this idea is that form data processing can be reviewed and linked
+  * datatype index rework cards should have the data type stored on them
+  * page needs more contrast shadows?
+  * page storeage needs work
+  * image storeage needs work
 
 Usage
 -----
