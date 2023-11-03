@@ -1,0 +1,126 @@
+Flask-Bootstrap Changelog
+=========================
+
+The following changes are not backwards compatible or major new features
+(bugfixes or new upstream releases are not explicitly listed):
+
+3.3.7.0
+-------
+* Most likely to be the last major Bootstrap 3 release (see
+  https://github.com/twbs/bootstrap/issues/20631). Make sure you pin
+  Flask-Bootstrap's version to `<4` to avoid inadvertent updates.
+
+3.3.5.7
+-------
+* IE-specific meta information and viewport meta tags have been added to the
+  base template.
+* The flashed messages are no longer considered "safe", which means HTML-markup
+  will be escaped. See :func:`flashed_messages` for more information.
+* The ``title`` block now contains an empty-by-default title variable.
+
+3.3.5.3
+-------
+* Support for `Flask-Nav <http://pythonhosted.org/flask-nav>`_ added:
+  :doc:`nav`.
+* The sample application has been rewritten to finally resemble a somewhat
+  educative piece of code.
+
+3.3.5.2
+-------
+* ``action`` finally settled on ``""``.
+
+3.3.5.1
+-------
+
+* The ``action`` default value of :func:`quick_form` changed to ``.``.
+* An ``enctype`` value of :func:`quick_form`, which is the default, will
+  automatically add the correct type if a :class:`~wtforms.fields.FileField`
+  is present.
+* The main bootstrap css file is no longer linked for just ``media="screen"``.
+
+3.3.4.1
+-------
+
+* Google Analytics API updated; the legacy API is still available.
+* Flashed-message categories are now translated to bootstrap-y categories.
+
+3.3.0.2
+-------
+* New macro for pagination added (see :doc:`sqlalchemy`).
+* New ``utils.html`` macro package added, includes message flashing,
+  form-wrapped buttons and icons.
+* A class ``required`` is added to wrappers when using ``quick_form()``.
+
+3.2.0.1
+-------
+* JQuery major version switched from 2 to 1. Detailed information on this change can be found in the :ref:`FAQ <jquery-faq>`.
+
+3.1.0.1
+-------
+* JQuery version increased to 2.1.0, html5shiv to 3.7 and respond.js to 1.4.2.
+
+3.0.2.1
+-------
+* Default action for forms changed from "." to nothing.
+
+3.0.0.1
+-------
+* New major upstream release (backwards incompatible!).
+* Sphinx-based Documentation instead of README-file.
+* No more SAMPLE_PROJECT, a new sample app has been provided.
+* A lot of options are gone, their features being made obsolete, removed or
+  integrated into other parts of the extension.
+* A new CDN system replaced the old loading system.
+* `FontAwesome`_ has been removed in favor of `Glyphicons`_ (which now comes as
+  a real font as well).
+
+2.3.2.2
+-------
+* html5-shim is loaded using a protocol-relative URL
+* Rendering of RadioField changed (see sample app).
+
+2.3.2.1
+-------
+* Slight change in versioning (dot instead of hyphen for the Flask-Bootstrap
+  release).
+
+2.3.0-2
+-------
+* Switched the CDN to `cdnjs <http://cdnjs.com>`_ because `netdna
+  <http://bootstrapcdn.com>`_ keeps changing files around too much.
+* Introduced ``BOOTSTRAP_CUSTOM_CSS`` option.
+
+2.2.2-1
+-------
+* `FontAwesome`_ now version 3.0 instead of 2.0.
+* The ``navbar()``-macro is gone. It was accidentally committed and never did
+  anything useful, so this hopefully won't concern anyone.
+
+2.2.1-1
+-------
+* `FontAwesome`_ is now supported
+  as well, can also be loaded from bootstrapCDN. Set ``BOOTSTRAP_FONTAWESOME``
+  to ``True`` to enable it.
+* ``BOOTSTRAP_CDN_BASEURL`` is now a dictionary for multiple CDNs (i.e.
+  Bootstrap, FontAwesome can use different base URLs). This will break any code
+  that relied on setting ``BOOTSTRAP_CDN_BASEURL``.
+
+2.1.1-2
+-------
+* There is no longer a self.app on Flask-Bootstrap. The extension can be shared
+  by any number of applications using ``init_app()`` (though the old
+  ``__init__()`` signature is kept for backward compatibiliy).
+
+2.1.1-1
+-------
+* WTForms generated HTML code is now considered safe. This allows Flask-WTF's
+  ``RecaptchaField`` to work with ``quick_form``.
+
+2.1.0-1
+-------
+* New upstream release: 2.1.0.
+* Changed the default version of jQuery from 1.7.2 to just 1. This means that
+  the latest 1.x.x version of jQuery will be pulled.
+
+.. _FontAwesome: http://fortawesome.github.io/Font-Awesome/
+.. _Glyphicons: http://glyphicons.com/

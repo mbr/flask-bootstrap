@@ -1,0 +1,10 @@
+On new upstream release:
+========================
+1. Unzip new files
+2. Edit setup.py version and __init__.py's version (for test cases).
+3. (Change CDN URLs in __init__.py -- only when updating jquery et al.)
+4. Check using example app.
+
+Releasing
+=========
+1. Use unleash to publish (https://github.com/mbr/unleash)
