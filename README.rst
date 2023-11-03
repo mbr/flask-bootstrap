@@ -16,7 +16,7 @@ Usage
 Here is an example::
 
   from flask_bootstrap import Bootstrap
-
+![simple app](https://github.com/fenderrex/flask-bootstrap-SBadmin2-jquary/blob/master/dashboard3new.gif)
   [...]
 
   Bootstrap(app)
