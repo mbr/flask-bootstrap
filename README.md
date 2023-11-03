@@ -12,11 +12,11 @@ from a CDN and works with no boilerplate code in your application.
 
 Usage
 -----
-
+![Alt text](https://github.com/fenderrex/flask-bootstrap-SBadmin2-jquary/blob/master/dashboard3new.gif)
 Here is an example::
 
   from flask_bootstrap import Bootstrap
-![simple app](https://github.com/fenderrex/flask-bootstrap-SBadmin2-jquary/blob/master/dashboard3new.gif)
+
   [...]
 
   Bootstrap(app)
